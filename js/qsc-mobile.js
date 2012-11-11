@@ -13,10 +13,15 @@ $(document).ready(function() {
         $.getScript("js/qsc-mobile-jwb.js");
         $.getScript("js/qsc-mobile-kebiao.js");
     });
-
+    
     $('#menu .xiaoche').click(function(){
         $('#menu').hide(200);
         $('#xiaoche').show(200);
         $.getScript("js/qsc-mobile-bus.js");
+    });
+
+    $('#menu .login').click(function(){
+        $('#menu').hide(200);
+        $('#login').show(200);
     });
 });

@@ -29,6 +29,7 @@
 	font-size:42px;
 	text-align:center;
 	overflow:hidden;
+	cursor:pointer;
 	&:nth-child(2n){
 	    margin-left:10px;
 	}
@@ -39,19 +40,22 @@
 	    background-color:@color;
 	}	
     }
+    .gaikuang {
+	background-image: url(../img/general.png);
+    }
     .xiaoli {
 	background-image: url(../img/calendar.png);
     }
     .kebiao {
 	background-image: url(../img/class.png);
     }
-    .chengji{
+    .chengji {
 	background-image: url(../img/gpa.png);
     }
-    .kaoshi{
+    .kaoshi {
 	background-image: url(../img/exam.png);
     }
-    .xiaoche{
+    .xiaoche {
 	background-image: url(../img/bus.png);
     }
     .jiaoshi{
@@ -75,7 +79,7 @@
 .hidden {
     display:none;
 }
-#logo {
+.logo {
     display:block;
     width:240px;
     height:140px;
@@ -83,7 +87,7 @@
     float:left;
     cursor:pointer;
 }
-#index {
+#gaikuang {
     #timer {
 	font-size:36px;
 	color:@theme;
@@ -130,7 +134,7 @@
 	padding:10px;
 	height:96px;
 	margin-bottom:20px;
-	width:600px - 50px - 4*2px;
+	width:600px - 44px*2;
     }
     input[type="text"] {
 	margin-top:30px;

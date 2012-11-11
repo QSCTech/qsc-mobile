@@ -13,6 +13,7 @@
 <div id="wrap">
   
   <div id="menu">
+    <div class="box gaikuang">概况</div>
     <div class="box xiaoli">校历</div>
     <div class="box kaoshi">考试</div>
     <div class="box kebiao">课表</div>
@@ -23,6 +24,7 @@
     <div class="box logout">注销</div>
     <div class="box login">登录</div>
   </div>
+  
   
   <div id="kebiao" class="mask hidden">
     <header class="header">
@@ -65,8 +67,28 @@
     </select>
     <div id="bus_info"></div>
   </div>    
-</div>
-
-<div id="login" class="mask hidden"></div>
-
+  
+  <div id="gaikuang" class="mask hidden">
+    <div class="logo"></div>
+    <div class="forward"></div>
+    <br><hr>
+    <div id="timer"></div>
+    <br><br>
+    <div id="kebiao">
+      <div id="course_today"></div>
+      <div id="course_tomorrow"></div>
+    </div>    
+  </div>
+  
+  <div id="login" class="mask hidden">
+    <div class="logo"></div>
+    <header>登录</header>
+    <form action="http://m.myqsc.com/dev/index.php/user/login" method="post" accept-charset="utf-8">
+      <input type="text" name="stuid" id="stuid" value="" placeholder="学号" autofocus="autofocus" />
+      <br>
+      <input type="password" name="pwd" id="pwd" value="" placeholder="教务部密码" />
+      <br>
+      <input type="submit" name="mysubmit" value="登入教务网"  /></form>
+  </div>    
+  
 </div>

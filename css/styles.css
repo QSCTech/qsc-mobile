@@ -5,9 +5,10 @@ ul,ol,li{list-style:none;}
 a{text-decoration:none;}a:focus,a:hover,a:active{outline:none;}
 pre{white-space:pre-wrap;word-wrap:break-word;}
 #wrap{width:540px;margin:0 auto;overflow:hidden;padding:50px;}
-#menu{margin:0 auto;width:540px;float:left;}#menu .box{display:block;width:265px;height:265px;float:left;padding:0;margin-bottom:10px;background-color:#219eee;background-repeat:no-repeat;background-position:50% 30px;color:#fff;line-height:445px;font-size:42px;text-align:center;overflow:hidden;}#menu .box:nth-child(2n){margin-left:10px;}
+#menu{margin:0 auto;width:540px;float:left;}#menu .box{display:block;width:265px;height:265px;float:left;padding:0;margin-bottom:10px;background-color:#219eee;background-repeat:no-repeat;background-position:50% 30px;color:#fff;line-height:445px;font-size:42px;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(2n){margin-left:10px;}
 #menu .box:nth-child(4n){background-color:#666666;}
 #menu .box:nth-child(4n+1){background-color:#666666;}
+#menu .gaikuang{background-image:url(../img/general.png);}
 #menu .xiaoli{background-image:url(../img/calendar.png);}
 #menu .kebiao{background-image:url(../img/class.png);}
 #menu .chengji{background-image:url(../img/gpa.png);}
@@ -20,13 +21,13 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #menu:after{content:'';clear:both;display:block;}
 .mask{width:100%;height:100%;}
 .hidden{display:none;}
-#logo{display:block;width:240px;height:140px;background:url(../img/logo.png) no-repeat left top;float:left;cursor:pointer;}
-#index #timer{font-size:36px;color:#219eee;line-height:36px;}#index #timer .msg_timer{float:left;}
-#index #timer .msg_course{float:right;font-size:18px;margin-top:3px;}
-#index #timer:after{content:'';clear:both;display:block;}
-#index #course_today,#index #course_tomorrow{color:#219eee;font-size:28px;}#index #course_today:before,#index #course_tomorrow:before{content:"Tomorrow";display:block;font-size:60px;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:20px solid #219eee;border-radius:70px;}
-#index #course_today{padding-bottom:2em;}#index #course_today:before{content:"Today";}
-#login input[type="text"],#login input[type="password"]{border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:542px;}
+.logo{display:block;width:240px;height:140px;background:url(../img/logo.png) no-repeat left top;float:left;cursor:pointer;}
+#gaikuang #timer{font-size:36px;color:#219eee;line-height:36px;}#gaikuang #timer .msg_timer{float:left;}
+#gaikuang #timer .msg_course{float:right;font-size:18px;margin-top:3px;}
+#gaikuang #timer:after{content:'';clear:both;display:block;}
+#gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:28px;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:60px;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:20px solid #219eee;border-radius:70px;}
+#gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
+#login input[type="text"],#login input[type="password"]{border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:512px;}
 #login input[type="text"]{margin-top:30px;}
 #login input[type="submit"]{background:#219eee;border:none;color:#fff;font-size:48px;line-height:96px;margin-top:20px;height:96px;width:570px;}
 #login header{font-size:96px;float:right;text-align:right;line-height:160px;color:#219eee;}
