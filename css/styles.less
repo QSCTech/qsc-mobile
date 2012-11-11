@@ -1,0 +1,293 @@
+@import 'reset';
+@import 'zeno';
+
+@theme: #219eee;
+@color: #666;
+
+#wrap {
+    width:540px;
+    margin:0 auto;
+    overflow:hidden;
+    padding:50px;
+}
+#menu {
+    margin:0 auto;
+    width:540px;
+    float:left;
+    .box {
+	display:block;
+	width:265px;
+	height:265px;
+	float:left;
+	padding:0;
+	margin-bottom:10px;
+	background-color:@theme;
+	background-repeat:no-repeat;
+	background-position:50% 30px;
+	color:#fff;
+	line-height:445px;
+	font-size:42px;
+	text-align:center;
+	overflow:hidden;
+	&:nth-child(2n){
+	    margin-left:10px;
+	}
+	&:nth-child(4n){
+	    background-color:@color;
+	}
+	&:nth-child(4n+1){
+	    background-color:@color;
+	}	
+    }
+    .xiaoli {
+	background-image: url(../img/calendar.png);
+    }
+    .kebiao {
+	background-image: url(../img/class.png);
+    }
+    .chengji{
+	background-image: url(../img/gpa.png);
+    }
+    .kaoshi{
+	background-image: url(../img/exam.png);
+    }
+    .xiaoche{
+	background-image: url(../img/bus.png);
+    }
+    .jiaoshi{
+	background-image: url(../img/rooms.png);
+    }
+    .logout{
+	background-image: url(../img/exit.png);
+    }
+    .clear_after();
+}
+.mask {
+    width:100%;
+    height:100%;
+}
+.hidden {
+    display:none;
+}
+#logo {
+    display:block;
+    width:240px;
+    height:140px;
+    background:url(../img/logo.png) no-repeat left top;
+    float:left;
+    cursor:pointer;
+}
+#index {
+    #timer {
+	font-size:36px;
+	color:@theme;
+	line-height:36px;
+	.msg_timer {
+	    float:left;
+	}
+	
+	.msg_course {
+	    float:right;
+	    font-size:18px;
+	    margin-top:3px;
+	}
+	.clear_after;
+    }
+    
+    #course_today, #course_tomorrow{
+	&:before {	    
+	    content:"Tomorrow";
+	    display:block;
+	    font-size:60px;
+	    padding-left:.5em;
+	    color:#555;
+	    font-weight:bold;
+	    border:none;
+	    border-left: 20px solid @theme;
+	    border-radius:70px;
+	}
+	color:@theme;
+	font-size:28px;
+    }
+    #course_today {
+	&:before{
+	    content:"Today";
+	}
+	padding-bottom:2em;
+    }
+}
+#login {
+    input[type="text"], input[type="password"]{
+	border:4px solid @color;
+	font-size:48px;
+	line-height:76px;
+	padding:10px;
+	height:96px;
+	margin-bottom:20px;
+	width:600px - 50px - 4*2px;
+    }
+    input[type="text"] {
+	margin-top:30px;
+    }
+    input[type="submit"] {
+	background:@theme;
+	border:none;
+	color:#fff;
+	font-size:48px;
+	line-height:96px;
+	margin-top:20px;
+	height:96px;
+	width:570px;
+    }
+    header{
+	font-size:96px;
+	float:right;
+	text-align:right;
+	line-height:160px;
+	color:@theme;
+    }
+}
+#copyright{
+    padding-top:1em;
+    color:@color;
+    //    text-align:center;
+}
+#chengji{
+    width:540px;
+    .header{
+	#kebiao .header;
+	background:url(../img/gpa-blue.png) no-repeat left bottom;
+    }
+}
+#kaoshi{
+    width:540px;
+    .header{
+	#kebiao .header;
+	background:url(../img/gpa-blue.png) no-repeat left bottom;
+    }
+    font-size:36px;
+    color:@color;
+    .kaoshi {
+	margin-bottom:2em;
+    }
+}
+#xiaoche {
+    width:540px;
+    .header{
+	#kebiao .header;
+	background:url(../img/bus-blue.png) no-repeat left bottom;
+    }
+    select {
+	padding:0;
+	margin:0;
+	font-size:32px;
+	width:267px;
+	background:#fff;
+	border: 2px solid #777;
+	color:#555;
+    }
+    #bus_info {
+	font-size:32px;
+	color:@color;
+	ul {
+	    margin: 2em 0;
+	}
+	li {
+	    margin: .5em 0;
+	    .clear_after;
+	}
+	strong {
+	    color:@theme;
+	    font-size:36px;
+	    font-weight:normal;
+	    height:100%;
+	}
+	span {
+	    width:400px;
+	    display:block;
+	    float:right;
+	}
+    }
+}
+.clear{
+    clear:both;
+}
+hr {
+    border: 1px solid #ddd;
+    margin-bottom:1em;
+}
+hr.blue {
+    border-color:@theme;
+}
+#kebiao {
+    .header{
+	background:url(../img/class-blue.png) no-repeat left bottom;
+	max-height:150px;
+	line-height:200px;
+	padding-left:160px;
+	font-size:100px;
+	color:@theme;
+    }
+    .class_name {
+	line-height:72px;
+	color:@color;
+	font-size:48px;
+	margin-top:1em;
+    }
+    .class_nth_all {
+	font-size:36px;
+	color:@theme;
+    }
+    .class_time {
+	font-size:32px;
+	color:@color;
+    }
+    .class_classroom {
+	font-size:32px;
+	color:@color;
+    }
+}
+#forward {
+    display:block;
+    width:100px;
+    height:100px;
+    margin-top:20px;
+    background:url(../img/forward.png);
+    float:right;
+    cursor:pointer;
+}
+.backward{
+    display:block;
+    width:100px;
+    height:100px;
+    margin-top:50px;
+    background:url(../img/backward.png);
+    float:right;
+    cursor:pointer;
+}
+.slide{
+    header {
+	text-align:center;
+	text-transform: capitalize;
+	font-family:ubuntu;
+	line-height:100px;
+	font-size:80px;
+	background:@color;
+	color:#fff;
+	margin:40px 0;
+	&:hover {
+	    background:@theme;//保证触摸的时候可以迅速的变色
+	}
+    }
+    .current {
+	background:@theme;
+    }
+    .detail {
+	display:none;
+	font-size:48px;
+	color:@color;
+    }
+}
+.em {
+    color:@theme;
+}

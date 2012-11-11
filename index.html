@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=640px;" />
+<meta http-equiv="pragma"   content="no-cache" />   
+<meta http-equiv="Cache-Control" content="no-cache,must-revalidate" />   
+<meta http-equiv="expires" content="Wed,26 Feb 1997 08:21:57 GMT" /> 
+
+<title>求是潮移动平台</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/qsc-mobile.js" charset="UTF-8"></script>
+
+<div id="wrap">
+  
+  <div id="menu">
+    <div class="box xiaoli">校历</div>
+    <div class="box kaoshi">考试</div>
+    <div class="box kebiao">课表</div>
+    <div class="box xiaohua">笑话</div>
+    <div class="box chengji">成绩</div>
+    <div class="box jiaoshi">教室</div>
+    <div class="box xiaoche">校车</div>
+    <div class="box logout">注销</div>
+    <div class="box login">登录</div>
+  </div>
+  
+  <div id="kebiao" class="mask hidden">
+    <header class="header">
+      课表<div class="backward"></div>
+    </header>
+    <br><hr>
+    <div id="mon" class="slide"><header>mon</header><div class="detail"></div></div>
+    <div id="tue" class="slide"><header>tue</header><div class="detail"></div></div>
+    <div id="wed" class="slide"><header>wed</header><div class="detail"></div></div>
+    <div id="thu" class="slide"><header>thu</header><div class="detail"></div></div>
+    <div id="fri" class="slide"><header>fri</header><div class="detail"></div></div>
+    <div id="sat" class="slide"><header>sat</header><div class="detail"></div></div>
+    <div id="sun" class="slide"><header>sun</header><div class="detail"></div></div>
+  </div>
+  
+  <div id="xiaoli" class="mask hidden"></div>
+  <div id="kaoshi" class="mask hidden"></div>
+  <div id="jiaoshi" class="mask hidden"></div>
+  <div id="chengji" class="mask hidden"></div>
+  <div id="jiaoshi" class="mask hidden"></div>
+  
+  <div id="xiaoche" class="mask hidden">
+    <header class="header">
+      校车<div class="backward"></div>
+    </header>
+    <br><hr>
+    <select id="from">
+      <option value="紫金港校区">紫金港校区</option>
+      <option value="玉泉校区">玉泉校区</option>
+      <option value="西溪校区">西溪校区</option>
+      <option value="华家池校区">华家池校区</option>
+      <option value="之江校区">之江校区</option>
+    </select>
+    <select id="to">
+      <option value="玉泉校区">玉泉校区</option>
+      <option value="紫金港校区">紫金港校区</option>
+      <option value="西溪校区">西溪校区</option>
+      <option value="华家池校区">华家池校区</option>
+      <option value="之江校区">之江校区</option>
+    </select>
+    <div id="bus_info"></div>
+  </div>    
+</div>
+
+<div id="login" class="mask hidden"></div>
+
+</div>
