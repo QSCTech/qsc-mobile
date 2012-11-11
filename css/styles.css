@@ -14,6 +14,8 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #menu .kaoshi{background-image:url(../img/exam.png);}
 #menu .xiaoche{background-image:url(../img/bus.png);}
 #menu .jiaoshi{background-image:url(../img/rooms.png);}
+#menu .xiaohua{background-image:url(../img/jokes.png);}
+#menu .login{background-image:url(../img/login.png);}
 #menu .logout{background-image:url(../img/exit.png);}
 #menu:after{content:'';clear:both;display:block;}
 .mask{width:100%;height:100%;}
