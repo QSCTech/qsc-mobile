@@ -9,11 +9,14 @@ $(document).ready(function() {
         var key      = new RSAKeyPair("10001", '', rsa_n); //10001 => e的十六进制  
         var password = $("#pwd").val();
         password = encryptedString(key, password); //不支持汉字
-
+        
         $.getJSON(siteUrl+'/jsonp/validate?stuid='+stuid+'&pwd='+password+'&callback=?', function(data) {
-            localStorage.setItem('test', JSON.stringify(data));
-            localStorage.setItem('stuid', stuid);
-            localStorage.setItem('pwd', password);
+            if(typeof(data['code']) != "undefined" && data['code'] == 0) {
+                alert(data['msg']);
+            } else {
+                localStorage.setItem('stuid', stuid);
+                localStorage.setItem('pwd', password);
+            }
         });
     });
 });
