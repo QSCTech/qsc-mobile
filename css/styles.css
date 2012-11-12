@@ -22,6 +22,7 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 .mask{width:100%;height:100%;}
 .hidden{display:none;}
 .logo{display:block;width:240px;height:140px;background:url(../img/logo.png) no-repeat left top;float:left;cursor:pointer;}
+#gaikuang{width:540px;}#gaikuang .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/general-blue.png) no-repeat left bottom;}
 #gaikuang #timer{font-size:36px;color:#219eee;line-height:36px;}#gaikuang #timer .msg_timer{float:left;}
 #gaikuang #timer .msg_course{float:right;font-size:18px;margin-top:3px;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}

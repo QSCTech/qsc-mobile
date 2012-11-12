@@ -1,5 +1,5 @@
 var keBiaoData;
-    
+
 // 设定日子
 var today = new Date();
 var tomorrow = new Date();
@@ -57,9 +57,9 @@ function writeCountDownToDom(dom){
 	}
         
         var courseName = keBiao.getCourseName(classNthMaybe);
-
+        
         var classroom = keBiao.getClassroom(classNthMaybe);         
-
+        
         var html = '';
         html += '<div class="msg_timer">';
         html += '<div class="msg_class">'+msgClass+'</div>';
@@ -127,27 +127,7 @@ function loadPage() {
     }
 }
 
-// 判断缓存，若缓存不存在或已过期
-if(true) {
-    // 抓取课表数据
-    $.getJSON(siteUrl+'/jwb/kebiao_ajax', function(data) {
-        
-        keBiaoData = data;
-        loadPage();
-        
-        // 写入缓存
-        // somecode here
-    });
-}
-
-$(document).ready(function() {
-    
-    // slide show
-    $('.slide header').click(function(){
-	$('header').removeClass('current');
-	$('.detail').slideUp(100);
-	$(this).next().slideDown(100);
-	$(this).addClass('current');
-    });
-    $('.slide header:first').click();
+$.getJSON(siteUrl+'/jsonp/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?', function(data) {
+    keBiaoData = data;
+    loadPage();
 });
