@@ -25,12 +25,29 @@ var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : fals
 var pwd = localStorage.getItem('pwd') ? localStorage.getItem('pwd') : false;
 var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') : false;
 
+function pleaseLoginIfNotLogin() {
+    if(isLogin) return;
+
+    $('.mask').hide(200);
+    $('#login').show(200);
+    $.include(['qsc-mobile-login.js']);
+}
+
+function myShowMsg(msg) {
+    $('#msg').show(200);
+    $('#msg .content').html(msg);
+}
+
 $.includePath = 'js/';
 
 // 允许在file://的时候进行跨域请求
 $.support.cors = true;
 
 $(document).ready(function() {
+    $('#msg .close').click(function(){
+        $('#msg').slideUp(800);
+    });
+
     $('.logo').click(function(){
         $(this).parent().hide(200);
         $('#menu').slideDown(200);
@@ -42,7 +59,7 @@ $(document).ready(function() {
     });
     
     $('#menu .kebiao').click(function(){
-        $.include(['qsc-mobile-jwb.js', 'qsc-mobile-kebiao.js']);
+        $.include(['qsc-mobile-kebiao.js']);
         $('#menu').hide(200);
         $('#kebiao').show(200);
     });
@@ -52,13 +69,13 @@ $(document).ready(function() {
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
     });
-
+    
     $('#menu .gaikuang').click(function(){
         $('#menu').hide(200);
         $('#gaikuang').show(200);
-        $.include(['qsc-mobile-jwb.js','qsc-mobile-kebiao.js']);
+        $.include(['qsc-mobile-kebiao.js']);
     });
-
+    
     $('#menu .kaoshi').click(function(){
         $('#menu').hide(200);
         $('#kaoshi').show(200);
@@ -70,7 +87,7 @@ $(document).ready(function() {
         $('#chengji').show(200);
         $.include(['qsc-mobile-chengji.js']);
     });
-
+    
     $('#menu .login').click(function(){
         $('#menu').hide(200);
         $('#login').show(200);

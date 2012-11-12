@@ -4,6 +4,41 @@
 @theme: #219eee;
 @color: #666;
 
+#msg {
+    width:600px - 20px*2;
+    height:200px - 20px*2;
+    position:fixed;
+    left:50%;
+    top:40%;
+    margin-top:-100px;
+    margin-left:-300px;
+//    border:15px rgba(0,0,0,.5) solid;
+    border-radius:8px;
+    background:rgba(0, 0, 0, .95);
+    z-index:999;
+    display:none;
+    font-size:24px;
+    padding:20px;
+    padding-top:70px;
+    color:#fff;
+    .close {
+	float:right;
+	background:#fff;
+	width:50px;
+	height:50px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	text-align:center;
+	line-height:50px;
+	margin-top:-67px;
+	color:#000;
+	font-size:36px;
+	font-weight:bold;
+	&:hover {
+	    cursor:pointer;
+	}
+    }
+}
 #wrap {
     width:540px;
     margin:0 auto;

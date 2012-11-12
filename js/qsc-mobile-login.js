@@ -13,11 +13,18 @@ $('#login_submit').click(function(){
         if(typeof(data['code']) != "undefined" && data['code'] == 0) {
             alert(data['msg']);
         } else {
-            localStorage.setItem('stuid', stuid);
-            localStorage.setItem('pwd', password);
-            localStorage.setItem('isLogin', true);
-            pwd = password;
-            isLogin = true;
+            if(stuid != '') {
+                localStorage.setItem('stuid', stuid);
+                localStorage.setItem('pwd', password);
+                localStorage.setItem('isLogin', true);
+                pwd = password;
+                isLogin = true;
+                $('#login').hide(200);
+                $('#menu').show(200);
+            } else {
+                localStorage.setItem('isLogin', false);
+                isLogin = false;
+            }
         }
     });
 });

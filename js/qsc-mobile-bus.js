@@ -1,7 +1,5 @@
-var busData = false;
-
 function loadBusInfo(){
-    if(!busData)
+    if(!xiaoCheData)
         return;
     
     var from = $('select#from').val();
@@ -9,12 +7,12 @@ function loadBusInfo(){
     
     var i;
     var theBus = [];
-    for(i=0; i < busData.length; i++) {
-        if(busData[i]['起点'] != from)
+    for(i=0; i < xiaoCheData.length; i++) {
+        if(xiaoCheData[i]['起点'] != from)
             continue;
-        if(busData[i]['终点'] != to)
+        if(xiaoCheData[i]['终点'] != to)
             continue;
-        theBus.push(busData[i]);
+        theBus.push(xiaoCheData[i]);
     }
     $('#bus_info').html('');// 清空旧数据
     if(theBus.length == 0) {
@@ -32,10 +30,19 @@ function loadBusInfo(){
     }
 }
 
-$(document).ready(function() {
-    // &callback?是为了使用跨域JSONP调用
-    $.getJSON(baseUrl+'jsonp.php?data=bus&callback=?', function(data) {
-        busData = data;
-        setInterval("loadBusInfo()",10);
+var xiaoCheData;
+
+if (localStorage.getItem('xiaoChe')) {
+    xiaoCheData = JSON.parse(localStorage.getItem('xiaoChe'));
+    loadBusInfo();
+} else {
+    $.getJSON(siteUrl+'/jsonp/xiaoche?callback=?', function(data) {
+        xiaoCheData = data;
+        localStorage.setItem('xiaoChe', JSON.stringify(xiaoCheData));
+        loadBusInfo();
     });
+}
+
+$('#xiaoche select').click(function() {
+    loadBusInfo();
 });
