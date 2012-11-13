@@ -25,12 +25,16 @@ var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : fals
 var pwd = localStorage.getItem('pwd') ? localStorage.getItem('pwd') : false;
 var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') : false;
 
-function pleaseLoginIfNotLogin() {
-    if(isLogin) return;
+function pleaseLoginIfNotLogin(callback) {
+    if(!isLogin) {
+        $('.mask').hide(200);
+        $('#login').show(200);
+        $.include(['qsc-mobile-login.js']);
+    }
     
-    $('.mask').hide(200);
-    $('#login').show(200);
-    $.include(['qsc-mobile-login.js']);
+    if(typeof(callback) == 'function') {
+        callback();
+    }
 }
 
 
