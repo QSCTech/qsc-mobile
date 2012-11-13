@@ -27,10 +27,39 @@ var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') 
 
 function pleaseLoginIfNotLogin() {
     if(isLogin) return;
-
+    
     $('.mask').hide(200);
     $('#login').show(200);
     $.include(['qsc-mobile-login.js']);
+}
+
+
+function myGetJsonp(name, callback) {
+    $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&callback=?', function (data) {
+        
+        if(typeof(data['code']) != "undefined") {
+            if(data['code'] == 0) {
+                // 远端返回错误
+                myShowMsg(data['msg']);
+                return;
+            }
+            if(data['code'] == 1) {
+                // 远端返回消息
+                myShowMsg(data['msg']);
+                
+                // 再次访问远端来获取内容（递归）
+                myGetJsonp(name, callback);
+            } else {
+                // 未知情况
+                return;
+            }
+        }
+        
+        // 回调函数
+        if(typeof(callback)=='function'){   
+            callback(data);
+        };
+    });
 }
 
 function myShowMsg(msg) {
@@ -47,7 +76,7 @@ $(document).ready(function() {
     $('#msg .close').click(function(){
         $('#msg').slideUp(800);
     });
-
+    
     $('.logo').click(function(){
         $(this).parent().hide(200);
         $('#menu').slideDown(200);
