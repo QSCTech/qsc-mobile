@@ -8,7 +8,8 @@ if (localStorage.getItem('chengJi')) {
     chengJiData = JSON.parse(localStorage.getItem('chengJi'));
     loadChengji();
 } else {
-    $.getJSON(siteUrl+'/jsonp/chengji?stuid='+stuid+'&pwd='+pwd+'&callback=?', function(data) {
+    myGetJsonp('chengji', function(data) {
+        if(!data) return;
         chengJiData = data;
         localStorage.setItem('chengJi', JSON.stringify(chengJiData));
         loadChengji();

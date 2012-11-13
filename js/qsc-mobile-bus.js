@@ -36,7 +36,8 @@ if (localStorage.getItem('xiaoChe')) {
     xiaoCheData = JSON.parse(localStorage.getItem('xiaoChe'));
     loadBusInfo();
 } else {
-    $.getJSON(siteUrl+'/jsonp/xiaoche?callback=?', function(data) {
+    myGetJsonp('xiaoche', function(data) {
+        if(!data) return;
         xiaoCheData = data;
         localStorage.setItem('xiaoChe', JSON.stringify(xiaoCheData));
         loadBusInfo();

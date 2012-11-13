@@ -11,7 +11,8 @@ if (localStorage.getItem('kaoShi')) {
     kaoShiData = JSON.parse(localStorage.getItem('kaoShi'));
     loadKaoShi();
 } else {
-    $.getJSON(siteUrl+'/jsonp/kaoshi?stuid='+stuid+'&pwd='+pwd+'&callback=?', function(data) {
+    myGetJsonp('kaoshi', function(data) {
+        if(!data) return;
         kaoShiData = data;
         localStorage.setItem('kaoShi', JSON.stringify(kaoShiData));
         loadKaoShi();

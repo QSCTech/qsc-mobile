@@ -140,13 +140,4 @@ if (localStorage.getItem('keBiao')) {
             localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
         }
     });
-    // $.getJSON(siteUrl+'/jsonp/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?', function(data) {
-    //     if(typeof(data['code']) != "undefined" && data['code'] == 1) {
-    //         myShowMsg(data['msg']);
-    //     } else {
-    //         keBiaoData = data;
-    //         loadPage();
-    //         localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
-    //     }
-    // });    
 }

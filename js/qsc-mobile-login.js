@@ -9,22 +9,18 @@ $('#login_submit').click(function(){
     var password = $("#pwd").val();
     password = encryptedString(key, password); //不支持汉字
     
-    $.getJSON(siteUrl+'/jsonp/validate?stuid='+stuid+'&pwd='+password+'&callback=?', function(data) {
-        if(typeof(data['code']) != "undefined" && data['code'] == 0) {
-            alert(data['msg']);
+    myGetJsonp('validate', function(data) {
+        if(stuid != '') {
+            localStorage.setItem('stuid', stuid);
+            localStorage.setItem('pwd', password);
+            localStorage.setItem('isLogin', true);
+            pwd = password;
+            isLogin = true;
+            $('#login').hide(200);
+            $('#menu').show(200);
         } else {
-            if(stuid != '') {
-                localStorage.setItem('stuid', stuid);
-                localStorage.setItem('pwd', password);
-                localStorage.setItem('isLogin', true);
-                pwd = password;
-                isLogin = true;
-                $('#login').hide(200);
-                $('#menu').show(200);
-            } else {
-                localStorage.setItem('isLogin', false);
-                isLogin = false;
-            }
+            localStorage.setItem('isLogin', false);
+            isLogin = false;
         }
     });
 });
