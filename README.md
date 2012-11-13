@@ -23,3 +23,37 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+This program incorporates work covered by the following copyright and
+permission notices:
+
+  jQuery JavaScript Library v1.8.2
+
+  Copyright 2012 jQuery Foundation and other contributors
+
+  Released under the MIT license
+
+  http://jquery.org/license
+
+
+  BarrettMu.js
+
+  Copyright 2004-2005 David Shapiro.
+
+  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
+
+
+  BigInt.js
+
+  Copyright 1998-2005 David Shapiro.
+
+  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
+
+
+  RSA.js
+
+  Copyright 1998-2005 David Shapiro.
+
+  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
+  
+
