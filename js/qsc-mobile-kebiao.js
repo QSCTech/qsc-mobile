@@ -138,7 +138,7 @@ function loadPage() {
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
 
-    $('#kebiao '+todayWeekDate).click();
+    $('#kebiao #'+todayWeekDate+' header').click();
 }
 
 if (localStorage.getItem('keBiao')) {
