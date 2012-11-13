@@ -1,5 +1,3 @@
-pleaseLoginIfNotLogin();
-
 var chengJiData;
 
 function loadChengji(){}

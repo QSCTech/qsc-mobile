@@ -1,5 +1,3 @@
-pleaseLoginIfNotLogin();
-
 var keBiaoData;
 
 // 设定日子

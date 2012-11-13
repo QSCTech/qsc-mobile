@@ -97,9 +97,11 @@ $(document).ready(function() {
     });
     
     $('#menu .kebiao').click(function(){
-        $('#menu').hide(200);
-        $('#kebiao').show(200);
-        $.include(['qsc-mobile-kebiao.js']);
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
+            $('#kebiao').show(200);
+            $.include(['qsc-mobile-kebiao.js']);
+        });
     });
     
     $('#menu .xiaoche').click(function(){
@@ -109,21 +111,27 @@ $(document).ready(function() {
     });
     
     $('#menu .gaikuang').click(function(){
-        $('#menu').hide(200);
-        $('#gaikuang').show(200);
-        $.include(['qsc-mobile-kebiao.js']);
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
+            $('#gaikuang').show(200);
+            $.include(['qsc-mobile-kebiao.js']);
+        });
     });
     
     $('#menu .kaoshi').click(function(){
-        $('#menu').hide(200);
-        $('#kaoshi').show(200);
-        $.include(['qsc-mobile-kaoshi.js']);
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
+            $('#kaoshi').show(200);
+            $.include(['qsc-mobile-kaoshi.js']);
+        });
     });
     
     $('#menu .chengji').click(function(){
-        $('#menu').hide(200);
-        $('#chengji').show(200);
-        $.include(['qsc-mobile-chengji.js']);
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
+            $('#chengji').show(200);
+            $.include(['qsc-mobile-chengji.js']);
+        });
     });
     
     $('#menu .login').click(function(){

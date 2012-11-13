@@ -1,5 +1,3 @@
-pleaseLoginIfNotLogin();
-
 var kaoShiData;
 
 function loadKaoShi() {
