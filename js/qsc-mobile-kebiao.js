@@ -2,6 +2,9 @@ var keBiaoData;
 
 // 设定日子
 var today = new Date();
+var weekArr = ['sun','mon','tue','wed','thu','fri','sat'];
+var todayWeekDate = weekArr[today.getDay()];
+
 var tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -110,15 +113,15 @@ function writeClassToDom(dom, date){
 }
 
 function loadPage() {
-    // var zjuWeekInfo;
-    // if(today.getZjuWeek == 'odd') {
-    //     zjuWeekInfo = '当前周是单周。';
-    // } else if (today.getZjuWeek == 'even') {
-    //     zjuWeekInfo = '当前周是双周。';
-    // } else {
-    //     zjuWeekInfo = '';
-    // }
-    // $('#zju_date_info').html(zjuWeekInfo);
+    var zjuWeekInfo;
+    if(today.getZjuWeek() == 'odd') {
+        zjuWeekInfo = '当前周是单周。';
+    } else if (today.getZjuWeek() == 'even') {
+        zjuWeekInfo = '当前周是双周。';
+    } else {
+        zjuWeekInfo = '';
+    }
+    $('#zju_date_info').html(zjuWeekInfo);
     
     writeClassToDom('#course_today', today);
     writeClassToDom('#course_tomorrow', tomorrow);
@@ -134,6 +137,8 @@ function loadPage() {
         xdate.setDate(today.getDate() - offset + i);
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
+
+    $('#kebiao '+todayWeekDate).click();
 }
 
 if (localStorage.getItem('keBiao')) {
