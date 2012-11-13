@@ -62,9 +62,14 @@ function myGetJsonp(name, callback) {
     });
 }
 
-function myShowMsg(msg) {
+function myShowMsg(msg, callback) {
     $('#msg').show(200);
     $('#msg .content').html(msg);
+    
+    // 回调函数
+    if(typeof(callback)=='function'){
+        callback(msg);
+    };
 }
 
 $.includePath = 'js/';
@@ -128,7 +133,12 @@ $(document).ready(function() {
         var isLogin = false;
         // 清空localStorage
         localStorage.clear();
-        myShowMsg('注销成功');
+        myShowMsg('注销成功', function(msg) {
+            // 刷新以重载js以及到dom
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
+        });
     });
 });
 
