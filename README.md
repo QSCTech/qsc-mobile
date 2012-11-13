@@ -4,6 +4,10 @@
 
 即将出生……
 
+## Source Code
+代码托管在Github：
+https://github.com/zenozeng/qsc-mobile
+
 ## License
 Copyright (C) 2012 求是潮技术研发中心
 
