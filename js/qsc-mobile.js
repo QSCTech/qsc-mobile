@@ -60,6 +60,7 @@ function pleaseLoginIfNotLogin(callback) {
                 } else {
                     localStorage.setItem('isLogin', false);
                     isLogin = false;
+                    myShowMsg('登录失败');
                 }
             });
         });
@@ -163,8 +164,7 @@ $(document).ready(function() {
     });
     
     $('#menu .login').click(function(){
-        $('#login').slideDown(200);
-        $.include(['qsc-mobile-login.js']);
+        pleaseLoginIfNotLogin();
     });
     
     $('#menu .logout').click(function(){
