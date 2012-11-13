@@ -184,10 +184,9 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('.slide header').click(function(){
-	$('header').removeClass('current');
-	$('.detail').slideUp(100);
+        $(this).parent().parent().find('header').removeClass('current');
+        $(this).parent().parent().find('.detail').slideUp(100);
 	$(this).next().slideDown(100);
 	$(this).addClass('current');
     });
-    $('.slide header:first').click();
 });
