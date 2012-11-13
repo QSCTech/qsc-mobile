@@ -88,9 +88,9 @@ $(document).ready(function() {
     });
     
     $('#menu .kebiao').click(function(){
-        $.include(['qsc-mobile-kebiao.js']);
         $('#menu').hide(200);
         $('#kebiao').show(200);
+        $.include(['qsc-mobile-kebiao.js']);
     });
     
     $('#menu .xiaoche').click(function(){
@@ -118,9 +118,17 @@ $(document).ready(function() {
     });
     
     $('#menu .login').click(function(){
-        $('#menu').hide(200);
         $('#login').show(200);
         $.include(['qsc-mobile-login.js']);
+    });
+    
+    $('#menu .logout').click(function(){
+        var stuid = false;
+        var pwd = false;
+        var isLogin = false;
+        // 清空localStorage
+        localStorage.clear();
+        myShowMsg('注销成功');
     });
 });
 
