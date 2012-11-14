@@ -32,7 +32,6 @@ function pleaseLoginIfNotLogin(callback) {
             callback();
         }
     } else {
-        
         $('#login').show(200);
         $.include(['BigInt.js','Barrett.js','RSA.js']);
         
@@ -136,11 +135,22 @@ $(document).ready(function() {
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
+
+    $('#menu .config').click(function(){
+        $('#menu').slideUp(200);
+        $('#config').slideDown(200);
+        $.include(['qsc-mobile-config.js']);
+    });
     
     $('#menu .xiaoche').click(function(){
         $('#menu').slideUp(200);
         $('#xiaoche').slideDown(200);
         $.include(['qsc-mobile-bus.js']);
+    });
+
+    $('#menu .xiaohua').click(function(){
+        $('#menu').slideUp(200);
+        $('#xiaohua').slideDown(200);
     });
     
     $('#menu .gaikuang').click(function(){
