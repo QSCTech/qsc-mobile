@@ -24,6 +24,7 @@ var baseUrl = 'http://zva.me/';
 var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : false;
 var pwd = localStorage.getItem('pwd') ? localStorage.getItem('pwd') : false;
 var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') : false;
+var token = localStorage.getItem('token') ? localStorage.getItem('token') : false;
 
 function pleaseLoginIfNotLogin(callback) {
     if(isLogin) {
@@ -45,9 +46,12 @@ function pleaseLoginIfNotLogin(callback) {
             pwd = encryptedString(key, pwd); //不支持汉字
             
             myGetJsonp('validate', function(data) {
-                if(stuid != '') {
+                if(data['stuid'] != '') {
+                    token = data['token'];
+
                     localStorage.setItem('stuid', stuid);
                     localStorage.setItem('pwd', pwd);
+                    localStorage.setItem('token', token);
                     localStorage.setItem('isLogin', true);
                     isLogin = true;
                     $('#login').slideUp(200);
@@ -68,7 +72,7 @@ function pleaseLoginIfNotLogin(callback) {
 }
 
 function myGetJsonp(name, callback) {
-    $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&callback=?', function (data) {
+    $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
         
         if(typeof(data['code']) != "undefined") {
             if(data['code'] == 0) {
