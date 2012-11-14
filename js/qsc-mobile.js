@@ -21,10 +21,22 @@ $.extend({
 var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 var baseUrl = 'http://zva.me/';
 
+
+// 读取用户信息
 var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : false;
 var pwd = localStorage.getItem('pwd') ? localStorage.getItem('pwd') : false;
 var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') : false;
 var token = localStorage.getItem('token') ? localStorage.getItem('token') : false;
+
+// 初始化用户配置
+var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
+var config_list = ['update_automatically'];
+for(var i = 0; i < config_list.length; i++) {
+    var item = config_list[i];
+    if(typeof(config[item]) == "undefined")
+        config[item] = true; // 默认开启所有特性
+}
+
 
 function pleaseLoginIfNotLogin(callback) {
     if(isLogin) {
