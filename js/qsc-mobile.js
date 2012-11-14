@@ -66,6 +66,8 @@ function pleaseLoginIfNotLogin(callback) {
                     localStorage.setItem('isLogin', true);
                     isLogin = true;
                     $('#login').slideUp(200);
+                    $('#menu .login').hide();
+                    $('#menu .logout').show();
                     
                     // 回调函数
                     if(typeof(callback) == 'function') {
@@ -126,6 +128,12 @@ $.includePath = 'js/';
 $.support.cors = true;
 
 $(document).ready(function() {
+    if(isLogin) 
+        $('#menu .login').hide();
+    else
+        $('#menu .logout').hide();
+    
+    
     $('#msg .close').click(function(){
         $('#msg').slideUp(800);
     });
