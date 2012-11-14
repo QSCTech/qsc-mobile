@@ -85,6 +85,7 @@ function pleaseLoginIfNotLogin(callback) {
 }
 
 function myGetJsonp(name, callback) {
+    $('#loading').show(100);
     $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
         
         if(typeof(data['code']) != "undefined") {
@@ -105,6 +106,7 @@ function myGetJsonp(name, callback) {
             }
         }
         
+        $('#loading').hide(100);
         // 回调函数
         if(typeof(callback)=='function'){   
             callback(data);
