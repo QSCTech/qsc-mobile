@@ -59,7 +59,7 @@ function pleaseLoginIfNotLogin(callback) {
             myGetJsonp('validate', function(data) {
                 if(data['stuid'] != '') {
                     token = data['token'];
-
+                    
                     localStorage.setItem('stuid', stuid);
                     localStorage.setItem('pwd', pwd);
                     localStorage.setItem('token', token);
@@ -147,7 +147,7 @@ $(document).ready(function() {
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
-
+    
     $('#menu .config').click(function(){
         $('#menu').slideUp(200);
         $('#config').slideDown(200);
@@ -159,7 +159,7 @@ $(document).ready(function() {
         $('#xiaoche').slideDown(200);
         $.include(['qsc-mobile-bus.js']);
     });
-
+    
     $('#menu .xiaohua').click(function(){
         $('#menu').slideUp(200);
         $('#xiaohua').slideDown(200);
@@ -190,7 +190,11 @@ $(document).ready(function() {
     });
     
     $('#menu .login').click(function(){
-        pleaseLoginIfNotLogin();
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').slideUp(200);
+            $('#config').slideDown(200);
+            $.include(['qsc-mobile-config.js']);
+        });
     });
     
     $('#menu .logout').click(function(){
