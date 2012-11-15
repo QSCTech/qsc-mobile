@@ -89,6 +89,9 @@ function myGetJsonp(name, showLoading, callback) {
     if(showLoading)
         $('#loading').show(100);
     
+    if(!pwd)
+        pwd = '';
+
     $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
         if(typeof(data['code']) != "undefined") {
             if(data['code'] == 0) {
