@@ -145,7 +145,7 @@ if (localStorage.getItem('keBiao')) {
     keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
     loadPage();
 } else {
-    myGetJsonp('kebiao', function(data) {
+    myGetJsonp('kebiao', true, function(data) {
         if(data) {
             keBiaoData = data;
             loadPage();

@@ -38,9 +38,9 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #copyright{padding-top:1em;color:#666666;}
 #chengji{width:540px;}#chengji .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #config{width:540px;}#config .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/settings-blue.png) no-repeat left bottom;}
-#config #config_content{font-size:48px;}#config #config_content li{margin:24px 0;padding:12px 0 12px 48px;border-radius:12px;}
-#config #config_content .true{background:#9ACD32;color:#fff;}
-#config #config_content .false{background:#ddd;color:#777;}
+#config #config_items{font-size:48px;}#config #config_items li{margin:24px 0;padding:12px 0 12px 48px;border-radius:12px;}
+#config #config_items .true{background:#9ACD32;color:#fff;}
+#config #config_items .false{background:#ddd;color:#777;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}

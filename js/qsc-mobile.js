@@ -57,7 +57,7 @@ function pleaseLoginIfNotLogin(callback) {
             pwd = $("#pwd").val();
             pwd = encryptedString(key, pwd); //不支持汉字
             
-            myGetJsonp('validate', function(data) {
+            myGetJsonp('validate', true, function(data) {
                 if(data['stuid'] != '') {
                     token = data['token'];
                     
@@ -85,10 +85,11 @@ function pleaseLoginIfNotLogin(callback) {
     }
 }
 
-function myGetJsonp(name, callback) {
-    $('#loading').show(100);
+function myGetJsonp(name, showloading, callback) {
+    if(showloading)
+        $('#loading').show(100);
+    
     $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
-        
         if(typeof(data['code']) != "undefined") {
             if(data['code'] == 0) {
                 // 远端返回错误
@@ -107,7 +108,9 @@ function myGetJsonp(name, callback) {
             }
         }
         
-        $('#loading').hide(100);
+        if(showloading)
+            $('#loading').hide(100);
+        
         // 回调函数
         if(typeof(callback)=='function'){   
             callback(data);
