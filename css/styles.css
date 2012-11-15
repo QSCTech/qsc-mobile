@@ -31,12 +31,14 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}
 #gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:28px;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:60px;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:20px solid #219eee;border-radius:70px;}
 #gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
-#login{position:fixed;top:0;left:50%;width:540px;padding:50px 50px;margin-left:-320px;background:#fff;}#login input[type="text"],#login input[type="password"]{border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:512px;}
+#login input[type="text"],#login input[type="password"]{border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:512px;}
 #login input[type="text"]{margin-top:30px;}
 #login #login_submit{background:#219eee;border:none;color:#fff;font-size:48px;line-height:96px;margin-top:20px;text-align:center;height:96px;width:540px;cursor:pointer;}
 #login header{font-size:96px;float:right;text-align:right;line-height:160px;color:#219eee;}
 #copyright{padding-top:1em;color:#666666;}
 #chengji{width:540px;}#chengji .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
+#chengji #danke .chengji{margin:20px 0;}
+#chengji #gpa .gpa{margin:20px 0;text-transform:uppercase;}#chengji #gpa .gpa .date{font-weight:bold;font-size:1.2em;}
 #config{width:540px;}#config .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/settings-blue.png) no-repeat left bottom;}
 #config #config_items{font-size:36px;}#config #config_items li{margin:24px 0;padding:0 24px;border-radius:5px;background:#fff;border:1px solid #777;color:#666666;height:100px;line-height:100px;}
 #config #config_items .true:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'ON';background:#9ACD32;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}

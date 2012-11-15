@@ -7,19 +7,12 @@ function loadChengji(){
     var html = '';
     for(var i = 0; i < chengJiArray.length; i++) {
         html += '<div class="chengji>';
-        html += '<div class="name">';
-        html += chengJiArray[i]['课程名称'];
+        html += '<div class="name">' + chengJiArray[i]['课程名称'] + '</div>';
+        html += '<div class="score">成绩：'+chengJiArray[i]['成绩'] + '</div>';
+        html += '<div class="credit">学分：'+chengJiArray[i]['学分'] + '</div>';
+        html += '<div class="gradepoint">绩点：'+chengJiArray[i]['绩点'] + '</div>';
         html += '</div>';
-        html += '<div class="score">';
-        html += '成绩：'+chengJiArray[i]['成绩'];
-        html += '</div>';
-        html += '<div class="credit">';
-        html += '学分：'+chengJiArray[i]['学分'];
-        html += '</div>';
-        html += '<div class="gradepoint">';
-        html += '绩点：'+chengJiArray[i]['绩点'];
-        html += '</div>';
-        html += '</div>';
+        html += '<br>';
     }
     $('#chengji #danke .detail').html(html);
 
@@ -30,10 +23,10 @@ function loadChengji(){
         html += '<div class="date">';
         html += gpa[i]['时间'];
         html += '</div>';
-        html += '<div class="junji">';
+        html += '<div class="junji">均绩：';
         html += gpa[i]['均绩'];
         html += '</div>';
-        html += '<div class="zongxuefen">';
+        html += '<div class="zongxuefen">总学分：';
         html += gpa[i]['总学分'];
         html += '</div>';
         html += '</div>';
