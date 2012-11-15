@@ -1,5 +1,7 @@
 for(var i = 0; i < config_list.length; i++) {
 
+    var item = config_list[i];
+
     $('#config_'+item).attr("class", config[item]);
 
     $('#config_'+item).click(function() {
