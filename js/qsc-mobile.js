@@ -160,8 +160,8 @@ $(document).ready(function() {
     });
     
     $('#menu .kebiao').click(function(){
+        $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
-            $('#menu').slideUp(200);
             $('#kebiao').slideDown(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
@@ -185,32 +185,32 @@ $(document).ready(function() {
     });
     
     $('#menu .gaikuang').click(function(){
+        $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
-            $('#menu').slideUp(200);
             $('#gaikuang').slideDown(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
     
     $('#menu .kaoshi').click(function(){
+        $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
-            $('#menu').slideUp(200);
             $('#kaoshi').slideDown(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
     });
     
     $('#menu .chengji').click(function(){
+        $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
-            $('#menu').slideUp(200);
             $('#chengji').slideDown(200);
             $.include(['qsc-mobile-chengji.js']);
         });
     });
     
     $('#menu .login').click(function(){
+        $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
-            $('#menu').slideUp(200);
             $('#config').slideDown(200);
             $.include(['qsc-mobile-config.js']);
         });
