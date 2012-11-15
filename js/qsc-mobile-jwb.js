@@ -119,19 +119,15 @@ function KeBiao(data, date){
     var keBiao = [];
     
     for (i=0; i<data.length; i++)
-    { 
+    {
+        if(typeof(data[i].time) == "undefined")
+            continue;
 	if(typeof(data[i]['time'][week]) == "undefined") 
-	{
 	    continue;
-	}
 	if(typeof(data[i]['time'][week][weekdate]) == "undefined") 
-	{
 	    continue;
-	}
 	if(data[i]['semester'].indexOf(semester, 0) === -1)
-	{
 	    continue;
-	}
         
 	classes = data[i]['time'][week][weekdate];
 	for(j=0; j<classes.length; j++) {
@@ -142,7 +138,7 @@ function KeBiao(data, date){
 		'classroom':data[i]['place'][week][weekdate]
 	    };
 	    keBiao[classes[j]] = n;
-	}
+        }
     }
     
     // 返回第n节课的课程代号
@@ -170,8 +166,8 @@ function KeBiao(data, date){
         var hash = this.getCourseId(nth)+this.getClassroom(nth)+this.getTeacherName(nth);
         return hash;
     };
-
-
+    
+    
     this.getCourseTime = function(nth) {
         var nthArr = this.getClassNthAll(nth);
         var sksj = getSksj(nthArr[0]);
@@ -189,9 +185,9 @@ function KeBiao(data, date){
         var arr = [];
         
         for(i=1; i <= 13; i++) {
-            if(this.getCourseHash(i) == hash){
-                arr.push(i);
-            }
+                if(this.getCourseHash(i) == hash){
+                    arr.push(i);
+                }
         }
         
         return arr;
