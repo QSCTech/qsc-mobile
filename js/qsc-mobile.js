@@ -86,6 +86,9 @@ function pleaseLoginIfNotLogin(callback) {
 }
 
 function myGetJsonp(name, showLoading, callback) {
+    if(!navigator.onLine)
+        myShowMsg('好的嘛，这是已经掉线的节奏……');        
+
     if(showLoading)
         $('#loading').show(100);
     
@@ -139,6 +142,11 @@ $.includePath = 'js/';
 $.support.cors = true;
 
 $(document).ready(function() {
+
+    // 暂时未完成的功能先隐藏
+    $('#menu .xiaoli').hide();
+    $('#menu .jiaoshi').hide();
+    
     if(isLogin) 
         $('#menu .login').hide();
     else
@@ -182,6 +190,7 @@ $(document).ready(function() {
     $('#menu .xiaohua').click(function(){
         $('#menu').slideUp(200);
         $('#xiaohua').slideDown(200);
+        $.include(['qsc-mobile-xiaohua.js']);
     });
     
     $('#menu .gaikuang').click(function(){
