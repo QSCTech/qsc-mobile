@@ -18,9 +18,8 @@ $.extend({
     }
 });
 
-//var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
-var siteUrl = 'http://m.myqsc.com/dev3/mobile/index.php';
-var baseUrl = 'http://zva.me/';
+var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
+//var siteUrl = 'http://m.myqsc.com/dev3/mobile/index.php';
 
 window.addEventListener('offline', function() {
     myShowMsg('好的嘛，这是掉线的节奏……');
