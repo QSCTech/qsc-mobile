@@ -2,11 +2,11 @@ for(var i = 0; i < config_list.length; i++) {
 
     var item = config_list[i];
 
-    $('#config_'+item).attr("class", config[item]);
-
-    $('#config_'+item).click(function() {
-        config[item] = !config[item];
-        localStorage.setItem('config', JSON.stringify(config));
-        $('#config_'+item).attr("class", config[item]);
-    });
+    $('#'+item).attr("class", config[item]);
 }
+$('#config_items li').click(function(){
+    var item = $(this).attr('id');
+    config[item] = !config[item];
+    localStorage.setItem('config', JSON.stringify(config));
+    $(this).attr("class", config[item]);
+});
