@@ -18,9 +18,16 @@ $.extend({
     }
 });
 
-var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
+//var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
+var siteUrl = 'http://m.myqsc.com/dev3/mobile/index.php';
 var baseUrl = 'http://zva.me/';
 
+window.addEventListener('offline', function() {
+    myShowMsg('好的嘛，这是掉线的节奏……');
+}); 
+window.addEventListener('online', function() {
+    myShowMsg('好的嘛，您上线了……');
+}); 
 
 // 读取用户信息
 var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : false;
@@ -86,8 +93,10 @@ function pleaseLoginIfNotLogin(callback) {
 }
 
 function myGetJsonp(name, showLoading, callback) {
-    if(!navigator.onLine)
-        myShowMsg('好的嘛，这是已经掉线的节奏……');        
+    if(!navigator.onLine) {
+        myShowMsg('好的嘛，这是已经离线的节奏……');        
+        return;
+    }
 
     if(showLoading)
         $('#loading').show(100);
