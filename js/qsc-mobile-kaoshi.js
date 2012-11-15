@@ -39,7 +39,7 @@ if (localStorage.getItem('kaoShi')) {
     myGetJsonp('kaoshi', true, function(data) {
         if(!data) return;
         kaoShiData = data;
-        localStorage.setItem('kaoShi', true, JSON.stringify(kaoShiData));
+        localStorage.setItem('kaoShi', JSON.stringify(kaoShiData));
         loadKaoShi();
     });
 }

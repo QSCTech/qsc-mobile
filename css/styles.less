@@ -248,19 +248,48 @@
 	background:url(../img/settings-blue.png) no-repeat left bottom;
     }
     #config_items {
-	font-size:48px;
+	font-size:36px;
 	li {
 	    margin:24px 0;
-	    padding:12px 0 12px 48px;
-	    border-radius:12px;
+	    padding:0 24px;
+	    border-radius:5px;
+	    background:#fff;
+	    border:1px solid #777;
+	    color:@color;
+	    height:100px;
+	    line-height:100px;
 	}
 	.true {
-	    background: #9ACD32;
-	    color:#fff;
+	    &:after {
+		display:block;
+		width:70px;
+		text-align:center;
+		margin:14px 10px 0 0;
+		line-height:50px;
+		content:'ON';
+		background: #9ACD32;
+		border-radius:10px;
+		padding:10px;
+		color:#fff;
+		float:right;
+		font-weight:bold;
+	    }
 	}
 	.false {
-	    background: #ddd;
-	    color:#777;
+	    &:after {
+		display:block;
+		width:70px;
+		text-align:center;
+		margin:14px 10px 0 0;
+		line-height:50px;
+		content:'OFF';
+		background: #DC143C;
+		border-radius:10px;
+		padding:10px;
+		color:#fff;
+		float:right;
+		font-weight:bold;
+	    }
 	}
     }
 }
