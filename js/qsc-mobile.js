@@ -119,6 +119,8 @@ function myGetJsonp(name, showLoading, callback) {
 }
 
 function myShowMsg(msg, callback) {
+    $('#loading').hide();// 既然显示消息就不必显示loading了
+
     $('#msg').show(200);
     $('#msg .content').html(msg);
     
