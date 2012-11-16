@@ -196,6 +196,7 @@
     // margin-left:-320px;
     // background:#fff;
     input[type="text"], input[type="password"]{
+	resize:none;
 	border:4px solid @color;
 	font-size:48px;
 	line-height:76px;
@@ -377,23 +378,23 @@
     #bus_info {
 	font-size:32px;
 	color:@color;
-	ul {
-	    margin: 2em 0;
-	}
-	li {
-	    margin: .5em 0;
-	    .clear_after;
-	}
-	strong {
-	    color:@theme;
-	    font-size:36px;
-	    font-weight:normal;
-	    height:100%;
-	}
-	span {
-	    width:400px;
-	    display:block;
-	    float:right;
+	.bus_info {
+	    border:1px solid #555;
+	    border-radius:7px;
+	    padding:10px;
+	    width:520px - 4px;
+	    margin:10px 0;
+	    .place, .date, .end {
+		display:none;
+	    }
+	    span {
+		margin-right:10px;
+	    }
+	    .id {
+		float:right;
+		color:#777;
+		font-size:28px;
+	    }
 	}
     }
 }
