@@ -18,6 +18,11 @@ $.extend({
     }
 });
 
+$.includePath = 'js/';
+
+// 允许在file://的时候进行跨域请求
+$.support.cors = true;
+
 var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 //var siteUrl = 'http://m.myqsc.com/dev3/mobile/index.php';
 
@@ -71,9 +76,10 @@ function pleaseLoginIfNotLogin(callback) {
                     localStorage.setItem('isLogin', true);
                     isLogin = true;
                     $('#login').slideUp(200);
-                    $('#menu .login').hide();
-                    $('#menu .logout').show();
-
+                    
+                    $('#menu .user').attr('class', 'box user logout');
+                    $('#menu .user').html('注销');
+                    
                     // 回调函数
                     if(typeof(callback) == 'function') {
                         callback();
@@ -151,28 +157,35 @@ function getAllJsonp(){
         if(!data) return;
         localStorage.setItem('xiaoChe', JSON.stringify(data));
     });
-
+    
     // 下面的需要登录
-    if(!isLogin) return;    
-
-    myGetJsonp('kebiao', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('keBiao', JSON.stringify(data));
-    });
-    myGetJsonp('chengji', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('chengJi', JSON.stringify(data));
-    });
-    myGetJsonp('kaoshi', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('kaoShi', JSON.stringify(data));
-    });
+    if(isLogin) {
+        myGetJsonp('kebiao', false, function(data) {
+            if(!data) return;
+            localStorage.setItem('keBiao', JSON.stringify(data));
+        });
+        myGetJsonp('chengji', false, function(data) {
+            if(!data) return;
+            localStorage.setItem('chengJi', JSON.stringify(data));
+        });
+        myGetJsonp('kaoshi', false, function(data) {
+            if(!data) return;
+            localStorage.setItem('kaoShi', JSON.stringify(data));
+        });
+    }
 }
 
-$.includePath = 'js/';
 
-// 允许在file://的时候进行跨域请求
-$.support.cors = true;
+// 读取教务部数据：单双周、学期之类
+var jwbData;
+if(localStorage.getItem('jwbData')) {
+    jwbData = localStorage.getItem('jwbData');
+} else {
+    myGetJsonp('jwbdata', true, function(data) {
+        jwbData = data;
+        localStorage.setItem('jwbData', JSON.stringify(data));
+    });
+}
 
 $(document).ready(function() {
     
@@ -180,11 +193,13 @@ $(document).ready(function() {
     $('#menu .xiaoli').hide();
     $('#menu .jiaoshi').hide();
     
-    if(isLogin) 
-        $('#menu .login').hide();
-    else
-        $('#menu .logout').hide();
-    
+    if(isLogin) {
+        $('#menu .user').attr('class', 'box user logout');
+        $('#menu .user').html('注销');
+    } else {
+        $('#menu .user').attr('class', 'box user login');
+        $('#menu .user').html('登录');
+    }
     
     $('#msg .close').click(function(){
         $('#msg').slideUp(800);
@@ -250,12 +265,17 @@ $(document).ready(function() {
         });
     });
     
+    $('#menu .update').click(function(){
+        getAllJsonp();
+    });
+    
+    
     $('#menu .login').click(function(){
         $('#menu').slideUp(200);
         pleaseLoginIfNotLogin(function() {
             $('#config').slideDown(200);
             $.include(['qsc-mobile-config.js']);
-        });
+            });
     });
     
     $('#menu .logout').click(function(){
@@ -282,16 +302,6 @@ $(document).ready(function() {
 });
 
 
-// 读取教务部数据：单双周、学期之类
-var jwbData;
-if(localStorage.getItem('jwbData')) {
-    jwbData = localStorage.getItem('jwbData');
-} else {
-    myGetJsonp('jwbdata', true, function(data) {
-        jwbData = data;
-        localStorage.setItem('jwbData', JSON.stringify(data));
-    });
-}
 
 
 // 自动更新数据
