@@ -142,7 +142,7 @@ function myShowMsg(msg, callback) {
     };
 }
 
-function loadAllJsonp(){
+function getAllJsonp(){
     myGetJsonp('jwbdata', false, function(data) {
         if(!data) return;
         localStorage.setItem('jwbData', JSON.stringify(data));
@@ -296,6 +296,5 @@ if(localStorage.getItem('jwbData')) {
 
 // 自动更新数据
 if(config.update_automatically) {
-    loadAllJsonp();
+    getAllJsonp();
 }
-
