@@ -6,6 +6,12 @@
 @color1: #DC143C;
 @color2: #9ACD32;
 
+/* 屏蔽高亮 */
+input, textarea, select {
+	outline: none;
+}
+
+
 #msg {
     width:600px - 20px*2;
     height:200px - 20px*2;
@@ -379,13 +385,15 @@
 	font-size:32px;
 	color:@color;
 	.bus_info {
+	    font-size:28px;
 	    border:1px solid #555;
 	    border-radius:7px;
 	    padding:10px;
 	    width:520px - 4px;
 	    margin:10px 0;
-	    .place, .date, .end {
+	    .detail {
 		display:none;
+		font-size:20px;
 	    }
 	    span {
 		margin-right:10px;
@@ -417,6 +425,8 @@ hr.blue {
 	font-size:100px;
 	color:@theme;
     }
+}
+.kebiao {
     .class_name {
 	line-height:72px;
 	color:@color;

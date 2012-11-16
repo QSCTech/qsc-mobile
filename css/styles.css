@@ -4,6 +4,7 @@ pre,body,ul,ol,li{padding:0;margin:0;}
 ul,ol,li{list-style:none;}
 a{text-decoration:none;}a:focus,a:hover,a:active{outline:none;}
 pre{white-space:pre-wrap;word-wrap:break-word;}
+input,textarea,select{outline:none;}
 #msg{width:560px;height:160px;position:fixed;left:50%;top:40%;margin-top:-100px;margin-left:-300px;border-radius:8px;background:rgba(0, 0, 0, 0.95);z-index:999;display:none;font-size:24px;padding:20px;padding-top:70px;color:#fff;}#msg .close{float:right;background:#fff;width:50px;height:50px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;text-align:center;line-height:50px;margin-top:-67px;color:#000;font-size:36px;font-weight:bold;}#msg .close:hover{cursor:pointer;}
 #loading{width:360px;height:60px;position:fixed;left:50%;top:50%;margin-top:-50px;margin-left:-200px;border-radius:8px;background:rgba(0, 0, 0, 0.95);z-index:1000;font-size:24px;padding:20px;padding-top:70px;color:#fff;display:none;}
 #wrap{width:540px;margin:0 auto;overflow:hidden;padding:50px;}
@@ -30,7 +31,7 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}
 #gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:28px;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:60px;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:20px solid #219eee;border-radius:70px;}
 #gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
-#login input[type="text"],#login input[type="password"]{border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:512px;}
+#login input[type="text"],#login input[type="password"]{resize:none;border:4px solid #666666;font-size:48px;line-height:76px;padding:10px;height:96px;margin-bottom:20px;width:512px;}
 #login input[type="text"]{margin-top:30px;}
 #login #login_submit{background:#219eee;border:none;color:#fff;font-size:48px;line-height:96px;margin-top:20px;text-align:center;height:96px;width:540px;cursor:pointer;}
 #login header{font-size:96px;float:right;text-align:right;line-height:160px;color:#219eee;}
@@ -53,18 +54,17 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #xiaohua .next,#xiaohua .love{font-size:36px;padding:20px;border-radius:10px;color:#fff;float:left;width:225px;font-weight:bold;text-align:center;cursor:pointer;}
 #xiaoche{width:540px;}#xiaoche .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/bus-blue.png) no-repeat left bottom;}
 #xiaoche select{padding:0;margin:0;font-size:32px;width:267px;background:#fff;border:2px solid #777;color:#555;}
-#xiaoche #bus_info{font-size:32px;color:#666666;}#xiaoche #bus_info ul{margin:2em 0;}
-#xiaoche #bus_info li{margin:.5em 0;}#xiaoche #bus_info li:after{content:'';clear:both;display:block;}
-#xiaoche #bus_info strong{color:#219eee;font-size:36px;font-weight:normal;height:100%;}
-#xiaoche #bus_info span{width:400px;display:block;float:right;}
+#xiaoche #bus_info{font-size:32px;color:#666666;}#xiaoche #bus_info .bus_info{font-size:28px;border:1px solid #555;border-radius:7px;padding:10px;width:516px;margin:10px 0;}#xiaoche #bus_info .bus_info .detail{display:none;font-size:20px;}
+#xiaoche #bus_info .bus_info span{margin-right:10px;}
+#xiaoche #bus_info .bus_info .id{float:right;color:#777;font-size:28px;}
 .clear{clear:both;}
 hr{border:1px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}
 #kebiao .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;}
-#kebiao .class_name{line-height:72px;color:#666666;font-size:48px;margin-top:1em;}
-#kebiao .class_nth_all{font-size:36px;color:#219eee;}
-#kebiao .class_time{font-size:32px;color:#666666;}
-#kebiao .class_classroom{font-size:32px;color:#666666;}
+.kebiao .class_name{line-height:72px;color:#666666;font-size:48px;margin-top:1em;}
+.kebiao .class_nth_all{font-size:36px;color:#219eee;}
+.kebiao .class_time{font-size:32px;color:#666666;}
+.kebiao .class_classroom{font-size:32px;color:#666666;}
 #forward{display:block;width:100px;height:100px;margin-top:20px;background:url(../img/forward.png);float:right;cursor:pointer;}
 .backward{display:block;width:100px;height:100px;margin-top:50px;background:url(../img/backward.png);float:right;cursor:pointer;}
 .slide header{text-align:center;text-transform:capitalize;font-family:ubuntu;line-height:100px;font-size:80px;background:#666666;color:#fff;margin:40px 0;}.slide header:hover{background:#219eee;}

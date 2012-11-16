@@ -137,11 +137,13 @@ function loadKeBiao() {
         xdate.setDate(today.getDate() - offset + i);
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
+
+    $('#mon .detail').show();
     
-    // 似乎不这样取到的offset是错的
-    setTimeout(function(){
-        $('#kebiao #'+todayWeekDate+' header').click();
-    }, 200);
+    // // 似乎不这样取到的offset是错的
+    // setTimeout(function(){
+    //     $('#kebiao #'+todayWeekDate+' header').click();
+    // }, 200);
 
 //    $('#kebiao #'+todayWeekDate+'')
 }

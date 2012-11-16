@@ -19,13 +19,8 @@ function loadBusInfo(){
         $('#bus_info').html('<br>好像木有车的样子。');// 清空旧数据
     } else {
         for(i=0; i<theBus.length; i++) {
-            $('#bus_info').append('<ul>');
-            $('#bus_info').append('<li><strong>车号：</strong><span>'+theBus[i]['车号']+'</span></li>');
-            $('#bus_info').append('<li><strong>发车：</strong><span>'+theBus[i]['发车时间']+'</span></li>');
-            $('#bus_info').append('<li><strong>到站：</strong><span>'+theBus[i]['到站时间']+'</span></li>');
-            $('#bus_info').append('<li><strong>运行：</strong><span>'+theBus[i]['运行时间']+'</span></li>');
-            $('#bus_info').append('<li><strong>停靠：</strong><span>'+theBus[i]['停靠地点']+'</span></li>');
-            $('#bus_info').append('</ul>');
+            var html = '<div class="bus_info"><span class="begin">'+theBus[i]['发车时间']+'</span><span class="id">#'+theBus[i]['车号']+'</span><div class="detail"><hr><span class="end">到站时间：'+theBus[i]['到站时间']+'</span><br><span class="date">'+theBus[i]['运行时间']+'</span><br><span class="place">'+theBus[i]['停靠地点']+'</span></div></div>';
+            $('#bus_info').append(html);
         }
     }
 }
@@ -43,7 +38,11 @@ if (localStorage.getItem('xiaoChe')) {
         loadBusInfo();
     });
 }
-
+         
 $('#xiaoche select').click(function() {
     loadBusInfo();
+});
+
+$('#xiaoche .bus_info').click(function(){
+    $(this).find('.detail').show();
 });
