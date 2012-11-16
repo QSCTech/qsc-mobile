@@ -113,7 +113,7 @@ function writeClassToDom(dom, date){
 }
 
 function loadKeBiao() {
-        var zjuWeekInfo;
+    var zjuWeekInfo;
     if(today.getZjuWeek() == 'odd') {
         zjuWeekInfo = '当前周是单周。';
     } else if (today.getZjuWeek() == 'even') {
@@ -138,7 +138,12 @@ function loadKeBiao() {
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
     
-    $('#kebiao #'+todayWeekDate+' header').click();
+    // 似乎不这样取到的offset是错的
+    setTimeout(function(){
+        $('#kebiao #'+todayWeekDate+' header').click();
+    }, 200);
+
+//    $('#kebiao #'+todayWeekDate+'')
 }
 
 if (localStorage.getItem('keBiao')) {
