@@ -73,7 +73,7 @@ function pleaseLoginIfNotLogin(callback) {
                     $('#login').slideUp(200);
                     $('#menu .login').hide();
                     $('#menu .logout').show();
-                    
+
                     // 回调函数
                     if(typeof(callback) == 'function') {
                         callback();
@@ -94,13 +94,13 @@ function myGetJsonp(name, showMsg, callback) {
         myShowMsg('好的嘛，这是已经离线的节奏……');        
         return;
     }
-
+    
     if(showMsg)
         $('#loading').show(100);
     
     if(!pwd)
         pwd = '';
-
+    
     $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
         if(typeof(data['code']) != "undefined") {
             if(data['code'] == 0) {
@@ -132,7 +132,7 @@ function myGetJsonp(name, showMsg, callback) {
 
 function myShowMsg(msg, callback) {
     $('#loading').hide();// 既然显示消息就不必显示loading了
-
+    
     $('#msg').show(200);
     $('#msg .content').html(msg);
     
@@ -142,13 +142,40 @@ function myShowMsg(msg, callback) {
     };
 }
 
+function loadAllJsonp(){
+    myGetJsonp('jwbdata', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('jwbData', JSON.stringify(data));
+    });
+    myGetJsonp('xiaoche', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('xiaoChe', JSON.stringify(data));
+    });
+
+    // 下面的需要登录
+    if(!isLogin) return;    
+
+    myGetJsonp('kebiao', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('keBiao', JSON.stringify(data));
+    });
+    myGetJsonp('chengji', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('chengJi', JSON.stringify(data));
+    });
+    myGetJsonp('kaoshi', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('kaoShi', JSON.stringify(data));
+    });
+}
+
 $.includePath = 'js/';
 
 // 允许在file://的时候进行跨域请求
 $.support.cors = true;
 
 $(document).ready(function() {
-
+    
     // 暂时未完成的功能先隐藏
     $('#menu .xiaoli').hide();
     $('#menu .jiaoshi').hide();
@@ -244,32 +271,31 @@ $(document).ready(function() {
             }, 1000);
         });
     });
-
+    
     $('.slide header').click(function(){
         $(this).parent().parent().find('header').removeClass('current');
         $(this).parent().parent().find('.detail').slideUp(100);
 	$(this).next().slideDown(100);
 	$(this).addClass('current');
     });
-
+    
 });
 
+
+// 读取教务部数据：单双周、学期之类
+var jwbData;
+if(localStorage.getItem('jwbData')) {
+    jwbData = localStorage.getItem('jwbData');
+} else {
+    myGetJsonp('jwbdata', true, function(data) {
+        jwbData = data;
+        localStorage.setItem('jwbData', JSON.stringify(data));
+    });
+}
+
+
+// 自动更新数据
 if(config.update_automatically) {
-    myGetJsonp('kebiao', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('keBiao', JSON.stringify(data));
-    });
-    myGetJsonp('chengji', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('chengJi', JSON.stringify(data));
-    });
-    myGetJsonp('kaoshi', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('kaoShi', JSON.stringify(data));
-    });
-    myGetJsonp('xiaoche', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('xiaoChe', JSON.stringify(data));
-    });
+    loadAllJsonp();
 }
 
