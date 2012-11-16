@@ -7,8 +7,7 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 #msg{width:560px;height:160px;position:fixed;left:50%;top:40%;margin-top:-100px;margin-left:-300px;border-radius:8px;background:rgba(0, 0, 0, 0.95);z-index:999;display:none;font-size:24px;padding:20px;padding-top:70px;color:#fff;}#msg .close{float:right;background:#fff;width:50px;height:50px;border-bottom-left-radius:8px;border-bottom-right-radius:8px;text-align:center;line-height:50px;margin-top:-67px;color:#000;font-size:36px;font-weight:bold;}#msg .close:hover{cursor:pointer;}
 #loading{width:360px;height:60px;position:fixed;left:50%;top:50%;margin-top:-50px;margin-left:-200px;border-radius:8px;background:rgba(0, 0, 0, 0.95);z-index:1000;font-size:24px;padding:20px;padding-top:70px;color:#fff;display:none;}
 #wrap{width:540px;margin:0 auto;overflow:hidden;padding:50px;}
-#menu{margin:0 auto;width:540px;float:left;}#menu .box{display:block;width:260px;height:260px;float:left;padding:0;margin:0 5px 10px 5px;background-color:#219eee;background-repeat:no-repeat;background-position:50% 30px;color:#fff;line-height:445px;font-size:38px;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n){background-color:#666666;}
-#menu .box:nth-child(4n+1){background-color:#666666;}
+#menu{margin:0 auto;width:540px;float:left;}#menu .box{display:block;width:260px;height:260px;float:left;padding:0;margin:0 5px 10px 5px;background-color:#219eee;background-repeat:no-repeat;background-position:50% 30px;color:#fff;line-height:445px;font-size:38px;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
 #menu .gaikuang{background-image:url(../img/general.png);}
 #menu .xiaoli{background-image:url(../img/calendar.png);}
 #menu .kebiao{background-image:url(../img/class.png);}

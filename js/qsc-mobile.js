@@ -197,7 +197,7 @@ function getAllJsonp(showDone){
 // 读取教务部数据：单双周、学期之类
 var jwbData;
 if(localStorage.getItem('jwbData')) {
-    jwbData = localStorage.getItem('jwbData');
+    jwbData = JSON.parse(localStorage.getItem('jwbData'));
 } else {
     myGetJsonp('jwbdata', true, function(data) {
         jwbData = data;
@@ -206,10 +206,6 @@ if(localStorage.getItem('jwbData')) {
 }
 
 $(document).ready(function() {
-    
-    // 暂时未完成的功能先隐藏
-    $('#menu .xiaoli').hide();
-    $('#menu .jiaoshi').hide();
     
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
