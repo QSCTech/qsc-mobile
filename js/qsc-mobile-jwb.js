@@ -22,8 +22,8 @@
  * 感谢产品的同学提供数据
  */
 Date.prototype.getZjuWeek = function () {
-    var oddWeekArray = [43,47,49,51,1,3,10,12,14,16,18,19,21,23,25,27]; // 单
-    var evenWeekArray = [44,45,46,48,50,52,2,4,9,11,13,15,17,20,22,24,26]; // 双
+    var oddWeekArray = jwbData.oddWeekArray;
+    var evenWeekArray = jwbData.evenWeekArray;
     var week = this.getIsoWeek();
     
     if(oddWeekArray.indexOf(week) != -1) return 'odd';
@@ -42,20 +42,18 @@ Date.prototype.getZjuSemester = function () {
     var week = this.getIsoWeek();
     
     switch (true) {
-      case week >= 43 && week <= 46:
-	return '秋';
-      case week >= 47 && week <= 52:
-	return '冬';
-      case week >= 5 && week <= 8:
-	return '寒假';
-      case week >= 9 && week <= 18:
+      case jwbData.chun.indexOf(week) != -1:
 	return '春';
-      case week >= 19 && week <= 27:
+      case jwbData.xia.indexOf(week) != -1:
 	return '夏';
-      case week >= 28 && week <= 33:
-	return '暑假';
-      case week >= 1 && week <= 4:
+      case jwbData.qiu.indexOf(week) != -1:
+	return '秋';
+      case jwbData.dong.indexOf(week) != -1:
 	return '冬';
+      case jwbData.shujia.indexOf(week) != -1:
+	return '暑假';
+      case jwbData.hanjia.indexOf(week) != -1:
+	return '寒假';
     default:
 	return false;
     }
