@@ -89,13 +89,13 @@ function pleaseLoginIfNotLogin(callback) {
     }
 }
 
-function myGetJsonp(name, showLoading, callback) {
+function myGetJsonp(name, showMsg, callback) {
     if(!navigator.onLine) {
         myShowMsg('好的嘛，这是已经离线的节奏……');        
         return;
     }
 
-    if(showLoading)
+    if(showMsg)
         $('#loading').show(100);
     
     if(!pwd)
@@ -120,7 +120,7 @@ function myGetJsonp(name, showLoading, callback) {
             }
         }
         
-        if(showLoading)
+        if(showMsg)
             $('#loading').hide(100);
         
         // 回调函数
@@ -253,3 +253,12 @@ $(document).ready(function() {
     });
 
 });
+
+if(config.update_automatically) {
+    myGetJsonp('kebiao', false, function(data) {
+        if(data) {
+            localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
+        }
+    });
+}
+
