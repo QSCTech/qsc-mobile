@@ -148,30 +148,48 @@ function myShowMsg(msg, callback) {
     };
 }
 
-function getAllJsonp(){
+function getAllJsonp(showDone){
+    var request_count = 2;
+    if(showDone) {
+        var request_done_check = setInterval(function(){
+            if(request_count !== 0)
+                return;
+            
+            myShowMsg('好的嘛，请求完毕');
+            clearInterval(request_done_check);
+        });
+    }
+    
     myGetJsonp('jwbdata', false, function(data) {
         if(!data) return;
         localStorage.setItem('jwbData', JSON.stringify(data));
+        request_count--;
     });
     myGetJsonp('xiaoche', false, function(data) {
         if(!data) return;
         localStorage.setItem('xiaoChe', JSON.stringify(data));
+        request_count--;
     });
     
     // 下面的需要登录
     if(isLogin) {
+        request_count += 3;
+        
         myGetJsonp('kebiao', false, function(data) {
             if(!data) return;
             localStorage.setItem('keBiao', JSON.stringify(data));
+            request_count--;
         });
         myGetJsonp('chengji', false, function(data) {
             if(!data) return;
             localStorage.setItem('chengJi', JSON.stringify(data));
+            request_count--;
         });
         myGetJsonp('kaoshi', false, function(data) {
             if(!data) return;
             localStorage.setItem('kaoShi', JSON.stringify(data));
-        });
+            request_count--;
+            });
     }
 }
 
@@ -276,7 +294,7 @@ $(document).ready(function() {
         pleaseLoginIfNotLogin(function() {
             $('#config').slideDown(200);
             $.include(['qsc-mobile-config.js']);
-            });
+        });
     });
     
     $('#menu .logout').click(function(){
@@ -295,11 +313,11 @@ $(document).ready(function() {
     
     $('.slide header').click(function(){
         $(this).parent().parent().find('header').removeClass('current');
-        $(this).parent().parent().find('.detail').slideUp(100);
+        $(this).parent().parent().find('.detail').slideUp(0);// 0 => 保证offset正确
+        $("html,body").animate({scrollTop:$(this).offset().top},100);
 	$(this).next().slideDown(100);
 	$(this).addClass('current');
     });
-    
 });
 
 
