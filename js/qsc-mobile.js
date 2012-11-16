@@ -256,9 +256,20 @@ $(document).ready(function() {
 
 if(config.update_automatically) {
     myGetJsonp('kebiao', false, function(data) {
-        if(data) {
-            localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
-        }
+        if(!data) return;
+        localStorage.setItem('keBiao', JSON.stringify(data));
+    });
+    myGetJsonp('chengji', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('chengJi', JSON.stringify(data));
+    });
+    myGetJsonp('kaoshi', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('kaoShi', JSON.stringify(data));
+    });
+    myGetJsonp('xiaoche', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('xiaoChe', JSON.stringify(data));
     });
 }
 
