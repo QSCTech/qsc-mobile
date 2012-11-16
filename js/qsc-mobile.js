@@ -26,6 +26,10 @@ window.addEventListener('offline', function() {
 }); 
 window.addEventListener('online', function() {
     myShowMsg('好的嘛，您上线了……');
+    // 重载dom
+    setTimeout(function(){
+        window.location.reload();
+    }, 1000);
 }); 
 
 // 读取用户信息

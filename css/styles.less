@@ -3,6 +3,8 @@
 
 @theme: #219eee;
 @color: #666;
+@color1: #DC143C;
+@color2: #9ACD32;
 
 #msg {
     width:600px - 20px*2;
@@ -279,7 +281,8 @@
 		margin:14px 10px 0 0;
 		line-height:50px;
 		content:'ON';
-		background: #9ACD32;
+//		background: #9ACD32;
+		background: @color2;
 		border-radius:10px;
 		padding:10px;
 		color:#fff;
@@ -295,7 +298,8 @@
 		margin:14px 10px 0 0;
 		line-height:50px;
 		content:'OFF';
-		background: #DC143C;
+//		background: #DC143C;
+		background: @color1;
 		border-radius:10px;
 		padding:10px;
 		color:#fff;
@@ -334,10 +338,28 @@
 #xiaohua{
     .content {
 	font-size:48px;
+	margin:24px 0;
     }
-    .love {
+    .love.false {
+	background:#aaa;
+    }
+    .love.true {
+	background:@color1;
     }
     .next {
+	background:@theme;
+	margin-left:10px;
+    }
+    .next, .love {
+	font-size:36px;
+	padding:20px;
+	border-radius:10px;
+	color:#fff;
+	float:left;
+	width:225px;
+	font-weight:bold;
+	text-align:center;
+	cursor:pointer;
     }
 }
 #xiaoche {
