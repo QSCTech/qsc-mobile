@@ -267,6 +267,7 @@ $(document).ready(function() {
     
     $('#menu .update').click(function(){
         getAllJsonp();
+        myShowMsg('更新中……');
     });
     
     
