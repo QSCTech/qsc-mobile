@@ -17,7 +17,6 @@
 /**
  * 返回输入日期所在周是单还是双
  * 返回odd/even
- * 有效期至2013年第27周
  * the week is the ISO 8601 week number.
  * 感谢产品的同学提供数据
  */
@@ -34,7 +33,6 @@ Date.prototype.getZjuWeek = function () {
 
 /**
  * 返回输入日期所在学期或者假期
- * 有效期至2013年第33周
  * the week is the ISO 8601 week number.
  * 感谢产品的同学提供数据
  */
