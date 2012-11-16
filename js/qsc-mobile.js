@@ -24,13 +24,7 @@ var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 window.addEventListener('offline', function() {
     myShowMsg('好的嘛，这是掉线的节奏……');
 }); 
-window.addEventListener('online', function() {
-    myShowMsg('好的嘛，您上线了……');
-    // 重载dom
-    setTimeout(function(){
-        window.location.reload();
-    }, 1000);
-}); 
+window.addEventListener('online', function() {}); 
 
 // 读取用户信息
 var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : false;
@@ -250,13 +244,12 @@ $(document).ready(function() {
             }, 1000);
         });
     });
-});
 
-$(document).ready(function() {
     $('.slide header').click(function(){
         $(this).parent().parent().find('header').removeClass('current');
         $(this).parent().parent().find('.detail').slideUp(100);
 	$(this).next().slideDown(100);
 	$(this).addClass('current');
     });
+
 });
