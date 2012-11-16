@@ -112,7 +112,7 @@ function writeClassToDom(dom, date){
     $(dom).append(htmlString);
 }
 
-function loadPage() {
+function loadKeBiao() {
     var zjuWeekInfo;
     if(today.getZjuWeek() == 'odd') {
         zjuWeekInfo = '当前周是单周。';
@@ -143,12 +143,12 @@ function loadPage() {
 
 if (localStorage.getItem('keBiao')) {
     keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
-    loadPage();
+    loadKeBiao();
 } else {
     myGetJsonp('kebiao', true, function(data) {
         if(data) {
             keBiaoData = data;
-            loadPage();
+            loadKeBiao();
             localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
         }
     });
