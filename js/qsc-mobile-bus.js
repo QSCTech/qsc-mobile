@@ -1,5 +1,4 @@
 function loadBusInfo(){
-    // alert("修改了！");
     if(!xiaoCheData)
         return;
 
@@ -25,15 +24,12 @@ function loadBusInfo(){
         }
         $('#bus_info').html(s);
     }
-    // alert("修改完了");
 }
 
 var xiaoCheData;
 
 if (localStorage.getItem('xiaoChe')) {
-    // alert("开始");
     xiaoCheData = JSON.parse(localStorage.getItem('xiaoChe'));
-    // alert("解析完成");
     loadBusInfo();
 } else {
     myGetJsonp('xiaoche', true, function(data) {
@@ -50,6 +46,5 @@ $('#xiaoche select').change(function() {
 
 
 $('#xiaoche .bus_info').live("click",function(){
-    // alert("噗，点了");
     $(this).find('.detail').show();
 });
