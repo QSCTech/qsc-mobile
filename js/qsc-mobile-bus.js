@@ -2,10 +2,10 @@ function loadBusInfo(){
     // alert("修改了！");
     if(!xiaoCheData)
         return;
-    
+
     var from = $('select#from').val();
     var to = $('select#to').val();
-    
+
     var i;
     var theBus = [];
     for(i=0; i < xiaoCheData.length; i++) {
@@ -21,8 +21,7 @@ function loadBusInfo(){
     } else {
         var s = "";
         for(i=0; i<theBus.length; i++) {
-            var html = '<div class="bus_info"><span class="begin">'+theBus[i]['发车时间']+'</span><span class="id">#'+theBus[i]['车号']+'</span><div class="detail"><hr><span class="end">到站时间：'+theBus[i]['到站时间']+'</span><br><span class="date">'+theBus[i]['运行时间']+'</span><br><span class="place">'+theBus[i]['停靠地点']+'</span></div></div>';
-            s += html;
+            s += '<div class="bus_info"><span class="begin">'+theBus[i]['发车时间']+'</span><span class="id">#'+theBus[i]['车号']+'</span><div class="detail"><hr><span class="end">到站时间：'+theBus[i]['到站时间']+'</span><br><span class="date">'+theBus[i]['运行时间']+'</span><br><span class="place">'+theBus[i]['停靠地点']+'</span></div></div>';
         }
         $('#bus_info').html(s);
     }
@@ -44,7 +43,7 @@ if (localStorage.getItem('xiaoChe')) {
         loadBusInfo();
     });
 }
-         
+
 $('#xiaoche select').change(function() {
     loadBusInfo();
 });
