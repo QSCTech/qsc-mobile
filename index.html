@@ -1,14 +1,18 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=640, user-scalable=no" />
-<meta http-equiv="pragma"   content="no-cache" />
-<meta http-equiv="Cache-Control" content="no-cache,must-revalidate" />
-<meta http-equiv="expires" content="Wed,26 Feb 1997 08:21:57 GMT" />
+<!-- <meta charset="utf-8"> -->
+<!-- <meta name="viewport" content="width=640, user-scalable=no" /> -->
+<meta name="viewport" content="width=640; user-scalable=no" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+<script>
+document.body.style.height = screen.height + 'px';
+//metaViewportContent: "width=device-width, minimum-scale=1, maximum-scale=1";
+</script>
 
 <title>求是潮移动平台</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
-<script src="phonegap.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="phonegap.js"></script>
 <script src="js/qsc-mobile.js" charset="UTF-8"></script>
 <script src="js/qsc-mobile-jwb.js" charset="UTF-8"></script>
 
@@ -137,6 +141,16 @@
     <div class="next">下一条</div>
   </div>
 
+  <div id="shida" class="mask hidden">
+    <header class="header">
+      九八十大<div class="backward"></div>
+    </header>
+    <br><hr>
+    <ul id="jiubashida">
+    </ul>
+  </div>
+
+
   <div id="config" class="mask hidden">
     <header class="header">
       设置<div class="backward"></div>
@@ -160,11 +174,4 @@
     </form>
   </div>
 
-  <div id="shida" class="mask hidden">
-    <header class="header">
-    </header>
-    <br><hr>
-    <ul id="jiubashida">
-    </ul>
-  </div>
 </div>
