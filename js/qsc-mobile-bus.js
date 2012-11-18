@@ -39,10 +39,10 @@ if (localStorage.getItem('xiaoChe')) {
   });
 }
 
-$('#xiaoche select option').click(function() {
+$('#xiaoche select').change(function() {
   loadBusInfo();
 });
 
-$('#xiaoche .bus_info').click(function(){
+$('#xiaoche .bus_info').live('click', function(){
   $(this).find('.detail').show();
 });
