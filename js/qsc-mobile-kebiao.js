@@ -29,7 +29,10 @@ function writeCountDownToDom(dom){
         return;
 
     var classNthNow = now.getClassNth();
-    var classNthMaybe = keBiao.getClassNext(classNthNow - 1);
+
+    // 若classNth返回false则现在正是13节
+    var classNthNext = now.getClassNthNext() ? now.getClassNthNext() : 14;
+    var classNthMaybe = keBiao.getClassNext(classNthNext - 2);
 
     var delta;
     var msgClass;
