@@ -24,7 +24,7 @@ $.includePath = 'js/';
 $.support.cors = true;
 
 var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
-//var siteUrl = 'http://m.myqsc.com/dev3/mobile/index.php';
+//var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
 
 // 在phonegap下出错
 // window.addEventListener('offline', function() {
@@ -33,10 +33,10 @@ var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 // window.addEventListener('online', function() {});
 
 // 读取用户信息
-var stuid = localStorage.getItem('stuid') ? localStorage.getItem('stuid') : false;
-var pwd = localStorage.getItem('pwd') ? localStorage.getItem('pwd') : false;
-var isLogin = localStorage.getItem('isLogin') ? localStorage.getItem('isLogin') : false;
-var token = localStorage.getItem('token') ? localStorage.getItem('token') : false;
+var stuid = localStorage.getItem('stuid',false);// ? localStorage.getItem('stuid') : false;
+var pwd = localStorage.getItem('pwd',false); //? localStorage.getItem('pwd') : false;
+var isLogin = localStorage.getItem('isLogin',false);// ? localStorage.getItem('isLogin') : false;
+var token = localStorage.getItem('token',false);// ? localStorage.getItem('token') : false;
 
 // 初始化用户配置
 // 默认关闭自动给老师好评
