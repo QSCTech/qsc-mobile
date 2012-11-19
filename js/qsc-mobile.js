@@ -105,33 +105,41 @@ function myGetJsonp(name, showMsg, callback) {
     if(!pwd)
       pwd = '';
 
-    $.getJSON(siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?', function (data) {
-        if(typeof(data['code']) != "undefined") {
-            if(data['code'] == 0) {
-                // 远端返回错误
-                myShowMsg(data['msg']);
-                return;
-            }
-            if(data['code'] == 1) {
-                // 远端返回消息
-                myShowMsg(data['msg']);
+    $.jsonP({url:siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
+             success:function(data){
+                 if(typeof(data['code']) != "undefined") {
+                     if(data['code'] == 0) {
+                         // 远端返回错误
+                         myShowMsg(data['msg']);
+                         return;
+                     }
+                     if(data['code'] == 1) {
+                         // 远端返回消息
+                         myShowMsg(data['msg']);
 
-                // 再次访问远端来获取内容（递归）
-                myGetJsonp(name, callback);
-            } else {
-                // 未知情况
-                return;
-            }
-        }
+                         // 再次访问远端来获取内容（递归）
+                         myGetJsonp(name, callback);
+                     } else {
+                         // 未知情况
+                         return;
+                     }
+                 }
 
-        if(showMsg)
-          $('#loading').hide(100);
+                 if(showMsg)
+                   $('#loading').hide(100);
 
-        // 回调函数
-        if(typeof(callback)=='function'){
-            callback(data);
-        };
-    });
+                 // 回调函数
+                 if(typeof(callback)=='function'){
+                     callback(data);
+                 };
+             },
+             error:function(){
+                 if(!showMsg) return;
+
+                 $('#loading').hide(100);
+                 myShowMsg('好的嘛，获取数据失败……');
+             }
+            });
 }
 
 function myShowMsg(msg, callback) {
