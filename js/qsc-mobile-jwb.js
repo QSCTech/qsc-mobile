@@ -24,10 +24,10 @@ Date.prototype.getZjuWeek = function () {
     var oddWeekArray = jwbData.oddWeekArray;
     var evenWeekArray = jwbData.evenWeekArray;
     var week = this.getIsoWeek();
-    
+
     if(oddWeekArray.indexOf(week) != -1) return 'odd';
     if(evenWeekArray.indexOf(week) != -1) return 'even';
-    
+
     return false;
 };
 
@@ -38,7 +38,7 @@ Date.prototype.getZjuWeek = function () {
  */
 Date.prototype.getZjuSemester = function () {
     var week = this.getIsoWeek();
-    
+
     switch (true) {
       case jwbData.chun.indexOf(week) != -1:
 	return '春';
@@ -75,14 +75,14 @@ function getXksj(nth){
 // 若这时候本来就没课，返回false
 Date.prototype.getClassNth = function () {
     var i;
-    
+
     for(i = 1; i < 14; i++){
 	if(this.laterThan(getSksj(i)) && !this.laterThan(getXksj(i)))
 	{
 	    return i;
 	}
     }
-    
+
     return false;
 };
 
@@ -90,15 +90,15 @@ Date.prototype.getClassNth = function () {
 // 若没有下节课了就返回false
 Date.prototype.getClassNthNext = function () {
     var i, max;
-    
+
     for(i = 1; i < 14; i++){
 	if(this.laterThan(getSksj(i))) {
 	    max = i;
 	}
     }
-    
+
     max++;
-    return max > 13 ? max : false;
+    return max > 13 ? false : max;
 };
 
 
@@ -108,23 +108,23 @@ Date.prototype.getClassNthNext = function () {
 
 function KeBiao(data, date){
     var week = date.getZjuWeek();
-    var semester = date.getZjuSemester();    
+    var semester = date.getZjuSemester();
     var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     var weekdate = weekday[date.getDay()];
     var i, j, classes, n;
     var keBiao = [];
-    
+
     for (i=0; i<data.length; i++)
     {
         if(typeof(data[i].time) == "undefined")
             continue;
-	if(typeof(data[i]['time'][week]) == "undefined") 
+	if(typeof(data[i]['time'][week]) == "undefined")
 	    continue;
-	if(typeof(data[i]['time'][week][weekdate]) == "undefined") 
+	if(typeof(data[i]['time'][week][weekdate]) == "undefined")
 	    continue;
 	if(data[i]['semester'].indexOf(semester, 0) === -1)
 	    continue;
-        
+
 	classes = data[i]['time'][week][weekdate];
 	for(j=0; j<classes.length; j++) {
 	    n = {
@@ -136,59 +136,59 @@ function KeBiao(data, date){
 	    keBiao[classes[j]] = n;
         }
     }
-    
+
     // 返回第n节课的课程代号
     this.getCourseId = function(nth) {
 	return typeof(keBiao[nth]) != "undefined" ? keBiao[nth]['id'] : false;
     };
-    
+
     // 返回第n节课的课程名
     this.getCourseName = function(nth) {
 	return typeof(keBiao[nth]) != "undefined" ? keBiao[nth]['name'] : false;
     };
-    
+
     // 返回第n节课的上课地点
     this.getClassroom = function(nth) {
 	return typeof(keBiao[nth]) != "undefined" ? keBiao[nth]['classroom'] : false;
     };
-    
+
     // 返回第n节课的任课老师
     this.getTeacherName = function(nth) {
 	return typeof(keBiao[nth]) != "undefined" ? keBiao[nth]['teacher'] : false;
     };
-    
+
     // 返回课程唯一码
     this.getCourseHash = function(nth) {
         var hash = this.getCourseId(nth)+this.getClassroom(nth)+this.getTeacherName(nth);
         return hash;
     };
-    
-    
+
+
     this.getCourseTime = function(nth) {
         var nthArr = this.getClassNthAll(nth);
         var sksj = getSksj(nthArr[0]);
         var xksj = getXksj(nthArr[nthArr.length -1]);
         return [sksj, xksj];
     };
-    
+
     // 判断该天是否有课
     this.haveClass = function() {
 	return keBiao.length > 0 ? true : false;
     };
-    
+
     this.getClassNthAll = function(nth) {
         var hash = this.getCourseHash(nth);
         var arr = [];
-        
+
         for(i=1; i <= 13; i++) {
                 if(this.getCourseHash(i) == hash){
                     arr.push(i);
                 }
         }
-        
+
         return arr;
     };
-    
+
     // 返回下一节有效的nth
     this.getClassNext = function(nth) {
         nth = nth > 0 ? nth : 0;
@@ -198,8 +198,8 @@ function KeBiao(data, date){
         }
         return false;
     };
-    
-    
+
+
     // 返回下一门有效的nth
     this.getCourseNext = function(theClass) {
         theClass = theClass > 0 ? theClass : 0;
@@ -214,7 +214,7 @@ function KeBiao(data, date){
         };
         return false;
     };
-    
+
 }
 
 
@@ -255,9 +255,9 @@ Date.prototype.earierThan = function (timeString) {
 Date.prototype.getIsoWeek = function (dowOffset) {
     /*getWeek() was developed by Nick Baicoianu at MeanFreePath: http://www.epoch-calendar.com */
     // You may copy and paste this code without charge. All we ask is you leave the credit line in the function body intact.
-    
+
     var nYear, nday;
-    
+
     dowOffset = typeof(dowOffset) == 'int' ? dowOffset : 0; //default dowOffset to zero
     var newYear = new Date(this.getFullYear(),0,1);
     var day = newYear.getDay() - dowOffset; //the day of week the year begins on
