@@ -40,7 +40,7 @@ input,textarea,select{outline:none;}
 #chengji #danke .chengji{margin:20px 0;}
 #chengji #gpa .gpa{margin:20px 0;text-transform:uppercase;}#chengji #gpa .gpa .date{font-weight:bold;font-size:1.2em;}
 #config{width:540px;}#config .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/settings-blue.png) no-repeat left bottom;}
-#config #config_items{font-size:36px;}#config #config_items li{margin:24px 0;padding:0 24px;border-radius:5px;background:#fff;border:1px solid #777;color:#666666;height:100px;line-height:100px;}
+#config #config_items{font-size:36px;}#config #config_items li{margin:24px 0;padding:0 24px;border-radius:5px;background:#fff;border:2px solid #777;color:#666666;height:100px;line-height:100px;}
 #config #config_items .true:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'ON';background:#9acd32;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #config #config_items .false:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'OFF';background:#dc143c;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
@@ -54,12 +54,12 @@ input,textarea,select{outline:none;}
 #xiaohua .next,#xiaohua .love{font-size:36px;padding:20px;border-radius:10px;color:#fff;float:left;width:225px;font-weight:bold;text-align:center;cursor:pointer;}
 #xiaoche{width:540px;}#xiaoche .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/bus-blue.png) no-repeat left bottom;}
 #xiaoche select{padding:0;margin:0;font-size:32px;width:267px;background:#fff;border:2px solid #777;color:#555;}
-#xiaoche #bus_info{font-size:32px;color:#666666;}#xiaoche #bus_info .bus_info{font-size:28px;border:1px solid #555;border-radius:7px;padding:10px;width:516px;margin:10px 0;}#xiaoche #bus_info .bus_info:nth-child(n+2) .detail{display:none;}
+#xiaoche #bus_info{font-size:32px;color:#666666;}#xiaoche #bus_info .bus_info{font-size:28px;border:2px solid #555;border-radius:7px;padding:10px;width:516px;margin:10px 0;}#xiaoche #bus_info .bus_info:nth-child(n+2) .detail{display:none;}
 #xiaoche #bus_info .bus_info .detail{font-size:20px;}
 #xiaoche #bus_info .bus_info span{margin-right:10px;}
 #xiaoche #bus_info .bus_info .id{float:right;color:#777;font-size:28px;}
 .clear{clear:both;}
-hr{border:1px solid #ddd;margin-bottom:1em;}
+hr{border:2px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}
 #kebiao .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;}
 .kebiao .class_name{line-height:72px;color:#666666;font-size:48px;margin-top:1em;}
