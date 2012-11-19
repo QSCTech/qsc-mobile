@@ -27,13 +27,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 This program incorporates work covered by the following copyright and
 permission notices:
 
-- jQuery JavaScript Library v1.8.2
 
-  Copyright 2012 jQuery Foundation and other contributors
+- jqMobi
+
+  Copyright 2011-2012 AppMobi
 
   Released under the MIT license
 
-  http://jquery.org/license
+
+- Cordova.js
+
+  Copyright 2012 The Apache Software Foundation
+
+  Licensed under the Apache License, Version 2.0.
 
 
 - BarrettMu.js
