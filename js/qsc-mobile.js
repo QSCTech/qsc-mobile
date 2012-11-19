@@ -20,11 +20,8 @@ $.extend({
 
 $.includePath = 'js/';
 
-// 允许在file://的时候进行跨域请求
-//$.support.cors = true;
-
-var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
-//var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
+//var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
+var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
 
 // 在phonegap下出错
 // window.addEventListener('offline', function() {
@@ -58,7 +55,7 @@ function pleaseLoginIfNotLogin(callback) {
         $('#login').show(200);
         $.include(['BigInt.js','Barrett.js','RSA.js']);
 
-        $('#login_submit').click(function(){
+        $('#login_submit').bind("click", function(){
             stuid = $("#stuid").val();
 
             var rsa_n = "AA18ABA43B50DEEF38598FAF87D2AB634E4571C130A9BCA7B878267414FAAB8B471BD8965F5C9FC3818485EAF529C26246F3055064A8DE19C8C338BE5496CBAEB059DC0B358143B44A35449EB264113121A455BD7FDE3FAC919E94B56FB9BB4F651CDB23EAD439D6CD523EB08191E75B35FD13A7419B3090F24787BD4F4E1967";
@@ -76,7 +73,7 @@ function pleaseLoginIfNotLogin(callback) {
                     localStorage.setItem('token', token);
                     localStorage.setItem('isLogin', true);
                     isLogin = true;
-                    $('#login').slideUp(200);
+                    $('#login').hide(200);
 
                     $('#menu .user').attr('class', 'box user logout');
                     $('#menu .user').html('注销');
@@ -216,85 +213,85 @@ $(document).ready(function() {
         $('#menu .user').html('登录');
     }
 
-    $('#msg .close').click(function(){
-        $('#msg').slideUp(800);
+    $('#msg .close').bind("click", function(){
+        $('#msg').hide(800);
     });
 
-    $('.logo').click(function(){
+    $('.logo').bind("click", function(){
         $(this).parent().hide(200);
-        $('#menu').slideDown(200);
+        $('#menu').show(200);
     });
 
-    $('.backward').click(function(){
+    $('.backward').bind("click", function(){
         $(this).parent().parent().hide(200);
-        $('#menu').slideDown(200);
+        $('#menu').show(200);
     });
 
-    $('#menu .kebiao').click(function(){
-        $('#menu').slideUp(200);
+    $('#menu .kebiao').bind("click", function(){
+        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#kebiao').slideDown(200);
+            $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
 
-    $('#menu .config').click(function(){
-        $('#menu').slideUp(200);
-        $('#config').slideDown(200);
+    $('#menu .config').bind("click", function(){
+        $('#menu').hide(200);
+        $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
     });
 
-    $('#menu .xiaoche').click(function(){
-        $('#menu').slideUp(200);
-        $('#xiaoche').slideDown(200);
+    $('#menu .xiaoche').bind("click", function(){
+        $('#menu').hide(200);
+        $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
     });
 
-    $('#menu .xiaohua').click(function(){
-        $('#menu').slideUp(200);
-        $('#xiaohua').slideDown(200);
+    $('#menu .xiaohua').bind("click", function(){
+        $('#menu').hide(200);
+        $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
     });
 
-    $('#menu .gaikuang').click(function(){
-        $('#menu').slideUp(200);
+    $('#menu .gaikuang').bind("click", function(){
+        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#gaikuang').slideDown(200);
+            $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
 
-    $('#menu .kaoshi').click(function(){
-        $('#menu').slideUp(200);
+    $('#menu .kaoshi').bind("click", function(){
+        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#kaoshi').slideDown(200);
+            $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
     });
 
-    $('#menu .chengji').click(function(){
-        $('#menu').slideUp(200);
+    $('#menu .chengji').bind("click", function(){
+        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#chengji').slideDown(200);
+            $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
         });
     });
 
-    $('#menu .update').click(function(){
+    $('#menu .update').bind("click", function(){
         myShowMsg('更新中……');
         getAllJsonp(true);
     });
 
 
-    $('#menu .login').click(function(){
-        $('#menu').slideUp(200);
+    $('#menu .login').bind("click", function(){
+        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#config').slideDown(200);
+            $('#config').show(200);
             $.include(['qsc-mobile-config.js']);
         });
     });
 
-    $('#menu .logout').click(function(){
+    $('#menu .logout').bind("click", function(){
         var stuid = '';
         var pwd = '';
         var isLogin = false;
@@ -308,11 +305,11 @@ $(document).ready(function() {
         });
     });
 
-    $('.slide header').click(function(){
+    $('.slide header').bind("click", function(){
         $(this).parent().parent().find('header').removeClass('current');
-        $(this).parent().parent().find('.detail').slideUp(0);// 0 => 保证offset正确
+        $(this).parent().parent().find('.detail').hide(0);// 0 => 保证offset正确
         $("html,body").animate({scrollTop:$(this).offset().top},100);
-	$(this).next().slideDown(100);
+	$(this).next().show(100);
 	$(this).addClass('current');
     });
 });
