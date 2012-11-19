@@ -36,7 +36,7 @@ function writeCountDownToDom(dom){
     var delta;
     var msgClass;
 
-    if(classNthNow == classNthMaybe) {
+    if(classNthNow == classNthMaybe && classNthMaybe != false) {
         // 正在上课
         msgClass = '距离下课还有：';
         var xksj = getXksj(classNthMaybe);
