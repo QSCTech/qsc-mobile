@@ -30,9 +30,8 @@ function writeCountDownToDom(dom){
 
     var classNthNow = now.getClassNth();
 
-    // 若classNth返回false则现在正是13节
-    var classNthNext = now.getClassNthNext() ? now.getClassNthNext() : 14;
-    var classNthMaybe = keBiao.getClassNext(classNthNext - 2);
+    var classNthMaybe = keBiao.getClassMaybe();
+
 
     var delta;
     var msgClass;
