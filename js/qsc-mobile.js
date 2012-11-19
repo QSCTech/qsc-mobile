@@ -221,18 +221,25 @@ $(document).ready(function() {
         $('#menu .user').html('登录');
     }
 
-    $('#msg .close').bind("click", function(){
+    $('#msg .close').bind("mouseover", function(){
         $('#msg').hide(800);
+        return false;
     });
 
-    $('.logo').bind("click", function(){
-        $(this).parent().hide(200);
-        $('#menu').show(200);
+    $('.logo').bind("mouseover", function(){
+        $(this).parent().hide();
+        $('#menu').show();
+        return false;
     });
 
-    $('.backward').bind("click", function(){
+    $('.backward').bind("mouseover", function(){
         $(this).parent().parent().hide(200);
-        $('#menu').show(200);
+
+        // 设置延迟，防止鼠标事件被意外传递（opera mobile）
+        setTimeout(function() {
+            $('#menu').show()
+        }, 10);
+        return false;
     });
 
     $('#menu .kebiao').bind("click", function(){
@@ -241,24 +248,28 @@ $(document).ready(function() {
             $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
+        return false;
     });
 
     $('#menu .config').bind("click", function(){
         $('#menu').hide(200);
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
+        return false;
     });
 
     $('#menu .xiaoche').bind("click", function(){
         $('#menu').hide(200);
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
+        return false;
     });
 
     $('#menu .xiaohua').bind("click", function(){
         $('#menu').hide(200);
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
+        return false;
     });
 
     $('#menu .gaikuang').bind("click", function(){
@@ -267,6 +278,7 @@ $(document).ready(function() {
             $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
+        return false;
     });
 
     $('#menu .kaoshi').bind("click", function(){
@@ -275,6 +287,7 @@ $(document).ready(function() {
             $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
+        return false;
     });
 
     $('#menu .chengji').bind("click", function(){
@@ -283,11 +296,13 @@ $(document).ready(function() {
             $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
         });
+        return false;
     });
 
     $('#menu .update').bind("click", function(){
         myShowMsg('更新中……');
         getAllJsonp(true);
+        return false;
     });
 
 
@@ -297,7 +312,8 @@ $(document).ready(function() {
             $('#config').show(200);
             $.include(['qsc-mobile-config.js']);
         });
-    });
+        return false;
+   });
 
     $('#menu .logout').bind("click", function(){
         var stuid = '';
@@ -311,6 +327,7 @@ $(document).ready(function() {
   		window.location.reload();
             }, 1000);
         });
+        return false;
     });
 });
 
