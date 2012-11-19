@@ -199,6 +199,32 @@ function KeBiao(data, date){
         return false;
     };
 
+    // 若正在上课，返回当前nth，否则返回下节课nth，若下面没课，返回false
+    this.getClassMaybe = function() {
+        var now = new Date();
+        var i;
+
+        // 现在有课
+        var nth_now = now.getClassNth();
+        if(nth_now)
+          return nth_now;
+
+        var nth_next = now.getClassNthNext();
+
+        // 现在已经是第十三节
+        if(!nth_next)
+          return false;
+
+        // 下面还有课
+        for(i=nth_next; i <14; i++) {
+            if(this.getCourseName(i))
+              return i;
+        }
+
+        // 真没课了
+        return false;
+    }
+
 
     // 返回下一门有效的nth
     this.getCourseNext = function(theClass) {
