@@ -312,14 +312,6 @@ $(document).ready(function() {
             }, 1000);
         });
     });
-
-    $('.slide header').bind("click", function(){
-        $(this).parent().parent().find('header').removeClass('current');
-        $(this).parent().parent().find('.detail').hide(0);// 0 => 保证offset正确
-        $("html,body").animate({scrollTop:$(this).offset().top},100);
-	$(this).next().show(100);
-	$(this).addClass('current');
-    });
 });
 
 

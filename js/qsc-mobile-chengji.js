@@ -3,7 +3,7 @@ var chengJiData;
 function loadChengji(){
     var chengJiArray = chengJiData['chengji_array'];
     var gpa = chengJiData['junji_array'];
-    
+
     var html = '';
     for(var i = 0; i < chengJiArray.length; i++) {
         html += '<div class="chengji>';
@@ -17,8 +17,8 @@ function loadChengji(){
     $('#chengji #danke .detail').html(html);
 
     // gpa
-    var html = '';
-    for(var i = 0; i < gpa.length; i++) {
+    html = '';
+    for(i = 0; i < gpa.length; i++) {
         html += '<div class="gpa">';
         html += '<div class="date">';
         html += gpa[i]['时间'];
@@ -32,7 +32,6 @@ function loadChengji(){
         html += '</div>';
     }
     $('#gpa .detail').html(html);
-    $('#gpa header').click();
 }
 
 if (localStorage.getItem('chengJi')) {

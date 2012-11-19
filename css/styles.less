@@ -249,6 +249,9 @@ input, textarea, select {
 	margin:20px 0;
     }
     #gpa {
+	.detail {
+	    display:block;
+	}
 	.gpa {
 	    margin: 20px 0;
 	    text-transform: uppercase;
@@ -478,20 +481,36 @@ hr.blue {
 	font-size:80px;
 	background:@color;
 	color:#fff;
-	margin:40px 0;
+	margin:20px 0;
 	&:hover {
 	    background:@theme;//保证触摸的时候可以迅速的变色
 	}
     }
-    .current {
-	background:@theme;
-    }
     .detail {
-	display:none;
+	max-height:0;
 	font-size:48px;
 	color:@color;
+	overflow:hidden;
+	.transition(.3s);
+    }
+    & > div:hover {
+	.detail {
+	    max-height:1000px;
+	}
+	header {
+	    background:@theme;
+	}
     }
 }
 .em {
     color:@theme;
+}
+
+// css3
+
+.transition(@time) {
+  transition: all @time ease-in-out;
+  -moz-transition: all @time ease-in-out;
+  -webkit-transition: all @time ease-in-out;
+  -o-transition: all @time ease-in-out;
 }
