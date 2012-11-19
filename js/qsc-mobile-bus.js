@@ -40,11 +40,6 @@ if (localStorage.getItem('xiaoChe')) {
     });
 }
 
-$('#xiaoche select').change(function() {
+$('#xiaoche select').bind("change", function() {
     loadBusInfo();
-});
-
-
-$('#xiaoche .bus_info').live("click",function(){
-    $(this).find('.detail').show();
 });

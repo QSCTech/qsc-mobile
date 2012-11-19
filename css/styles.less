@@ -391,13 +391,14 @@ input, textarea, select {
 	    padding:10px;
 	    width:520px - 4px;
 	    margin:10px 0;
-	    &:nth-child(n+2){
-		.detail {
-		    display:none;
-		}
-	    }
 	    .detail {
 		font-size:20px;
+		display:none;
+	    }
+	    &:first-child, &:hover{
+		.detail {
+		    display:block;
+		}
 	    }
 	    span {
 		margin-right:10px;

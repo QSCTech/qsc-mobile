@@ -17,52 +17,55 @@ function formatNumberLength(num, length) {
 }
 
 function writeCountDownToDom(dom){
-    var target_obj = jQuery(dom);
+    var target_obj = $(dom);
     if (target_obj.length <= 0) {
         return;
     }
-    
+
     var now = new Date();
     var keBiao = new KeBiao(keBiaoData, now);
-    
+
     if(!keBiao.haveClass())
         return;
-    
+
     var classNthNow = now.getClassNth();
     var classNthMaybe = keBiao.getClassNext(classNthNow - 1);
-    
+
+    var delta;
+    var msgClass;
+
     if(classNthNow == classNthMaybe) {
         // 正在上课
-        var msgClass = '距离下课还有：';
+        msgClass = '距离下课还有：';
         var xksj = getXksj(classNthMaybe);
-        var delta = now.earierThan(xksj);
+        delta = now.earierThan(xksj);
     } else if(classNthMaybe) {
         // 现在是下课，而且下面还有课
-        var msgClass = '距离上课还有：';
+        msgClass = '距离上课还有：';
         var sksj = getSksj(classNthMaybe);
-        var delta = now.earierThan(sksj);
+        delta = now.earierThan(sksj);
     } else {
-        var delta = 0;
+        delta = 0;
     }
-    
-    
+
+
     if(delta) {
 	var hours = formatNumberLength(Math.floor(delta/3600));
 	var minutes = formatNumberLength(Math.floor((delta-hours*3600)/60), 2);
 	var seconds = formatNumberLength(Math.floor(delta%60), 2);
-        
+
         var msgTimer;
-        
+
 	if(hours > 0) {
 	    msgTimer = hours+'h'+minutes+'min';
 	} else {
 	    msgTimer = minutes+'m'+seconds+'s';
 	}
-        
+
         var courseName = keBiao.getCourseName(classNthMaybe);
-        
-        var classroom = keBiao.getClassroom(classNthMaybe);         
-        
+
+        var classroom = keBiao.getClassroom(classNthMaybe);
+
         var html = '';
         html += '<div class="msg_timer">';
         html += '<div class="msg_class">'+msgClass+'</div>';
@@ -72,42 +75,42 @@ function writeCountDownToDom(dom){
         html += '<div class="msg_course_name">'+courseName+'</div>';
         html += '<div class="msg_classroom">'+classroom+'</div>';
         html += '</div>';
-        
+
         $(dom).html(html);
     }
 }
 
 function writeClassToDom(dom, date){
     // 若dom不存在，直接返回。
-    var target_obj = jQuery(dom);
+    var target_obj = $(dom);
     if (target_obj.length <= 0) {
         return;
     }
-    
+
     var htmlString = '';
     var theClass = 0;
-    
+
     var keBiao = new KeBiao(keBiaoData, date);
-    
+
     if(!keBiao.haveClass()) {
         $(dom).append('好的嘛，没有课了……');
         return;
     }
-    
+
     while(theClass !== false) {
         theClass = keBiao.getCourseNext(theClass);
-        
+
         if(keBiao.getCourseName(theClass)) {
             htmlString += '<div class="class_name">'+keBiao.getCourseName(theClass)+'</div>';
             htmlString += '<div class="class_nth_all">'+keBiao.getClassNthAll(theClass).join(',')+'</div>';
             htmlString += '<div class="class_time">'+keBiao.getCourseTime(theClass).join('-')+'</div>';
             htmlString += '<div class="class_classroom">'+keBiao.getClassroom(theClass)+'</div>';
-            
+
         }
     }
-    
+
     //        alert (htmlString);
-    
+
     // 写入DOM
     $(dom).append(htmlString);
 }
@@ -122,28 +125,23 @@ function loadKeBiao() {
         zjuWeekInfo = '';
     }
     $('#zju_date_info').html(zjuWeekInfo);
-    
+
     writeClassToDom('#course_today', today);
     writeClassToDom('#course_tomorrow', tomorrow);
     writeCountDownToDom('#timer');
     setInterval("writeCountDownToDom('#timer')",1000);
-    
+
     var i;
     var xdate = new Date();
     var offset = today.getDay() - 1;
     var weekArr = ['mon','tue','wed','thu','fri','sat','sun'];
-    
+
     for(i=0; i<7; i++) {
         xdate.setDate(today.getDate() - offset + i);
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
 
     $('#mon .detail').show();
-    
-    // // 似乎不这样取到的offset是错的
-    // setTimeout(function(){
-    //     $('#kebiao #'+todayWeekDate+' header').click();
-    // }, 200);
 
 //    $('#kebiao #'+todayWeekDate+'')
 }
