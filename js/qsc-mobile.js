@@ -55,7 +55,7 @@ function pleaseLoginIfNotLogin(callback) {
         $('#login').show(200);
         $.include(['BigInt.js','Barrett.js','RSA.js']);
 
-        $('#login_submit').bind("mouseover", function(){
+        $('#login_submit').bind("mousedown", function(){
             stuid = $("#stuid").val();
 
             var rsa_n = "AA18ABA43B50DEEF38598FAF87D2AB634E4571C130A9BCA7B878267414FAAB8B471BD8965F5C9FC3818485EAF529C26246F3055064A8DE19C8C338BE5496CBAEB059DC0B358143B44A35449EB264113121A455BD7FDE3FAC919E94B56FB9BB4F651CDB23EAD439D6CD523EB08191E75B35FD13A7419B3090F24787BD4F4E1967";
@@ -221,18 +221,18 @@ $(document).ready(function() {
         $('#menu .user').html('登录');
     }
 
-    $('#msg .close').bind("mouseover", function(){
+    $('#msg .close').bind("mousedown", function(){
         $('#msg').hide(800);
         return false;
     });
 
-    $('.logo').bind("mouseover", function(){
+    $('.logo').bind("mousedown", function(){
         $(this).parent().hide();
         $('#menu').show();
         return false;
     });
 
-    $('.backward').bind("mouseover", function(){
+    $('.backward').bind("mousedown", function(){
         $(this).parent().parent().hide(200);
 
         // 设置延迟，防止鼠标事件被意外传递（opera mobile）
@@ -242,7 +242,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kebiao').bind("mouseover", function(){
+    $('#menu .kebiao').bind("mousedown", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kebiao').show(200);
@@ -251,28 +251,33 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .config').bind("mouseover", function(){
+    $('#menu .config').bind("mousedown", function(){
         $('#menu').hide(200);
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
         return false;
     });
 
-    $('#menu .xiaoche').bind("mouseover", function(){
+    $('#menu .xiaoche').bind("mousedown", function(){
         $('#menu').hide(200);
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
         return false;
     });
 
-    $('#menu .xiaohua').bind("mouseover", function(){
+    $('#menu .shida').bind("mousedown", function(){
+        $('#menu').hide();
+        $('#shida').show();
+    });
+
+    $('#menu .xiaohua').bind("mousedown", function(){
         $('#menu').hide(200);
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
         return false;
     });
 
-    $('#menu .gaikuang').bind("mouseover", function(){
+    $('#menu .gaikuang').bind("mousedown", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#gaikuang').show(200);
@@ -281,7 +286,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kaoshi').bind("mouseover", function(){
+    $('#menu .kaoshi').bind("mousedown", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kaoshi').show(200);
@@ -290,7 +295,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .chengji').bind("mouseover", function(){
+    $('#menu .chengji').bind("mousedown", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#chengji').show(200);
@@ -299,14 +304,14 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .update').bind("mouseover", function(){
+    $('#menu .update').bind("mousedown", function(){
         myShowMsg('更新中……');
         getAllJsonp(true);
         return false;
     });
 
 
-    $('#menu .login').bind("mouseover", function(){
+    $('#menu .login').bind("mousedown", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#config').show(200);
@@ -315,7 +320,7 @@ $(document).ready(function() {
         return false;
    });
 
-    $('#menu .logout').bind("mouseover", function(){
+    $('#menu .logout').bind("mousedown", function(){
         var stuid = '';
         var pwd = '';
         var isLogin = false;
