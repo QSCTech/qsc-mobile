@@ -243,12 +243,14 @@ $(document).ready(function() {
     });
 
     $('#menu .kebiao').bind("mousedown", function(){
+        // 先让当前元素失焦
+        window.focus();
+
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
-        return false;
     });
 
     $('#menu .config').bind("mousedown", function(){
@@ -274,7 +276,6 @@ $(document).ready(function() {
         $('#menu').hide(200);
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
-        return false;
     });
 
     $('#menu .gaikuang').bind("mousedown", function(){
