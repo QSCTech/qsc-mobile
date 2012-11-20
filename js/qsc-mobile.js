@@ -213,7 +213,8 @@ if(localStorage.getItem('jwbData')) {
 
 $(document).ready(function() {
 
-    var vpScale = window.outerWidth/640/window.devicePixelRatio;
+//    var vpScale = window.outerWidth/640/window.devicePixelRatio;
+    var vpScale = document.body.clientWidth/640/window.devicePixelRatio;
 
  //    var vpScale = window.outerWidth/640;
     var metas = document.getElementsByTagName('meta');
