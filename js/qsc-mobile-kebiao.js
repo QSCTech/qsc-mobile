@@ -32,7 +32,6 @@ function writeCountDownToDom(dom){
 
     var classNthMaybe = keBiao.getClassMaybe();
 
-
     var delta;
     var msgClass;
 
