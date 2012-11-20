@@ -214,11 +214,13 @@ if(localStorage.getItem('jwbData')) {
 $(document).ready(function() {
 
     var vpScale = window.outerWidth/640/window.devicePixelRatio;
+
+ //    var vpScale = window.outerWidth/640;
     var metas = document.getElementsByTagName('meta');
     var i;
     for (i=0; i< metas.length; i++) {
         if (metas[i].name == "viewport") {
-            metas[i].content = "minimum-scale=" + vpScale + ", maximum-scale=" + vpScale;
+            metas[i].content = "minimum-scale=" + vpScale + ", maximum-scale=" + vpScale + ", initial-scale=" + vpScale;
         }
     }
 
