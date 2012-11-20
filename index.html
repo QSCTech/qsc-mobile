@@ -1,13 +1,13 @@
 <!doctype html>
 <meta charset="utf-8">
-<meta name="viewport" content="target-densitydpi=device-dpi, width=640, user-scalable=no" />
+<meta name="viewport" content="" />
 
 <title>求是潮移动平台</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
-<script src="js/cordova.js"></script>
 <!-- <script src="phonegap.js"></script> -->
 <script src="js/jq.mobi.js"></script>
 <script src="js/jq.scroller.js"></script>
+<script src="js/jq.css3animate.js"></script>
 <script src="js/qsc-mobile.js" charset="UTF-8"></script>
 <script src="js/qsc-mobile-jwb.js" charset="UTF-8"></script>
 
@@ -19,7 +19,6 @@
 <div id="loading">好的嘛，努力加载中……</div>
 
 <div id="wrap">
-  
   <div id="menu">
     <div class="box gaikuang">概况</div>
     <div class="box kebiao">课表</div>
@@ -139,13 +138,20 @@
 
   <div id="shida" class="mask hidden">
     <header class="header">
-      九八十大<div class="backward"></div>
+      十大<div class="backward"></div>
     </header>
     <br><hr>
     <ul id="jiubashida">
     </ul>
   </div>
 
+  <div id="zuoye" class="mask hidden">
+    <header class="header">
+      作业<div class="backward"></div>
+    </header>
+    <br><hr>
+
+  </div>
 
   <div id="config" class="mask hidden">
     <header class="header">
@@ -171,3 +177,6 @@
   </div>
 
 </div>
+
+<!-- 放在底部，避免阻塞 -->
+<script src="js/cordova.js"></script>
