@@ -55,7 +55,7 @@ function pleaseLoginIfNotLogin(callback) {
         $('#login').show(200);
         $.include(['BigInt.js','Barrett.js','RSA.js']);
 
-        $('#login_submit').bind("click", function(){
+        $('#login_submit').bind("mouseover", function(){
             stuid = $("#stuid").val();
 
             var rsa_n = "AA18ABA43B50DEEF38598FAF87D2AB634E4571C130A9BCA7B878267414FAAB8B471BD8965F5C9FC3818485EAF529C26246F3055064A8DE19C8C338BE5496CBAEB059DC0B358143B44A35449EB264113121A455BD7FDE3FAC919E94B56FB9BB4F651CDB23EAD439D6CD523EB08191E75B35FD13A7419B3090F24787BD4F4E1967";
@@ -242,7 +242,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kebiao').bind("click", function(){
+    $('#menu .kebiao').bind("mouseover", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kebiao').show(200);
@@ -251,28 +251,28 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .config').bind("click", function(){
+    $('#menu .config').bind("mouseover", function(){
         $('#menu').hide(200);
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
         return false;
     });
 
-    $('#menu .xiaoche').bind("click", function(){
+    $('#menu .xiaoche').bind("mouseover", function(){
         $('#menu').hide(200);
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
         return false;
     });
 
-    $('#menu .xiaohua').bind("click", function(){
+    $('#menu .xiaohua').bind("mouseover", function(){
         $('#menu').hide(200);
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
         return false;
     });
 
-    $('#menu .gaikuang').bind("click", function(){
+    $('#menu .gaikuang').bind("mouseover", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#gaikuang').show(200);
@@ -281,7 +281,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kaoshi').bind("click", function(){
+    $('#menu .kaoshi').bind("mouseover", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kaoshi').show(200);
@@ -290,7 +290,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .chengji').bind("click", function(){
+    $('#menu .chengji').bind("mouseover", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#chengji').show(200);
@@ -299,14 +299,14 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .update').bind("click", function(){
+    $('#menu .update').bind("mouseover", function(){
         myShowMsg('更新中……');
         getAllJsonp(true);
         return false;
     });
 
 
-    $('#menu .login').bind("click", function(){
+    $('#menu .login').bind("mouseover", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#config').show(200);
@@ -315,7 +315,7 @@ $(document).ready(function() {
         return false;
    });
 
-    $('#menu .logout').bind("click", function(){
+    $('#menu .logout').bind("mouseover", function(){
         var stuid = '';
         var pwd = '';
         var isLogin = false;
