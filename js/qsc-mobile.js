@@ -213,15 +213,15 @@ if(localStorage.getItem('jwbData')) {
 
 $(document).ready(function() {
 
-//    var vpScale = window.outerWidth/640/window.devicePixelRatio;
-    var vpScale = document.body.clientWidth/640/window.devicePixelRatio;
+    var width = screen.width;
+    var devicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
+    var vpScale = width/640/devicePixelRatio;
 
- //    var vpScale = window.outerWidth/640;
     var metas = document.getElementsByTagName('meta');
     var i;
     for (i=0; i< metas.length; i++) {
         if (metas[i].name == "viewport") {
-            metas[i].content = "minimum-scale=" + vpScale + ", maximum-scale=" + vpScale + ", initial-scale=" + vpScale;
+            metas[i].content = "minimum-scale=" + vpScale + ", maximum-scale=" + vpScale + ", initial-scale=" + vpScale + ", target-densitydpi=device-dpi";
         }
     }
 
