@@ -42,7 +42,7 @@ var config_list = ['update_automatically', 'evaluate_teacher_automatically'];
 for(var i = 0; i < config_list.length; i++) {
     var item = config_list[i];
     if(typeof(config[item]) == "undefined")
-	config[item] = true; // 默认开启特性
+      config[item] = true; // 默认开启特性
 }
 
 
@@ -100,10 +100,10 @@ function myGetJsonp(name, showMsg, callback) {
     }
 
     if(showMsg)
-	$('#loading').show(100);
+      $('#loading').show(100);
 
     if(!pwd)
-	pwd = '';
+      pwd = '';
 
     $.jsonP({url:siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
              success:function(data){
@@ -126,7 +126,7 @@ function myGetJsonp(name, showMsg, callback) {
                  }
 
                  if(showMsg)
-                     $('#loading').hide(100);
+                   $('#loading').hide(100);
 
                  // 回调函数
                  if(typeof(callback)=='function'){
@@ -159,7 +159,7 @@ function getAllJsonp(showDone){
     if(showDone) {
         var request_done_check = setInterval(function(){
             if(request_count !== 0)
-		return;
+	      return;
 
             myShowMsg('好的嘛，请求完毕');
             clearInterval(request_done_check);
@@ -212,6 +212,16 @@ if(localStorage.getItem('jwbData')) {
 }
 
 $(document).ready(function() {
+
+    var vpScale = window.outerWidth/640/window.devicePixelRatio;
+    var metas = document.getElementsByTagName('meta');
+    var i;
+    for (i=0; i< metas.length; i++) {
+        if (metas[i].name == "viewport") {
+            metas[i].content = "minimum-scale=" + vpScale + ", maximum-scale=" + vpScale;
+        }
+    }
+
 
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
@@ -319,7 +329,7 @@ $(document).ready(function() {
             $.include(['qsc-mobile-config.js']);
         });
         return false;
-   });
+    });
 
     $('#menu .logout').bind("mousedown", function(){
         var stuid = '';
@@ -338,7 +348,9 @@ $(document).ready(function() {
 });
 
 
-
+$('.slide > div').bind("click", function(){
+    $(this).css3Animate({"height":"1000px", time : "300mx"});
+});
 
 // 自动更新数据
 if(config.update_automatically) {
