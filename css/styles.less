@@ -11,7 +11,10 @@ input, textarea, select {
     outline: none;
 }
 
-
+// html, body {
+//     width:640px;
+//     overflow:hidden;
+// }
 #msg {
     width:600px - 20px*2;
     height:200px - 20px*2;
@@ -329,6 +332,20 @@ input, textarea, select {
 	background:url(../img/jokes-blue.png) no-repeat left bottom;
     }
 }
+#zuoye {
+    width:540px;
+    .header {
+	#kebiao .header;
+	background: url(../img/homework-blue.png) no-repeat left bottom;
+    }
+}
+#shida {
+    width:540px;
+    .header {
+	#kebiao .header;
+	background: url(../img/Top10-cc98-blue.png) no-repeat left bottom;
+    }
+}
 #kaoshi{
     width:540px;
     .header{
@@ -431,6 +448,7 @@ hr.blue {
     border-color:@theme;
 }
 #kebiao {
+    outline:none;
     .header{
 	background:url(../img/class-blue.png) no-repeat left bottom;
 	max-height:150px;
@@ -479,6 +497,10 @@ hr.blue {
     cursor:pointer;
 }
 .slide{
+    & > div {
+	max-height:120px;
+	overflow:hidden;
+    }
     header {
 	text-align:center;
 	text-transform: capitalize;
@@ -488,21 +510,15 @@ hr.blue {
 	background:@color;
 	color:#fff;
 	margin:20px 0;
-	&:hover {
-	    background:@theme;//保证触摸的时候可以迅速的变色
-	}
     }
     .detail {
-	max-height:0;
 	font-size:48px;
 	color:@color;
 	overflow:hidden;
-	.transition(.1s);
     }
-    & > div:hover {
-	.detail {
-	    max-height:1000px;
-	}
+    .current {
+	.transition(.3s);
+	max-height:2000px;
 	header {
 	    background:@theme;
 	}

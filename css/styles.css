@@ -21,6 +21,7 @@ input,textarea,select{outline:none;}
 #menu .login{background-image:url(../img/login.png);}
 #menu .logout{background-image:url(../img/exit.png);}
 #menu .config{background-image:url(../img/settings.png);}
+#menu .zuoye{background-image:url(../img/homework.png);}
 #menu:after{content:'';clear:both;display:block;}
 .mask{width:100%;height:100%;}
 .hidden{display:none;}
@@ -46,6 +47,8 @@ input,textarea,select{outline:none;}
 #config #config_items .true:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'ON';background:#9acd32;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #config #config_items .false:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'OFF';background:#dc143c;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
+#zuoye{width:540px;}#zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
+#shida{width:540px;}#shida .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/Top10-cc98-blue.png) no-repeat left bottom;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
@@ -63,15 +66,15 @@ input,textarea,select{outline:none;}
 .clear{clear:both;}
 hr{border:2px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}
-#kebiao .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;}
+#kebiao{outline:none;}#kebiao .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;}
 .kebiao .class_name{line-height:72px;color:#666666;font-size:48px;margin-top:1em;}
 .kebiao .class_nth_all{font-size:36px;color:#219eee;}
 .kebiao .class_time{font-size:32px;color:#666666;}
 .kebiao .class_classroom{font-size:32px;color:#666666;}
 #forward{display:block;width:100px;height:100px;margin-top:20px;background:url(../img/forward.png);float:right;cursor:pointer;}
 .backward{display:block;width:100px;height:100px;margin-top:50px;background:url(../img/backward.png);float:right;cursor:pointer;}
-.slide header{text-align:center;text-transform:capitalize;font-family:ubuntu;line-height:100px;font-size:80px;background:#666666;color:#fff;margin:20px 0;}.slide header:hover{background:#219eee;}
-.slide .detail{max-height:0;font-size:48px;color:#666666;overflow:hidden;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;}
-.slide >div:hover .detail{max-height:1000px;}
-.slide >div:hover header{background:#219eee;}
+.slide >div{max-height:120px;overflow:hidden;}
+.slide header{text-align:center;text-transform:capitalize;font-family:ubuntu;line-height:100px;font-size:80px;background:#666666;color:#fff;margin:20px 0;}
+.slide .detail{font-size:48px;color:#666666;overflow:hidden;}
+.slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}.slide .current header{background:#219eee;}
 .em{color:#219eee;}
