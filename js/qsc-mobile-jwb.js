@@ -206,8 +206,10 @@ function KeBiao(data, date){
 
         // 现在有课
         var nth_now = now.getClassNth();
-        if(nth_now)
+
+        if(this.getCourseName(nth_now))
           return nth_now;
+
 
         var nth_next = now.getClassNthNext();
 
@@ -217,13 +219,14 @@ function KeBiao(data, date){
 
         // 下面还有课
         for(i=nth_next; i <14; i++) {
-            if(this.getCourseName(i))
-              return i;
+            if(this.getCourseName(i) != false) {
+                return i;
+            }
         }
 
         // 真没课了
         return false;
-    }
+    };
 
 
     // 返回下一门有效的nth
