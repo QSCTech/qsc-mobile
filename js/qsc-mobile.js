@@ -53,7 +53,7 @@ function pleaseLoginIfNotLogin(callback) {
         }
     } else {
         $('#login').show(200);
-        $.include(['BigInt.js','Barrett.js','RSA.js']);
+        $.include(['js-vkbd.js','BigInt.js','Barrett.js','RSA.js']);
 
         $('#login_submit').bind("mousedown", function(){
             stuid = $("#stuid").val();

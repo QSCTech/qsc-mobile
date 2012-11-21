@@ -165,15 +165,23 @@
   </div>
   
   <div id="login" class="mask hidden">
-    <div class="logo"></div>
-    <header>登录</header>
-    <form action="" method="post" accept-charset="utf-8">
-      <input type="text" name="stuid" id="stuid" value="" placeholder="学号" autofocus="autofocus" />
-      <br>
-      <input type="password" name="pwd" id="pwd" value="" placeholder="教务部密码" />
-      <br>
-      <div id="login_submit">登入教务网</div>
-    </form>
+    <div class="vkbd_input" id="vkbd_user" onclick="vkbdFocus()"><span class="vkbd_text"></span><span name="vkbd_after"></span></div>
+    <div class="vkbd_input" id="vkbd_pwd" onclick="vkbdFocus()"><span class="vkbd_text"></span><span name="vkbd_after"></span></div>
+    <div id="vkbd">
+      <div name="vkbd_line" class="vkbd_line"></div>
+      <div name="vkbd_line" class="vkbd_line"></div>
+      <div name="vkbd_line" class="vkbd_line"></div>
+      <div name="vkbd_line" class="vkbd_line"></div>
+      <div name="vkbd_line" class="vkbd_line"></div>
+      <div name="vkbd_line" class="vkbd_line">
+	<ul>
+	  <li onclick="vkbdShift();">Shift</li>
+	  <li onclick="vkbdInput(' ');">Space</li>
+	  <li onclick="vkbdBackspace();">Backspace</li>
+	</ul>
+      </div>
+    </div>
+    <div id="login_submit">登入教务网</div>
   </div>
 
 </div>

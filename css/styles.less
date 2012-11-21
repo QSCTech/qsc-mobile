@@ -1,20 +1,12 @@
 @import 'reset';
 @import 'zeno';
+@import 'vkbd';
 
 @theme: #219eee;
 @color: #666;
 @color1: #DC143C;
 @color2: #9ACD32;
 
-/* 屏蔽高亮 */
-input, textarea, select {
-    outline: none;
-}
-
-// html, body {
-//     width:640px;
-//     overflow:hidden;
-// }
 #msg {
     width:600px - 20px*2;
     height:200px - 20px*2;
@@ -526,13 +518,4 @@ hr.blue {
 }
 .em {
     color:@theme;
-}
-
-// css3
-
-.transition(@time) {
-  transition: all @time ease-in-out;
-  -moz-transition: all @time ease-in-out;
-  -webkit-transition: all @time ease-in-out;
-  -o-transition: all @time ease-in-out;
 }

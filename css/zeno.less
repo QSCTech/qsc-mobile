@@ -1,3 +1,47 @@
+// zeno.less -- 简单易用的less库
+// Copyright (C) Zeno Zeng
+// Licensed under WTFPL
+// Version 0.0.1
+// Time-stamp: <2012-11-21 21:38:29 Zeno Zeng>
+
+// 字体类
+// 兼顾mac、linux、win
+// todo: 方正字体的添加
+// todo：编程字体（主要用于pre）
+
+.font_hei() {
+    font-family: "Hiragino Sans GB", "ST Heiti", "LiHei Pro Medium", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei";
+}
+.font_song() {
+    font-family: "NSimSun", "STSong", "AR PL SungtiL GB", "TW\-Sung", "SimSun";
+}
+.font_kai() {
+    font-family: "STKaiti", "KaiTi", "AR PL KaitiM GB", "TW\-Kai";
+}
+.font_code() {
+    // 等宽编程字体
+}
+
+
+// 禁用浏览器默认行为
+// 屏蔽输入类的一圈高亮
+input, textarea, select {
+    outline: none;
+}
+// 隐藏webkit内核在手机上点击会产生一个半透明的背景框
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+// css3类
+.transition(@time) {
+  transition: all @time ease-in-out;
+  -moz-transition: all @time ease-in-out;
+  -webkit-transition: all @time ease-in-out;
+  -o-transition: all @time ease-in-out;
+}
+
+// 浮动布局类
 .clear_after() {
     &:after{
 	content:'';

@@ -1,0 +1,94 @@
+ul, li {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#vkbd {
+    font-family:ubuntu;
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,.1);
+    padding:14px 0;
+    .vkbd_line {
+	&:last-child {
+	    li {
+		width:25vw;
+		font-size:4vh;
+		text-align:left;
+		margin-right:1vw;
+		padding-left:3vw;
+	    }
+	}
+	margin-left:2%;
+	ul {
+	    width:100%;
+	    clear:both;
+	}
+	li {
+	    height:7vh;
+	    line-height:7vh;
+	    float:left;
+	    width:6.5vw;
+	    background:rgba(255,255,255,.9);
+	    margin:.5vh .4vw;
+	    text-align:center;
+	    color:#777;
+	    font-weight:bold;
+	    font-size:5vh;
+	    border-radius:5px;
+	}
+    }
+}
+.vkbd_key_down {
+    background:rgba(255,255,255,1);
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    box-shadow: 0 0 7px #555;
+}
+.vkbd_focus {
+    box-shadow: 0 0 15px #ddd;
+}
+.vkbd_input {
+    width:95%;
+    border:2px solid #ddd;
+    border-radius:5px;
+    margin:14px;
+    padding:14px;
+    color:#777;
+}
+#vkbd_user {
+    &:before {
+	content:"学号：";
+	color:#999;
+    }
+}
+#vkbd_pwd {
+    .vkbd_text {
+	-webkit-text-security: disc;
+    }
+    &:before {
+	content:"教务部密码：";
+	color:#999;
+    }
+}
+.vkbd_cursor {
+    -webkit-animation-name: vkbd_input;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    &:after {
+	content:"|";
+    }
+}
+
+@-webkit-keyframes vkbd_input {
+    0%{color:#fff;}
+    100%{color:#555;} 
+}
+
+
