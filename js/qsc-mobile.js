@@ -37,12 +37,12 @@ var token = localStorage.getItem('token',false) ? localStorage.getItem('token') 
 
 // 初始化用户配置
 // 默认关闭自动给老师好评
-var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {'evaluate_teacher_automatically':false};
-var config_list = ['update_automatically', 'evaluate_teacher_automatically'];
+var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {'update_automatically':true};
+var config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
 for(var i = 0; i < config_list.length; i++) {
     var item = config_list[i];
     if(typeof(config[item]) == "undefined")
-      config[item] = true; // 默认开启特性
+      config[item] = false; // 默认关闭特性
 }
 
 
@@ -230,6 +230,14 @@ $(document).ready(function() {
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
         $('#menu .user').html('注销');
+
+        if(config['gaikuang_as_default']) {
+            $('#menu').hide(200);
+            pleaseLoginIfNotLogin(function() {
+                $('#gaikuang').show(200);
+                $.include(['qsc-mobile-kebiao.js']);
+            });
+        }
     } else {
         $('#menu .user').attr('class', 'box user login');
         $('#menu .user').html('登录');

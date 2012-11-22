@@ -26,7 +26,6 @@ ul,li{list-style:none;margin:0;padding:0;}
 #menu .kebiao{background-image:url(../img/class.png);}
 #menu .chengji{background-image:url(../img/gpa.png);}
 #menu .kaoshi{background-image:url(../img/exam.png);}
-#menu .shida{background-image:url(../img/Top10-cc98.png);}
 #menu .xiaoche{background-image:url(../img/bus.png);}
 #menu .jiaoshi{background-image:url(../img/rooms.png);}
 #menu .xiaohua{background-image:url(../img/jokes.png);}
@@ -40,8 +39,8 @@ ul,li{list-style:none;margin:0;padding:0;}
 .logo{display:block;width:240px;height:140px;background:url(../img/logo.png) no-repeat left top;float:left;cursor:pointer;}
 #gaikuang{width:540px;}#gaikuang .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/general-blue.png) no-repeat left bottom;}
 #gaikuang #zju_date_info{font-size:36px;color:#555;line-height:2em;}
-#gaikuang #timer{font-size:36px;color:#219eee;line-height:36px;}#gaikuang #timer .msg_timer{float:left;}
-#gaikuang #timer .msg_course{float:right;font-size:18px;margin-top:3px;}
+#gaikuang #timer{font-size:36px;color:#219eee;line-height:36px;}#gaikuang #timer .msg_timer{width:48%;float:left;}
+#gaikuang #timer .msg_course{width:48%;float:right;font-size:22px;margin-top:3px;text-overflow:ellipsis;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}
 #gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:28px;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:60px;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:20px solid #219eee;border-radius:70px;}
 #gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
@@ -58,7 +57,6 @@ ul,li{list-style:none;margin:0;padding:0;}
 #config #config_items .false:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'OFF';background:#dc143c;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
 #zuoye{width:540px;}#zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
-#shida{width:540px;}#shida .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/Top10-cc98-blue.png) no-repeat left bottom;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
@@ -84,7 +82,7 @@ hr.blue{border-color:#219eee;}
 #forward{display:block;width:100px;height:100px;margin-top:20px;background:url(../img/forward.png);float:right;cursor:pointer;}
 .backward{display:block;width:100px;height:100px;margin-top:50px;background:url(../img/backward.png);float:right;cursor:pointer;}
 .slide >div{max-height:120px;overflow:hidden;}
-.slide header{text-align:center;text-transform:capitalize;font-family:ubuntu;line-height:100px;font-size:80px;background:#666666;color:#fff;margin:20px 0;}
+.slide header{padding-left:1em;text-transform:capitalize;font-family:ubuntu;height:80px;line-height:80px;font-size:60px;border:2px solid #555;border-radius:8px;color:#555;margin:30px 0;cursor:pointer;background:url(../img/downward.png) no-repeat 90% center;background-size:60px 60px;}
 .slide .detail{font-size:48px;color:#666666;overflow:hidden;}
-.slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}.slide .current header{background:#219eee;}
+.slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}
 .em{color:#219eee;}
