@@ -7,12 +7,12 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 input,textarea,select{outline:none;}
 *{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
 ul,li{list-style:none;margin:0;padding:0;}
-#vkbd{font-family:ubuntu;position:fixed;left:0;bottom:0;width:100%;background:rgba(0, 0, 0, 0.1);padding:14px 0;}#vkbd .vkbd_line{margin-left:2%;}#vkbd .vkbd_line:last-child li{width:25vw;font-size:4vh;text-align:left;margin-right:1vw;padding-left:3vw;}
+#vkbd{font-family:ubuntu;position:fixed;left:0;bottom:0;width:100%;background:rgba(0, 0, 0, 0.1);padding:14px 0;}#vkbd .vkbd_line{width:610px;margin:0 auto;}#vkbd .vkbd_line:last-child li{width:150px;font-size:10px;text-align:left;margin-right:6px;padding-left:18px;height:40px;line-height:40px;}
 #vkbd .vkbd_line ul{width:100%;clear:both;}
-#vkbd .vkbd_line li{height:7vh;line-height:7vh;float:left;width:6.5vw;background:rgba(255, 255, 255, 0.9);margin:.5vh .4vw;text-align:center;color:#777;font-weight:bold;font-size:5vh;border-radius:5px;}
+#vkbd .vkbd_line li{height:60px;line-height:60px;float:left;width:42px;background:rgba(255, 255, 255, 0.9);margin:3px 2px;text-align:center;color:#777;font-weight:bold;font-size:12px;border-radius:5px;}
 .vkbd_key_down{background:#ffffff;transform:scale(1.5);-ms-transform:scale(1.5);-webkit-transform:scale(1.5);-o-transform:scale(1.5);-moz-transform:scale(1.5);box-shadow:0 0 7px #555;}
 .vkbd_focus{box-shadow:0 0 15px #ddd;}
-.vkbd_input{width:95%;border:2px solid #ddd;border-radius:5px;margin:14px auto;padding:14px;color:#777;}
+.vkbd_input{width:95%;border:2px solid #ddd;border-radius:5px;margin:14px auto;padding:14px;color:#777;height:24px;line-height:24px;font-size:16px;}
 #vkbd_user:before{content:"学号：";color:#999;}
 #vkbd_pwd .vkbd_text{-webkit-text-security:disc;}
 #vkbd_pwd:before{content:"教务部密码：";color:#999;}

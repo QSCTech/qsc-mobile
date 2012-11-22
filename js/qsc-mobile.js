@@ -282,25 +282,25 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .xiaoche').bind("mousedown", function(){
+    $('#menu .xiaoche').bind("click", function(){
         $('#menu').hide(200);
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
         return false;
     });
 
-    $('#menu .shida').bind("mousedown", function(){
+    $('#menu .shida').bind("click", function(){
         $('#menu').hide();
         $('#shida').show();
     });
 
-    $('#menu .xiaohua').bind("mousedown", function(){
+    $('#menu .xiaohua').bind("click", function(){
         $('#menu').hide(200);
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
     });
 
-    $('#menu .gaikuang').bind("mousedown", function(){
+    $('#menu .gaikuang').bind("click", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#gaikuang').show(200);
@@ -309,7 +309,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kaoshi').bind("mousedown", function(){
+    $('#menu .kaoshi').bind("click", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#kaoshi').show(200);
@@ -318,7 +318,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .chengji').bind("mousedown", function(){
+    $('#menu .chengji').bind("click", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#chengji').show(200);
@@ -327,14 +327,22 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .update').bind("mousedown", function(){
+    $('#menu .update').bind("click", function(){
         myShowMsg('更新中……');
         getAllJsonp(true);
         return false;
     });
 
+    $('#menu .zuoye').bind("click", function(){
+        $('#menu').hide(200);
+        pleaseLoginIfNotLogin(function(){
+            $('#zuoye').show(200);
+            $.include(['qsc-mobile-zuoye.js']);
+        });
+    });
 
-    $('#menu .login').bind("mousedown", function(){
+
+    $('#menu .login').bind("click", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
             $('#config').show(200);
@@ -343,7 +351,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .logout').bind("mousedown", function(){
+    $('#menu .logout').bind("click", function(){
         var stuid = '';
         var pwd = '';
         var isLogin = false;
