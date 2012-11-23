@@ -177,8 +177,7 @@ $(document).ready(function() {
     $('#menu .zuoye').bind("click", function(){
         $('#menu').hide(200);
         pleaseLoginIfNotLogin(function(){
-            $('#zuoye').show(200);
-            $.include(['qsc-mobile-zuoye.js']);
+            window.location.href="homework.html";
         });
     });
 

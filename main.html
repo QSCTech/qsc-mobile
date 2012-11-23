@@ -4,7 +4,6 @@
 
 <title>求是潮移动平台</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
-<!-- <script src="phonegap.js"></script> -->
 <script src="js/jq.mobi.js"></script>
 <script src="js/qsc-mobile-comm.js"></script>
 <script src="js/jq.scroller.js"></script>
@@ -30,7 +29,7 @@
     <div class="box jiaoshi">教室</div>
     <div class="box xiaoche">校车</div>
     <div class="box zuoye">作业</div>
-    <!-- <div class="box shida">十大</div> -->
+    <div class="box shida">十大</div>
     <div class="box config">设置</div>
     <div class="box update">更新</div>
     <div class="box user"></div>
@@ -137,21 +136,13 @@
     <div class="next">下一条</div>
   </div>
 
-  <!-- <div id="shida" class="mask hidden"> -->
-  <!--   <header class="header"> -->
-  <!--     十大<div class="backward"></div> -->
-  <!--   </header> -->
-  <!--   <br><hr> -->
-  <!--   <ul id="jiubashida"> -->
-  <!--   </ul> -->
-  <!-- </div> -->
-
-  <div id="zuoye" class="mask hidden">
+  <div id="shida" class="mask hidden">
     <header class="header">
-      作业<div class="backward"></div>
+      十大<div class="backward"></div>
     </header>
     <br><hr>
-    <div id="add_homework"></div>
+    <ul id="jiubashida">
+    </ul>
   </div>
 
   <div id="config" class="mask hidden">
@@ -165,30 +156,6 @@
       <li id="gaikuang_as_default">打开默认显示概况</li>
     </ul>
   </div>
-  
-  <div id="login" class="mask hidden">
-    <header>
-        <div id="login_submit">戳我登录</div>
-    </header>
-    <br><br>
-    <div class="vkbd_input" id="vkbd_user" onclick="vkbdFocus()"><span class="vkbd_text"></span><span name="vkbd_after"></span></div>
-    <div class="vkbd_input" id="vkbd_pwd" onclick="vkbdFocus()"><span class="vkbd_text"></span><span name="vkbd_after"></span></div>
-    <div id="vkbd">
-      <div name="vkbd_line" class="vkbd_line"></div>
-      <div name="vkbd_line" class="vkbd_line"></div>
-      <div name="vkbd_line" class="vkbd_line"></div>
-      <div name="vkbd_line" class="vkbd_line"></div>
-      <div name="vkbd_line" class="vkbd_line"></div>
-      <div name="vkbd_line" class="vkbd_line">
-	<ul>
-	  <li onclick="vkbdShift();">Shift</li>
-	  <li onclick="vkbdInput(' ');">Space</li>
-	  <li onclick="vkbdBackspace();">Backspace</li>
-	</ul>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- 放在底部，避免阻塞 -->
 <script src="js/cordova.js"></script>

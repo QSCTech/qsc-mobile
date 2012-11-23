@@ -15,6 +15,7 @@ input,textarea,select{outline:none;}
 #menu .kebiao{background-image:url(../img/class.png);}
 #menu .chengji{background-image:url(../img/gpa.png);}
 #menu .kaoshi{background-image:url(../img/exam.png);}
+#menu .shida{background-image:url(../img/Top10-cc98.png);}
 #menu .xiaoche{background-image:url(../img/bus.png);}
 #menu .jiaoshi{background-image:url(../img/rooms.png);}
 #menu .xiaohua{background-image:url(../img/jokes.png);}
@@ -48,6 +49,7 @@ input,textarea,select{outline:none;}
 #config #config_items .false:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'OFF';background:#dc143c;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
 #zuoye{width:540px;}#zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
+#zuoye #add_homework_button{padding:14px;background:#219eee;text-align:center;font-size:48px;color:#fff;border-radius:8px;cursor:pointer;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
@@ -62,6 +64,7 @@ input,textarea,select{outline:none;}
 #xiaoche #bus_info .bus_info:first-child .detail,#xiaoche #bus_info .bus_info:hover .detail{display:block;}
 #xiaoche #bus_info .bus_info span{margin-right:10px;}
 #xiaoche #bus_info .bus_info .id{float:right;color:#777;font-size:28px;}
+#shida{width:540px;}#shida .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/Top10-cc98-blue.png) no-repeat left bottom;}
 .clear{clear:both;}
 hr{border:2px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}
