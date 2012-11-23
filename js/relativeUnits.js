@@ -1,5 +1,8 @@
 // zeno: i modified it for my project
 
+var RealtiveUnitsTemp = [];
+var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
+
 window.RelativeUnits =  (function(){
     var API, cssRules, styledElements,
         relativeUnitsStylesheetID = 'relative-units-stylesheet';
@@ -21,24 +24,55 @@ window.RelativeUnits =  (function(){
     };
 
     function refreshRules() {
-        var s, temp = [];
+        var s;
+        var refreshCounter = 0;
         cssRules = [];
         styledElements = [];
-
-        for(var i=0; i < document.styleSheets.length; i++) {
-            var rules = document.styleSheets[i].rules || document.styleSheets[i].cssRules;
-            for(var j=0; j < rules.length; j++) {
-                var rule = rules[j].cssText;
-                temp.push(rule);
+        for(var i = 0; i < RealtiveUnitsElms.length; i++) {
+            if(RealtiveUnitsElms[i].id == relativeUnitsStylesheetID) continue;
+            switch(RealtiveUnitsElms[i].nodeName.toLowerCase()) {
+                case 'link':
+                refreshCounter++;
+                var href = RealtiveUnitsElms[i].href;
+                $.get(href, function(s){
+                    s = trim(clean(s)).split('\n');
+                    for(var j = 0; j < s.length; j++) {
+                        if(s.length > 0) {
+                            RealtiveUnitsTemp.push(s[j]);
+                        }
+                    }
+                    refreshCounter--;
+                });
+                break;
+                case 'style':
+                s = RealtiveUnitsElms[i].innerHTML;
+                s = trim(clean(s)).split('\n');
+                for(var j = 0; j < s.length; j++) {
+                    if(s.length > 0) {
+                        RealtiveUnitsTemp.push(s[j]);
+                    }
+                }
+                break;
+                default:
+                // we're dealing with a style attribute
+                styledElements.push(RealtiveUnitsElms[i]);
+                break;
             }
         }
+        var requestDoneCheck = setInterval(function(){
 
-        for(i = 0; i < temp.length; i++) {
-            if(temp[i].length > 0) {
-                cssRules.push(parseRule(temp[i]));
+            if(refreshCounter !== 0)
+	      return;
+
+            for(i = 0; i < RealtiveUnitsTemp.length; i++) {
+                if(RealtiveUnitsTemp[i].length > 0) {
+                    cssRules.push(parseRule(RealtiveUnitsTemp[i]));
+                }
             }
-        }
-        updateCSS();
+
+            updateCSS();
+            clearInterval(requestDoneCheck);
+        }, 10);
     };
 
     function updateCSS() {
@@ -48,13 +82,13 @@ window.RelativeUnits =  (function(){
             newStylesheet = null,
             i, j, a, v, n, d, styleProp, newProps;
 
-        /* Process the CSS rules */
         for(i = 0; i < cssRules.length; i++) {
             for(j = 0; j < cssRules[i].attr.length; j++) {
                 a = cssRules[i].attr[j];
                 v = a.match(matcher);
                 n = 0;
-                if(matcher.test(a)) {
+
+                if(v != null) {
                     // we're dealing with a relative unit
                     n = parseFloat(v[3], 10);
                     switch(v[4]) {
