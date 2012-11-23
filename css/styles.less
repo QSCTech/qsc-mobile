@@ -516,23 +516,46 @@ hr.blue {
     .current {
 	.transition(.3s);
 	max-height:2000px;
-	header {
-	//	    background:@theme;
-	}
     }
 }
 .em {
     color:@theme;
 }
+.show {
+}
 #wrapper {
-    width:80%;
+    width:85vw;
     padding-top:5%;
     margin:0 auto;
     #zuoye {
-	.header {
+	.icon {
 	    background: url(../img/homework-blue.png) no-repeat left bottom;
 	    height:25vw;
-	    background-size:25%;
+	    width:21vw;
+	    background-size:21vw;
+	    float:left;
+	    margin-right:2vw;
+	}
+	header {
+	    padding-top:10vw;
+	    font-size:15vw;
+	    line-height:15vw;
+	    color:@theme;
+	    float:left;
+	}
+	.back {
+	    background:url(../img/backward.png) no-repeat right bottom;
+	    height:25vw;
+	    width:16vw;
+	    background-size:15vw;
+	    float:right;
+	    &:hover {
+		cursor:pointer;
+	    }
+	}
+	hr {
+	    margin-top:25vw;
+	    margin-bottom:3vw;
 	}
 	#add_homework_button {
 	    padding: 14px 0;
@@ -546,5 +569,22 @@ hr.blue {
 	    cursor:pointer;
 	    width:100%;
 	}
+	#add_homework {
+	    textarea {
+		margin-top:1vh;
+		border: 5px solid @theme;
+		border-radius:14px;
+		width:85vw;
+		height:48px;
+		padding:14px;
+		line-height:48px;
+		font-size:36px;
+	    }
+	}
     }
+}
+.hide {
+    .transition(.3s);
+    opacity:0;
+    
 }

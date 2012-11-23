@@ -79,5 +79,10 @@ hr.blue{border-color:#219eee;}
 .slide .detail{font-size:48px;color:#666666;overflow:hidden;}
 .slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}
 .em{color:#219eee;}
-#wrapper{width:80%;padding-top:5%;margin:0 auto;}#wrapper #zuoye .header{background:url(../img/homework-blue.png) no-repeat left bottom;height:25vw;background-size:25%;}
+#wrapper{width:85vw;padding-top:5%;margin:0 auto;}#wrapper #zuoye .icon{background:url(../img/homework-blue.png) no-repeat left bottom;height:25vw;width:21vw;background-size:21vw;float:left;margin-right:2vw;}
+#wrapper #zuoye header{padding-top:10vw;font-size:15vw;line-height:15vw;color:#219eee;float:left;}
+#wrapper #zuoye .back{background:url(../img/backward.png) no-repeat right bottom;height:25vw;width:16vw;background-size:15vw;float:right;}#wrapper #zuoye .back:hover{cursor:pointer;}
+#wrapper #zuoye hr{margin-top:25vw;margin-bottom:3vw;}
 #wrapper #zuoye #add_homework_button{padding:14px 0;background:#219eee;text-align:center;height:8vw;line-height:8vw;font-size:6vw;color:#fff;border-radius:8px;cursor:pointer;width:100%;}
+#wrapper #zuoye #add_homework textarea{margin-top:1vh;border:5px solid #219eee;border-radius:14px;width:85vw;height:48px;padding:14px;line-height:48px;font-size:36px;}
+.hide{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;opacity:0;}
