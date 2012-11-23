@@ -37,7 +37,7 @@ var token = localStorage.getItem('token',false) ? localStorage.getItem('token') 
 
 // 初始化用户配置
 // 默认关闭自动给老师好评
-var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {'update_automatically':true};
+var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
 var config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
 for(var i = 0; i < config_list.length; i++) {
     var item = config_list[i];
