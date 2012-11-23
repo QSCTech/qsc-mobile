@@ -42,6 +42,13 @@ permission notices:
   Licensed under the Apache License, Version 2.0.
 
 
+- CSS3 Relative Units
+
+  Copyright (c) 2012 Klemen Slavič
+
+  Licensed under the MIT license.
+
+
 - BarrettMu.js
 
   Copyright 2004-2005 David Shapiro.
