@@ -94,7 +94,7 @@ function writeClassToDom(dom, date){
     var keBiao = new KeBiao(keBiaoData, date);
 
     if(!keBiao.haveClass()) {
-        $(dom).append('好的嘛，没有课了……');
+        $(dom).html('<div class="no_class">好的嘛，没有课了……</div>');
         return;
     }
 

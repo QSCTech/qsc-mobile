@@ -70,6 +70,7 @@ hr.blue{border-color:#219eee;}
 .kebiao .class_nth_all{font-size:36px;color:#219eee;}
 .kebiao .class_time{font-size:32px;color:#666666;}
 .kebiao .class_classroom{font-size:32px;color:#666666;}
+.kebiao .no_class{padding-top:60px;font-size:48px;color:#666666;}
 #forward{display:block;width:100px;height:100px;margin-top:20px;background:url(../img/forward.png);float:right;cursor:pointer;}
 .backward{display:block;width:100px;height:100px;margin-top:50px;background:url(../img/backward.png);float:right;cursor:pointer;}
 .slide >div{max-height:120px;overflow:hidden;}
