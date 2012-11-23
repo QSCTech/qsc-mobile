@@ -79,5 +79,5 @@ hr.blue{border-color:#219eee;}
 .slide .detail{font-size:48px;color:#666666;overflow:hidden;}
 .slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}
 .em{color:#219eee;}
-#wrapper{width:80%;margin:0 auto;}#wrapper #zuoye{width:540px;}#wrapper #zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
-#wrapper #zuoye #add_homework_button{padding:14px;background:#219eee;text-align:center;font-size:48px;color:#fff;border-radius:8px;cursor:pointer;}
+#wrapper{width:80%;padding-top:5%;margin:0 auto;}#wrapper #zuoye .header{background:url(../img/homework-blue.png) no-repeat left bottom;height:25vw;background-size:25%;}
+#wrapper #zuoye #add_homework_button{padding:14px 0;background:#219eee;text-align:center;height:8vw;line-height:8vw;font-size:6vw;color:#fff;border-radius:8px;cursor:pointer;width:100%;}
