@@ -107,8 +107,9 @@ function pleaseLoginIfNotLogin(callback) {
             callback();
         }
     } else {
-        // 重定向到login.html
         // localstroage记下callback
+        localStorage.setItem('callback', callback);
+        // 重定向到login.html
         window.location.href="login.html";
     }
 }

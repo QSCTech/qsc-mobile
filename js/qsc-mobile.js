@@ -61,6 +61,12 @@ if(localStorage.getItem('jwbData')) {
 
 $(document).ready(function() {
 
+    if(localStorage.getItem('callback')) {
+        var theCallback = '('+localStorage.getItem('callback')+'())';
+        eval(theCallback);
+        localStorage.removeItem('callback');
+    }
+
     // var width = screen.width;
     // var devicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
     // var vpScale = width/640/devicePixelRatio;
@@ -109,8 +115,8 @@ $(document).ready(function() {
 
     $('#menu .kebiao').bind("mousedown", function(){
 
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
             $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
@@ -142,8 +148,8 @@ $(document).ready(function() {
     });
 
     $('#menu .gaikuang').bind("click", function(){
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
             $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
@@ -151,8 +157,8 @@ $(document).ready(function() {
     });
 
     $('#menu .kaoshi').bind("click", function(){
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
             $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
@@ -160,8 +166,8 @@ $(document).ready(function() {
     });
 
     $('#menu .chengji').bind("click", function(){
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
+            $('#menu').hide(200);
             $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
         });
@@ -175,20 +181,16 @@ $(document).ready(function() {
     });
 
     $('#menu .zuoye').bind("click", function(){
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function(){
+            $('#menu').hide(200);
             window.location.href="homework.html";
         });
     });
 
 
     $('#menu .login').bind("click", function(){
-        $('#menu').hide(200);
         pleaseLoginIfNotLogin(function() {
-            $('#config').show(200);
-            $.include(['qsc-mobile-config.js']);
         });
-        return false;
     });
 
     $('#menu .logout').bind("click", function(){
@@ -217,5 +219,4 @@ $(document).ready(function() {
         $(this).parent().children('div').attr('class', 'detail');
         $(this).attr('class', 'current detail');
     });
-
 });
