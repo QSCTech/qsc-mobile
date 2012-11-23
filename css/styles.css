@@ -48,8 +48,6 @@ input,textarea,select{outline:none;}
 #config #config_items .true:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'ON';background:#9acd32;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #config #config_items .false:after{display:block;width:70px;text-align:center;margin:14px 10px 0 0;line-height:50px;content:'OFF';background:#dc143c;border-radius:10px;padding:10px;color:#fff;float:right;font-weight:bold;}
 #xiaohua{width:540px;}#xiaohua .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/jokes-blue.png) no-repeat left bottom;}
-#zuoye{width:540px;}#zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
-#zuoye #add_homework_button{padding:14px;background:#219eee;text-align:center;font-size:48px;color:#fff;border-radius:8px;cursor:pointer;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
@@ -81,3 +79,5 @@ hr.blue{border-color:#219eee;}
 .slide .detail{font-size:48px;color:#666666;overflow:hidden;}
 .slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}
 .em{color:#219eee;}
+#wrapper{width:80%;margin:0 auto;}#wrapper #zuoye{width:540px;}#wrapper #zuoye .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
+#wrapper #zuoye #add_homework_button{padding:14px;background:#219eee;text-align:center;font-size:48px;color:#fff;border-radius:8px;cursor:pointer;}

@@ -325,22 +325,6 @@
 	background:url(../img/jokes-blue.png) no-repeat left bottom;
     }
 }
-#zuoye {
-    width:540px;
-    .header {
-	#kebiao .header;
-	background: url(../img/homework-blue.png) no-repeat left bottom;
-    }
-    #add_homework_button {
-	padding:14px;
-	background:@theme;
-	text-align:center;
-	font-size:48px;
-	color:#fff;
-	border-radius:8px;
-	cursor:pointer;
-    }
-}
 #kaoshi{
     width:540px;
     .header{
@@ -510,7 +494,7 @@ hr.blue {
     }
     header {
 	padding-left:1em;
-//	text-align:center;
+	//	text-align:center;
 	text-transform: capitalize;
 	font-family:ubuntu;
 	height:80px;
@@ -533,10 +517,30 @@ hr.blue {
 	.transition(.3s);
 	max-height:2000px;
 	header {
-//	    background:@theme;
+	//	    background:@theme;
 	}
     }
 }
 .em {
     color:@theme;
+}
+#wrapper {
+    width:80%;
+    margin:0 auto;
+    #zuoye {
+	width:540px;
+	.header {
+	    #kebiao .header;
+	    background: url(../img/homework-blue.png) no-repeat left bottom;
+	}
+	#add_homework_button {
+	    padding:14px;
+	    background:@theme;
+	    text-align:center;
+	    font-size:48px;
+	    color:#fff;
+	    border-radius:8px;
+	    cursor:pointer;
+	}
+    }
 }
