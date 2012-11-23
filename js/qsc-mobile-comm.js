@@ -66,7 +66,7 @@ function getAllJsonp(showDone){
 
             myShowMsg('好的嘛，请求完毕');
             clearInterval(request_done_check);
-        });
+        }, 10);
     }
 
     myGetJsonp('jwbdata', false, function(data) {
