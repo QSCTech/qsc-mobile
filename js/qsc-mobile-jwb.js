@@ -115,7 +115,6 @@ function KeBiao(data, date){
     var semester = date.getZjuSemester();    
     var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     var weekdate = weekday[date.getDay()];
-//    alert(weekdate);
     var i, j, classes, n;
     var keBiao = [];
     
