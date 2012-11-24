@@ -22,7 +22,7 @@ function writeCountDownToDom(dom){
     var now = new Date();
     var keBiao = new KeBiao(keBiaoData, now);
     
-    if(!keBiao.haveClass)
+    if(!keBiao.haveClass())
         return;
     
     var classNthNow = now.getClassNth();
@@ -81,12 +81,11 @@ function writeClassToDom(dom, date){
         return;
     }
     
-    //alert(dom);
     var htmlString = '';
     var theClass = 0;
-    
+
     var keBiao = new KeBiao(keBiaoData, date);
-    
+
     if(!keBiao.haveClass()) {
         $(dom).append('好的嘛，没有课了……');
         return;
@@ -111,6 +110,16 @@ function writeClassToDom(dom, date){
 }
 
 function loadPage() {
+    // var zjuWeekInfo;
+    // if(today.getZjuWeek == 'odd') {
+    //     zjuWeekInfo = '当前周是单周。';
+    // } else if (today.getZjuWeek == 'even') {
+    //     zjuWeekInfo = '当前周是双周。';
+    // } else {
+    //     zjuWeekInfo = '';
+    // }
+    // $('#zju_date_info').html(zjuWeekInfo);
+    
     writeClassToDom('#course_today', today);
     writeClassToDom('#course_tomorrow', tomorrow);
     writeCountDownToDom('#timer');
