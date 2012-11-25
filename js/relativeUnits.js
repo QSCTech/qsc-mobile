@@ -77,6 +77,7 @@ window.RelativeUnits =  (function(){
 
     function updateCSS() {
         var stylesheet = '',
+//            matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
             matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
             oldStyle = document.querySelectorAll('style#' + relativeUnitsStylesheetID),
             newStylesheet = null,
