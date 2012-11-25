@@ -40,19 +40,19 @@ Date.prototype.getZjuSemester = function () {
     var week = this.getIsoWeek();
 
     switch (true) {
-      case jwbData.chun.indexOf(week) != -1:
+        case jwbData.chun.indexOf(week) != -1:
 	return '春';
-      case jwbData.xia.indexOf(week) != -1:
+        case jwbData.xia.indexOf(week) != -1:
 	return '夏';
-      case jwbData.qiu.indexOf(week) != -1:
+        case jwbData.qiu.indexOf(week) != -1:
 	return '秋';
-      case jwbData.dong.indexOf(week) != -1:
+        case jwbData.dong.indexOf(week) != -1:
 	return '冬';
-      case jwbData.shujia.indexOf(week) != -1:
+        case jwbData.shujia.indexOf(week) != -1:
 	return '暑假';
-      case jwbData.hanjia.indexOf(week) != -1:
+        case jwbData.hanjia.indexOf(week) != -1:
 	return '寒假';
-    default:
+        default:
 	return false;
     }
 };
@@ -117,13 +117,13 @@ function KeBiao(data, date){
     for (i=0; i<data.length; i++)
     {
         if(typeof(data[i].time) == "undefined")
-            continue;
+          continue;
 	if(typeof(data[i]['time'][week]) == "undefined")
-	    continue;
+	  continue;
 	if(typeof(data[i]['time'][week][weekdate]) == "undefined")
-	    continue;
+	  continue;
 	if(data[i]['semester'].indexOf(semester, 0) === -1)
-	    continue;
+	  continue;
 
 	classes = data[i]['time'][week][weekdate];
 	for(j=0; j<classes.length; j++) {
@@ -181,9 +181,9 @@ function KeBiao(data, date){
         var arr = [];
 
         for(i=1; i <= 13; i++) {
-                if(this.getCourseHash(i) == hash){
-                    arr.push(i);
-                }
+            if(this.getCourseHash(i) == hash){
+                arr.push(i);
+            }
         }
 
         return arr;
@@ -194,7 +194,7 @@ function KeBiao(data, date){
         nth = nth > 0 ? nth : 0;
         for(i = nth + 1; i <= 13; i++) {
             if(this.getCourseName(i))
-                return i;
+              return i;
         }
         return false;
     };
@@ -274,6 +274,21 @@ Date.prototype.earierThan = function (timeString) {
     return delta > 0 ? Math.floor(delta/1000) : false;
 };
 
+
+// Date.prototype.getMDay = function() {
+//     return (this.getDay() + 6) %7;
+// }
+// Date.prototype.getISOYear = function() {
+//     var thu = new Date(this.getFullYear(), this.getMonth(), this.getDate()+3-this.getMDay());
+//     return thu.getFullYear();
+// }
+// Date.prototype.getIsoWeek = function() {
+//     var onejan = new Date(this.getISOYear(),0,1);
+//     var wk = Math.ceil((((this - onejan) / 86400000) + onejan.getMDay()+1)/7);
+//     if (onejan.getMDay() > 3) wk--;return wk;
+// }
+
+
 /**
  * Returns the week number for this date. dowOffset is the day of week the week
  * "starts" on for your locale - it can be from 0 to 6. If dowOffset is 1 (Monday),
@@ -281,13 +296,16 @@ Date.prototype.earierThan = function (timeString) {
  * @param int dowOffset
  * @return int
  */
-Date.prototype.getIsoWeek = function (dowOffset) {
+Date.prototype.getIsoWeek = function () {
+    // todo : fix get IsoWeek
+
     /*getWeek() was developed by Nick Baicoianu at MeanFreePath: http://www.epoch-calendar.com */
     // You may copy and paste this code without charge. All we ask is you leave the credit line in the function body intact.
 
+
     var nYear, nday;
 
-    dowOffset = typeof(dowOffset) == 'int' ? dowOffset : 0; //default dowOffset to zero
+    var dowOffset = 0;
     var newYear = new Date(this.getFullYear(),0,1);
     var day = newYear.getDay() - dowOffset; //the day of week the year begins on
     day = (day >= 0 ? day : day + 7);
@@ -301,13 +319,16 @@ Date.prototype.getIsoWeek = function (dowOffset) {
 	    nYear = new Date(this.getFullYear() + 1,0,1);
 	    nday = nYear.getDay() - dowOffset;
 	    nday = nday >= 0 ? nday : nday + 7;
-	    /*if the next year starts before the middle of
-	     the week, it is week #1 of that year*/
+	    /*if the next year starts before the middle of the week, it is week #1 of that year*/
 	    weeknum = nday < 4 ? 1 : 53;
 	}
-    }
-    else {
+    } else {
 	weeknum = Math.floor((daynum+day-1)/7);
     }
+
+    // 判断当前是不是周日，若是则周返回weeknum-1
+    if(this.getDay() == 0)
+      weeknum--;
+
     return weeknum;
 };
