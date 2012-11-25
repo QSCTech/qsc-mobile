@@ -10,7 +10,9 @@ function myGetJsonp(name, showMsg, callback) {
     if(!pwd)
       pwd = '';
 
-    $.jsonP({url:siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
+    var myJsonpUrl = siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?';
+
+    $.jsonP({url:myJsonpUrl,
              success:function(data){
                  if(typeof(data['code']) != "undefined") {
                      if(data['code'] == 0) {
@@ -88,11 +90,16 @@ function getAllJsonp(showDone){
 
     // 下面的需要登录
     if(isLogin) {
-        request_count += 3;
+        request_count += 4;
 
         myGetJsonp('kebiao', false, function(data) {
             if(!data) return;
             localStorage.setItem('keBiao', JSON.stringify(data));
+            request_count--;
+        });
+        myGetJsonp('notice', false, function(data) {
+            if(!data) return;
+            localStorage.setItem('notice', JSON.stringify(data));
             request_count--;
         });
         myGetJsonp('chengji', false, function(data) {
