@@ -8,34 +8,34 @@
 @color2: #9ACD32;
 
 #msg {
-    width:600px - 20px*2;
-    height:200px - 20px*2;
+    width:87.5vw;
+    height:25vw;
     position:fixed;
     left:50%;
     top:40%;
-    margin-top:-100px;
-    margin-left:-300px;
-    //    border:15px rgba(0,0,0,.5) solid;
-    border-radius:8px;
+    margin-top:-15.625vw;
+    margin-left:-46.875vw;
+    //    border:2.34375vw rgba(0,0,0,.5) solid;
+    border-radius:1.25vw;
     background:rgba(0, 0, 0, .95);
     z-index:999;
     display:none;
-    font-size:24px;
-    padding:20px;
-    padding-top:70px;
+    font-size:3.75vw;
+    padding:3.125vw;
+    padding-top:10.9375vw;
     color:#fff;
     .close {
 	float:right;
 	background:#fff;
-	width:50px;
-	height:50px;
-	border-bottom-left-radius:8px;
-	border-bottom-right-radius:8px;
+	width:7.8125vw;
+	height:7.8125vw;
+	border-bottom-left-radius:1.25vw;
+	border-bottom-right-radius:1.25vw;
 	text-align:center;
-	line-height:50px;
-	margin-top:-67px;
+	line-height:7.8125vw;
+	margin-top:-10.46875vw;
 	color:#000;
-	font-size:36px;
+	font-size:5.625vw;
 	font-weight:bold;
 	&:hover {
 	    cursor:pointer;
@@ -43,45 +43,45 @@
     }
 }
 #loading{
-    width:400px - 20px*2;
-    height:100px - 20px*2;
+    width:55.25vw;
+    height:9.375vw;
     position:fixed;
     left:50%;
     top:50%;
-    margin-top:-50px;
-    margin-left:-200px;
-    border-radius:8px;
+    margin-top:-7.8125vw;
+    margin-left:-31.25vw;
+    border-radius:1.25vw;
     background:rgba(0, 0, 0, .95);
     z-index:1000;
-    font-size:24px;
-    padding:20px;
-    padding-top:70px;
+    font-size:3.75vw;
+    padding:3.125vw;
+    padding-top:10.9375vw;
     color:#fff;
     display:none;
 }
 #wrap {
-    width:540px;
+    width:84.375vw;
     margin:0 auto;
     overflow:hidden;
-    padding:50px;
+    padding:7.8125vw;
 }
 #menu {
     margin:0 auto;
-    width:540px;
+    width:84.375vw;
     float:left;
     .box {
 	display:block;
-	width:260px;
-	height:260px;
+	width:40.625vw;
+	height:40.625vw;
 	float:left;
 	padding:0;
-	margin: 0 5px 10px 5px;
+	margin: 0 0.78125vw 1.5625vw 0.78125vw;
 	background-color:@theme;
 	background-repeat:no-repeat;
-	background-position:50% 30px;
+	background-position:50% 4.6875vw;
 	color:#fff;
-	line-height:445px;
-	font-size:38px;
+	line-height:69.53125vw;
+	font-size:5.9375vw;
 	text-align:center;
 	overflow:hidden;
 	cursor:pointer;
@@ -139,27 +139,27 @@
 }
 .logo {
     display:block;
-    width:240px;
-    height:140px;
+    width:37.5vw;
+    height:21.875vw;
     background:url(../img/logo.png) no-repeat left top;
     float:left;
     cursor:pointer;
 }
 #gaikuang {
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/general-blue.png) no-repeat left bottom;
     }
     #zju_date_info {
-	font-size:36px;
+	font-size:5.625vw;
 	color:#555;
 	line-height:2em;
     }
     #timer {
-	font-size:36px;
+	font-size:5.625vw;
 	color:@theme;
-	line-height:36px;
+	line-height:5.625vw;
 	.msg_timer {
 	    width:48%;
 	    float:left;
@@ -168,8 +168,8 @@
 	.msg_course {
 	    width:48%;
 	    float:right;
-	    font-size:22px;
-	    margin-top:3px;
+	    font-size:3.4375vw;
+	    margin-top:0.46875vw;
 	    text-overflow:ellipsis;
 	}
 	.clear_after;
@@ -179,16 +179,16 @@
 	&:before {	    
 	    content:"Tomorrow";
 	    display:block;
-	    font-size:60px;
+	    font-size:9.375vw;
 	    padding-left:.5em;
 	    color:#555;
 	    font-weight:bold;
 	    border:none;
-	    border-left: 20px solid @theme;
-	    border-radius:70px;
+	    border-left: 3.125vw solid @theme;
+	    border-radius:10.9375vw;
 	}
 	color:@theme;
-	font-size:28px;
+	font-size:4.375vw;
     }
     #course_today {
 	&:before{
@@ -200,39 +200,39 @@
 #login {
     width:90%;
     margin:0 auto;
-    padding-top:20px;
+    padding-top:3.125vw;
     input[type="text"], input[type="password"]{
 	resize:none;
-	border:4px solid @color;
-	font-size:48px;
-	line-height:76px;
-	padding:10px;
-	height:96px;
-	margin-bottom:20px;
+	border:0.625vw solid @color;
+	font-size:7.5vw;
+	line-height:11.875vw;
+	padding:1.5625vw;
+	height:15.0vw;
+	margin-bottom:3.125vw;
 	width:95%;
     }
     input[type="text"] {
-	margin-top:30px;
+	margin-top:4.6875vw;
     }
     #login_submit {
 	background:@theme;
 	border:none;
 	color:#fff;
-	font-size:48px;
-	line-height:96px;
-	margin-top:20px;
+	font-size:7.5vw;
+	line-height:15.0vw;
+	margin-top:3.125vw;
 	text-align:center;
-	height:96px;
+	height:15.0vw;
 	width:55%;
 	cursor:pointer;
-	border-radius:10px;
-	margin-right:2px;
+	border-radius:1.5625vw;
+	margin-right:0.3125vw;
     }
     header{
-	font-size:96px;
+	font-size:15.0vw;
 	float:right;
 	text-align:right;
-	line-height:160px;
+	line-height:25.0vw;
 	color:@theme;
     }
 }
@@ -242,20 +242,20 @@
     //    text-align:center;
 }
 #chengji{
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/gpa-blue.png) no-repeat left bottom;
     }
     #danke .chengji {
-	margin:20px 0;
+	margin:3.125vw 0;
     }
     #gpa {
 	.detail {
 	    display:block;
 	}
 	.gpa {
-	    margin: 20px 0;
+	    margin: 3.125vw 0;
 	    text-transform: uppercase;
 	    .date {
 		font-weight:bold;
@@ -265,35 +265,35 @@
     }
 }
 #config{
-    width:540px;
+    width:84.375vw;
     .header {
 	#kebiao .header;
 	background:url(../img/settings-blue.png) no-repeat left bottom;
     }
     #config_items {
-	font-size:36px;
+	font-size:5.625vw;
 	li {
-	    margin:24px 0;
-	    padding:0 24px;
-	    border-radius:5px;
+	    margin:3.75vw 0;
+	    padding:0 3.75vw;
+	    border-radius:0.78125vw;
 	    background:#fff;
-	    border:2px solid #777;
+	    border:0.3125vw solid #777;
 	    color:@color;
-	    height:100px;
-	    line-height:100px;
+	    height:15.625vw;
+	    line-height:15.625vw;
 	}
 	.true {
 	    &:after {
 		display:block;
-		width:70px;
+		width:10.9375vw;
 		text-align:center;
-		margin:14px 10px 0 0;
-		line-height:50px;
+		margin:2.1875vw 1.5625vw 0 0;
+		line-height:7.8125vw;
 		content:'ON';
 		//		background: #9ACD32;
 		background: @color2;
-		border-radius:10px;
-		padding:10px;
+		border-radius:1.5625vw;
+		padding:1.5625vw;
 		color:#fff;
 		float:right;
 		font-weight:bold;
@@ -302,15 +302,15 @@
 	.false {
 	    &:after {
 		display:block;
-		width:70px;
+		width:10.9375vw;
 		text-align:center;
-		margin:14px 10px 0 0;
-		line-height:50px;
+		margin:2.1875vw 1.5625vw 0 0;
+		line-height:7.8125vw;
 		content:'OFF';
 		//		background: #DC143C;
 		background: @color1;
-		border-radius:10px;
-		padding:10px;
+		border-radius:1.5625vw;
+		padding:1.5625vw;
 		color:#fff;
 		float:right;
 		font-weight:bold;
@@ -319,19 +319,19 @@
     }
 }
 #xiaohua {
-    width:540px;
+    width:84.375vw;
     .header {
 	#kebiao .header;
 	background:url(../img/jokes-blue.png) no-repeat left bottom;
     }
 }
 #kaoshi{
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/gpa-blue.png) no-repeat left bottom;
     }
-    font-size:36px;
+    font-size:5.625vw;
     color:@color;
     .kaoshi {
 	margin-bottom:2em;
@@ -345,24 +345,24 @@
     }
 }
 #xiaoli {
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/calendar-blue.png) no-repeat left bottom;
     }
     #xiaoli_content ul li {
 	background:#fff;
-	border-radius:8px;
-	border:1px solid #777;
-	font-size:30px;
+	border-radius:1.25vw;
+	border:0.15625vw solid #777;
+	font-size:4.6875vw;
 	margin-top:1em;
 	padding:1em;
     }
 }
 #xiaohua{
     .content {
-	font-size:48px;
-	margin:24px 0;
+	font-size:7.5vw;
+	margin:3.75vw 0;
     }
     .love.false {
 	background:#aaa;
@@ -372,22 +372,22 @@
     }
     .next {
 	background:@theme;
-	margin-left:10px;
+	margin-left:1.5625vw;
     }
     .next, .love {
-	font-size:36px;
-	padding:20px;
-	border-radius:10px;
+	font-size:5.625vw;
+	padding:3.125vw;
+	border-radius:1.5625vw;
 	color:#fff;
 	float:left;
-	width:225px;
+	width:35.15625vw;
 	font-weight:bold;
 	text-align:center;
 	cursor:pointer;
     }
 }
 #xiaoche {
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/bus-blue.png) no-repeat left bottom;
@@ -395,20 +395,20 @@
     select {
 	padding:0;
 	margin:0;
-	font-size:32px;
-	width:267px;
+	font-size:5.0vw;
+	width:41.71875vw;
 	background:#fff;
-	border: 2px solid #777;
+	border: 0.3125vw solid #777;
 	color:#555;
     }
     #bus_info {
-	font-size:32px;
+	font-size:5.0vw;
 	color:@color;
 	.bus_info {
-	    font-size:28px;
+	    font-size:4.375vw;
 	    .detail {
-		font-size:28px;
-		line-height:36px;
+		font-size:4.375vw;
+		line-height:5.625vw;
 	    }
 	    &:first-child, &:hover{
 		.detail {
@@ -416,16 +416,16 @@
 		}
 	    }
 	    span {
-		margin-right:10px;
+		margin-right:1.5625vw;
 	    }
 	    .begin {
 		float:left;
 	    }
 	    .id {
 		color:#777;
-		font-size:28px;
-		height:56px;
-		max-width:56px;
+		font-size:4.375vw;
+		height:8.75vw;
+		max-width:8.75vw;
 		overflow:hidden;
 		display:block;
 	    }
@@ -433,7 +433,7 @@
     }
 }
 #shida {
-    width:540px;
+    width:84.375vw;
     .header{
 	#kebiao .header;
 	background:url(../img/Top10-cc98-blue.png) no-repeat left bottom;
@@ -443,7 +443,7 @@
     clear:both;
 }
 hr {
-    border: 2px solid #ddd;
+    border: 0.3125vw solid #ddd;
     margin-bottom:1em;
 }
 hr.blue {
@@ -453,59 +453,59 @@ hr.blue {
     outline:none;
     .header{
 	background:url(../img/class-blue.png) no-repeat left bottom;
-	max-height:150px;
-	line-height:200px;
-	padding-left:160px;
-	font-size:100px;
+	max-height:23.4375vw;
+	line-height:31.25vw;
+	padding-left:25.0vw;
+	font-size:15.625vw;
 	color:@theme;
     }
 }
 .kebiao {
     .class_name {
-	line-height:72px;
+	line-height:11.25vw;
 	color:@color;
-	font-size:48px;
+	font-size:7.5vw;
 	margin-top:1em;
     }
     .class_nth_all {
-	font-size:36px;
+	font-size:5.625vw;
 	color:@theme;
     }
     .class_time {
-	font-size:32px;
+	font-size:5.0vw;
 	color:@color;
     }
     .class_classroom {
-	font-size:32px;
+	font-size:5.0vw;
 	color:@color;
     }
     .no_class {
-	padding-top:60px;
-	font-size:48px;
+	padding-top:9.375vw;
+	font-size:7.5vw;
 	color:@color;
     }
 }
 #forward {
     display:block;
-    width:100px;
-    height:100px;
-    margin-top:20px;
+    width:15.625vw;
+    height:15.625vw;
+    margin-top:3.125vw;
     background:url(../img/forward.png);
     float:right;
     cursor:pointer;
 }
 .backward{
     display:block;
-    width:100px;
-    height:100px;
-    margin-top:50px;
+    width:15.625vw;
+    height:15.625vw;
+    margin-top:7.8125vw;
     background:url(../img/backward.png);
     float:right;
     cursor:pointer;
 }
 .slide{
     & > div {
-	max-height:120px;
+	max-height:18.75vw;
 	overflow:hidden;
     }
     header {
@@ -513,29 +513,29 @@ hr.blue {
 	//	text-align:center;
 	text-transform: capitalize;
 	font-family:ubuntu;
-	height:80px;
-	line-height:80px;
-	font-size:60px;
-	border:2px solid #555;
-	border-radius:8px;
+	height:12.5vw;
+	line-height:12.5vw;
+	font-size:9.375vw;
+	border:0.3125vw solid #555;
+	border-radius:1.25vw;
 	color:#555;
-	margin:30px 0;
+	margin:4.6875vw 0;
 	cursor:pointer;
 	background:url(../img/downward.png) no-repeat 90% center;
-	background-size:60px 60px;
+	background-size:9.375vw 9.375vw;
     }
     .detail {
-	font-size:48px;
+	font-size:7.5vw;
 	color:@color;
 	overflow:hidden;
     }
     .hide {
-	max-height:120px;
+	max-height:18.75vw;
 	.transition(.3s);
     }
     .show {
 	.transition(.3s);
-	max-height:10000px;
+	max-height:1562.5vw;
     }
 }
 .em {
@@ -576,14 +576,14 @@ hr.blue {
 	    margin-bottom:3vw;
 	}
 	#add_homework_button {
-	    padding: 14px 0;
+	    padding: 2.1875vw 0;
 	    background:@theme;
 	    text-align:center;
 	    height:8vw;
 	    line-height:8vw;
 	    font-size:6vw;
 	    color:#fff;
-	    border-radius:8px;
+	    border-radius:1.25vw;
 	    cursor:pointer;
 	    width:100%;
 	}
@@ -597,11 +597,11 @@ hr.blue {
 		border:none;
 		background:#ddd;
 		margin:0;
-		border-radius:14px;
+		border-radius:2.1875vw;
 		width:100%;
 		height:20vh;
-		line-height:48px;
-		font-size:36px;
+		line-height:7.5vw;
+		font-size:5.625vw;
 		resize:none;
 		text-indent:1em;
 	    }
@@ -614,7 +614,7 @@ hr.blue {
 		line-height:7vh;
 		color:#fff;
 		text-align:center;
-		border-radius:8px;
+		border-radius:1.25vw;
 		display:inline-block;
 	    }
 	    #add_homework_submit {
