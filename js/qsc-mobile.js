@@ -136,6 +136,12 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#menu .xiaoli').bind("click", function() {
+        $('#menu').hide();
+        $('#xiaoli').show();
+        $.include(['qsc-mobile-xiaoli.js']);
+    });
+
     $('#menu .shida').bind("click", function(){
         $('#menu').hide();
         $('#shida').show();

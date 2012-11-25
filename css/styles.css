@@ -51,6 +51,7 @@ input,textarea,select{outline:none;}
 #kaoshi{width:540px;font-size:36px;color:#666666;}#kaoshi .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
+#xiaoli{width:540px;}#xiaoli .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
 #xiaohua .content{font-size:48px;margin:24px 0;}
 #xiaohua .love.false{background:#aaa;}
 #xiaohua .love.true{background:#dc143c;}
