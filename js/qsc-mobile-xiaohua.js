@@ -16,11 +16,11 @@ function loadXiaoHua(){
 $(document).ready(function(){
     loadXiaoHua();
 
-    $('#xiaohua .next')bind("click", function(){
+    $('#xiaohua .next').bind("click", function(){
         loadXiaoHua();
     });
 
-    $('#xiaohua .love')bind("click", function(){
+    $('#xiaohua .love').bind("click", function(){
         xiaoHuaData['whether_like'] = !xiaoHuaData['whether_like'];
 
         // request to 远端

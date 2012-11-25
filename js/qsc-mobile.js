@@ -220,14 +220,5 @@ $(document).ready(function() {
         getAllJsonp();
     }
 
-
-    $('.slide > div > header').bind("click", function(){
-        if($(this).parent().hasClass('show')) {
-            $(this).parent().removeClass('show');
-            $(this).parent().addClass('hide');
-        } else {
-            $(this).parent().removeClass('hide');
-            $(this).parent().addClass('show');
-        }
-    });
+    slideBind();
 });

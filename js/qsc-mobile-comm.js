@@ -132,3 +132,15 @@ $(document).ready(function() {
         return false;
     });
 });
+function slideBind() {
+    $('.slide > div > header').unbind("click");
+    $('.slide > div > header').bind("click", function(){
+        if($(this).parent().hasClass('show')) {
+            $(this).parent().removeClass('show');
+            $(this).parent().addClass('hide');
+        } else {
+            $(this).parent().removeClass('hide');
+            $(this).parent().addClass('show');
+        }
+    });
+}

@@ -406,14 +406,9 @@
 	color:@color;
 	.bus_info {
 	    font-size:28px;
-	    border:2px solid #555;
-	    border-radius:7px;
-	    padding:10px;
-	    width:520px - 4px;
-	    margin:10px 0;
 	    .detail {
-		font-size:20px;
-		display:none;
+		font-size:28px;
+		line-height:36px;
 	    }
 	    &:first-child, &:hover{
 		.detail {
@@ -423,10 +418,16 @@
 	    span {
 		margin-right:10px;
 	    }
+	    .begin {
+		float:left;
+	    }
 	    .id {
-		float:right;
 		color:#777;
 		font-size:28px;
+		height:56px;
+		max-width:56px;
+		overflow:hidden;
+		display:block;
 	    }
 	}
     }
