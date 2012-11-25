@@ -52,6 +52,7 @@ input,textarea,select{outline:none;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
 #xiaoli{width:540px;}#xiaoli .header{background:url(../img/class-blue.png) no-repeat left bottom;max-height:150px;line-height:200px;padding-left:160px;font-size:100px;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
+#xiaoli #xiaoli_content ul li{background:#fff;border-radius:8px;border:1px solid #777;font-size:30px;margin-top:1em;padding:1em;}
 #xiaohua .content{font-size:48px;margin:24px 0;}
 #xiaohua .love.false{background:#aaa;}
 #xiaohua .love.true{background:#dc143c;}
@@ -78,7 +79,8 @@ hr.blue{border-color:#219eee;}
 .slide >div{max-height:120px;overflow:hidden;}
 .slide header{padding-left:1em;text-transform:capitalize;font-family:ubuntu;height:80px;line-height:80px;font-size:60px;border:2px solid #555;border-radius:8px;color:#555;margin:30px 0;cursor:pointer;background:url(../img/downward.png) no-repeat 90% center;background-size:60px 60px;}
 .slide .detail{font-size:48px;color:#666666;overflow:hidden;}
-.slide .current{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:2000px;}
+.slide .hide{max-height:120px;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;}
+.slide .show{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:10000px;}
 .em{color:#219eee;}
 #wrapper{width:85vw;padding-top:5%;margin:0 auto;}#wrapper #zuoye .icon{background:url(../img/homework-blue.png) no-repeat left bottom;height:25vw;width:21vw;background-size:21vw;float:left;margin-right:2vw;}
 #wrapper #zuoye header{padding-top:10vw;font-size:15vw;line-height:15vw;color:#219eee;float:left;}
@@ -88,4 +90,3 @@ hr.blue{border-color:#219eee;}
 #wrapper #zuoye #add_homework{display:none;padding-top:1.5vh;}#wrapper #zuoye #add_homework textarea{-webkit-appearance:none;margin-top:1vh;padding:0;border:none;background:#ddd;margin:0;border-radius:14px;width:100%;height:20vh;line-height:48px;font-size:36px;resize:none;text-indent:1em;}
 #wrapper #zuoye #add_homework #share_homework,#wrapper #zuoye #add_homework #add_homework_submit{margin-top:2vh;background:#dc143c;height:7vh;width:40vw;font-size:5vh;line-height:7vh;color:#fff;text-align:center;border-radius:8px;display:inline-block;}
 #wrapper #zuoye #add_homework #add_homework_submit{background:#9acd32;float:right;}
-.hide{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;opacity:0;}

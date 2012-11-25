@@ -350,7 +350,14 @@
 	#kebiao .header;
 	background:url(../img/calendar-blue.png) no-repeat left bottom;
     }
-    
+    #xiaoli_content ul li {
+	background:#fff;
+	border-radius:8px;
+	border:1px solid #777;
+	font-size:30px;
+	margin-top:1em;
+	padding:1em;
+    }
 }
 #xiaohua{
     .content {
@@ -521,15 +528,17 @@ hr.blue {
 	color:@color;
 	overflow:hidden;
     }
-    .current {
+    .hide {
+	max-height:120px;
 	.transition(.3s);
-	max-height:2000px;
+    }
+    .show {
+	.transition(.3s);
+	max-height:10000px;
     }
 }
 .em {
     color:@theme;
-}
-.show {
 }
 #wrapper {
     width:85vw;
@@ -613,9 +622,4 @@ hr.blue {
 	    }
 	}
     }
-}
-.hide {
-    .transition(.3s);
-    opacity:0;
-    
 }

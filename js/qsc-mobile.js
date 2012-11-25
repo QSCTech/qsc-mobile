@@ -222,7 +222,12 @@ $(document).ready(function() {
 
 
     $('.slide > div').bind("click", function(){
-        $(this).parent().children('div').attr('class', 'detail');
-        $(this).attr('class', 'current detail');
+        if($(this).hasClass('show')) {
+            $(this).removeClass('show');
+            $(this).addClass('hide');
+        } else {
+            $(this).removeClass('hide');
+            $(this).addClass('show');
+        }
     });
 });
