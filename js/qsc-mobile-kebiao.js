@@ -82,8 +82,6 @@ function writeCountDownToDom(dom){
 }
 
 function writeClassToDom(dom, date){
-    alert(date);
-
     // 若dom不存在，直接返回。
     var target_obj = $(dom);
     if (target_obj.length <= 0) {
@@ -145,8 +143,6 @@ function loadKeBiao() {
     }
 
     $('#mon .detail').show();
-
-//    $('#kebiao #'+todayWeekDate+'')
 }
 
 if (localStorage.getItem('keBiao')) {
