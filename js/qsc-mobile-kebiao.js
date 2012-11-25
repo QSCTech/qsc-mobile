@@ -82,6 +82,8 @@ function writeCountDownToDom(dom){
 }
 
 function writeClassToDom(dom, date){
+    alert(date);
+
     // 若dom不存在，直接返回。
     var target_obj = $(dom);
     if (target_obj.length <= 0) {
@@ -134,7 +136,7 @@ function loadKeBiao() {
 
     var i;
     var xdate = new Date();
-    var offset = today.getDay() - 1;
+    var offset = today.getDay() == 0 ? today.getDay() + 6 : today.getDay() - 1;
     var weekArr = ['mon','tue','wed','thu','fri','sat','sun'];
 
     for(i=0; i<7; i++) {
