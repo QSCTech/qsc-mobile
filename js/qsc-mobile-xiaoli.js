@@ -1,8 +1,8 @@
-var noticeApi = 'http://www.qsc.zju.edu.cn/apps/notice/index.php/api/event_list';
 var xiaoLiData;
+var noticeData;
 
 function loadXiaoLi() {
-    var html;
+    var htmlImportant = '', htmlVacation = '', htmlExam = '';
     // 汇总
     for(var i=0; i<xiaoLiData.length; i++) {
         var item = xiaoLiData[i];
@@ -11,7 +11,28 @@ function loadXiaoLi() {
         var begin = item['起始时间'];
         var end = item['终止时间'];
         // 循环，同时对四个dom写入
+
+        if(type == '重要事件')
+            htmlImportant += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
+        if(type == '放假')
+            htmlVacation += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
+        if(type == '考试')
+            htmlExam += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
     }
+
+
+    $('#xiaoli_important ul').html(htmlImportant);
+    $('#xiaoli_vacation ul').html(htmlVacation);
+    $('#xiaoli_exam ul').html(htmlExam);
+}
+
+function loadNotice() {
+    var htmlNotice = '';
+    for(var j=0; j<noticeData.length; j++) {
+        var item = noticeData[j];
+        htmlNotice += '<li><div class="title">'+item.title+ '</div><div class="location">'+item.location+'</div><div class="time_start">'+item.time_start+'</div><div class="time_end">'+item.time_end+'</div></li>';
+    }
+    $('#xiaoli_notice ul').html(htmlNotice);
 
 }
 
@@ -29,12 +50,12 @@ if (localStorage.getItem('xiaoLi')) {
 
 if (localStorage.getItem('notice')) {
     noticeData = JSON.parse(localStorage.getItem('notice'));
-    loadXiaoLi();
+    loadNotice();
 } else {
     myGetJsonp('notice', true, function(data) {
         if(!data) return;
         noticeData = data;
         localStorage.setItem('notice', JSON.stringify(noticeData));
-        loadXiaoLi();
+        loadNotice();
     });
 }
