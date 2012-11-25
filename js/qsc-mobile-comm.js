@@ -58,7 +58,8 @@ function myShowMsg(msg, callback) {
     };
 }
 function getAllJsonp(showDone){
-    var request_count = 2;
+    var request_count = 3;
+
     if(showDone) {
         var request_done_check = setInterval(function(){
             if(request_count !== 0)
@@ -77,6 +78,11 @@ function getAllJsonp(showDone){
     myGetJsonp('xiaoche', false, function(data) {
         if(!data) return;
         localStorage.setItem('xiaoChe', JSON.stringify(data));
+        request_count--;
+    });
+    myGetJsonp('calendar', false, function(data) {
+        if(!data) return;
+        localStorage.setItem('xiaoLi', JSON.stringify(data));
         request_count--;
     });
 
