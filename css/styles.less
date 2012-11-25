@@ -570,15 +570,38 @@ hr.blue {
 	    width:100%;
 	}
 	#add_homework {
+	    display:none;
+	    padding-top:1.5vh;
 	    textarea {
+		-webkit-appearance:none;
 		margin-top:1vh;
-		border: 5px solid @theme;
+		padding:0;
+		border:none;
+		background:#ddd;
+		margin:0;
 		border-radius:14px;
-		width:85vw;
-		height:48px;
-		padding:14px;
+		width:100%;
+		height:20vh;
 		line-height:48px;
 		font-size:36px;
+		resize:none;
+		text-indent:1em;
+	    }
+	    #share_homework, #add_homework_submit {
+		margin-top:2vh;
+		background:@color1;
+		height:7vh;
+		width:40vw;
+		font-size:5vh;
+		line-height:7vh;
+		color:#fff;
+		text-align:center;
+		border-radius:8px;
+		display:inline-block;
+	    }
+	    #add_homework_submit {
+		background:@color2;
+		float:right;
 	    }
 	}
     }
