@@ -89,7 +89,7 @@ Date.prototype.getClassNth = function () {
 // 返回下节课是第几节
 // 若没有下节课了就返回false
 Date.prototype.getClassNthNext = function () {
-    var i, max;
+    var i, max = 0;
 
     for(i = 1; i < 14; i++){
 	if(this.laterThan(getSksj(i))) {
@@ -207,9 +207,8 @@ function KeBiao(data, date){
         // 现在有课
         var nth_now = now.getClassNth();
 
-        if(this.getCourseName(nth_now))
+        if(this.getCourseName(nth_now) && nth_now != false)
           return nth_now;
-
 
         var nth_next = now.getClassNthNext();
 
