@@ -221,13 +221,13 @@ $(document).ready(function() {
     }
 
 
-    $('.slide > div').bind("click", function(){
-        if($(this).hasClass('show')) {
-            $(this).removeClass('show');
-            $(this).addClass('hide');
+    $('.slide > div > header').bind("click", function(){
+        if($(this).parent().hasClass('show')) {
+            $(this).parent().removeClass('show');
+            $(this).parent().addClass('hide');
         } else {
-            $(this).removeClass('hide');
-            $(this).addClass('show');
+            $(this).parent().removeClass('hide');
+            $(this).parent().addClass('show');
         }
     });
 });
