@@ -45,9 +45,6 @@ for(var i = 0; i < config_list.length; i++) {
       config[item] = false; // 默认关闭特性
 }
 
-
-
-
 // 读取教务部数据：单双周、学期之类
 var jwbData;
 if(localStorage.getItem('jwbData')) {
@@ -66,19 +63,6 @@ $(document).ready(function() {
         eval(theCallback);
         localStorage.removeItem('callback');
     }
-
-    // var width = screen.width;
-    // var devicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-    // var vpScale = width/640/devicePixelRatio;
-
-    var metas = document.getElementsByTagName('meta');
-    var i;
-    for (i=0; i< metas.length; i++) {
-        if (metas[i].name == "viewport") {
-            metas[i].content = "width=640";
-        }
-    }
-
 
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
