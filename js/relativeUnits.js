@@ -99,13 +99,13 @@ window.RelativeUnits =  (function(){
                         n = parseFloat(x[1]);
                         switch(x[2]) {
                             case 'vw':
-                            d = window.innerWidth;
+                            d = document.documentElement.clientWidth;
                             break;
                             case 'vh':
-                            d = window.innerHeight;
+                            d = document.documentElement.clientHeight;
                             break;
                             case 'vm':
-                            d = Math.min(window.innerWidth, window.innerHeight);
+                            d = Math.min(document.documentElement.clientWidth , document.documentElement.clientHeight);
                             break;
                         }
 

@@ -44,7 +44,9 @@ permission notices:
 
 - CSS3 Relative Units
 
-  Copyright (c) 2012 Klemen Slavič
+  Copyright (C) 2012 Klemen Slavič
+
+  Copyright (C) 2012 Zeno Zeng
 
   Licensed under the MIT license.
 
