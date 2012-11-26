@@ -89,15 +89,13 @@ window.RelativeUnits =  (function(){
                     key = v[1];
                     value = v[2];
 
-                    // test if there exists vw || vh || vm
-                    var test = value.match(/.*(vw|vh|vm).*/);
-                    if(test == null)
+                    if(!value.match(/.*(vw|vh|vm).*/))
                       continue;
 
                     // replace-regexp
-                    var result = value.replace(/([0-9. ]*)(vm|vh|vw)/g, function(arg) {
+                    var result = value.replace(/[0-9.]*[ ]*(vm|vh|vw)/g, function(arg) {
 
-                        var x = arg.match(/([0-9. ]*)(vm|vh|vw)/);
+                        var x = arg.match(/([0-9.]*)[ ]*(vm|vh|vw)/);
                         n = parseFloat(x[1]);
                         switch(x[2]) {
                             case 'vw':
@@ -110,7 +108,9 @@ window.RelativeUnits =  (function(){
                             d = Math.min(window.innerWidth, window.innerHeight);
                             break;
                         }
-                        return (n * d) / 100 + 'px ';
+
+                        // 前后的空格是为了防止出乱子
+                        return ' '+ (n * d) / 100 + 'px ';
                     });
 
                     result = key+':'+result+';';
