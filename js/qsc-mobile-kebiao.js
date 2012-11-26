@@ -138,7 +138,6 @@ function loadKeBiao() {
 
     for(i=0; i<7; i++) {
         var xdate = new Date(today.getTime() + (i - offset) * 24 * 3600 * 1000);
-        console.log(xdate);
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
 

@@ -34,7 +34,7 @@ input,textarea,select{outline:none;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}
 #gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:4.375vw;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:9.375vw;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:3.125 vw solid #219eee;border-radius:10.9375vw;}
 #gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
-#login{width:90%;margin:0 auto;padding-top:3.125vw;}#login input[type="text"],#login input[type="password"]{resize:none;border:0.625 vw solid #666666;font-size:7.5vw;line-height:11.875vw;padding:1.5625vw;height:15.0vw;margin-bottom:3.125vw;width:95%;}
+#login{width:90%;margin:0 auto;padding-top:3.125vw;}#login input[type="text"],#login input[type="password"]{resize:none;border:1 vw solid #666666;font-size:7.5vw;line-height:11.875vw;padding:1.5625vw;height:15.0vw;margin-bottom:3.125vw;width:95%;}
 #login input[type="text"]{margin-top:4.6875vw;}
 #login #login_submit{background:#219eee;border:none;color:#fff;font-size:7.5vw;line-height:15.0vw;margin-top:3.125vw;text-align:center;height:15.0vw;width:55%;cursor:pointer;border-radius:1.5625vw;margin-right:0.3125vw;}
 #login header{font-size:15.0vw;float:right;text-align:right;line-height:25.0vw;color:#219eee;}
@@ -52,7 +52,7 @@ input,textarea,select{outline:none;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
 #xiaoli{width:84.375vw;}#xiaoli .header{background:url(../img/class-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
-#xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:0.15625vw solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;}
+#xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:0.3vw solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}
 #xiaohua .content{font-size:7.5vw;margin:3.75vw 0;}
 #xiaohua .love.false{background:#aaa;}
 #xiaohua .love.true{background:#dc143c;}
