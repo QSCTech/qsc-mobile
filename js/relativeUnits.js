@@ -96,7 +96,6 @@ window.RelativeUnits =  (function(){
 
                     // replace-regexp
                     var result = value.replace(/([0-9. ]*)(vm|vh|vw)/g, function(arg) {
-                        arg.replace(/s*/g, '');
 
                         var x = arg.match(/([0-9. ]*)(vm|vh|vw)/);
                         n = parseFloat(x[1]);
