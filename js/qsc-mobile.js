@@ -58,12 +58,6 @@ if(localStorage.getItem('jwbData')) {
 
 $(document).ready(function() {
 
-    if(localStorage.getItem('callback')) {
-        var theCallback = '('+localStorage.getItem('callback')+'())';
-        eval(theCallback);
-        localStorage.removeItem('callback');
-    }
-
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
         $('#menu .user').html('注销');
@@ -180,6 +174,7 @@ $(document).ready(function() {
 
     $('#menu .login').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
+            $('#menu').show();
         });
     });
 

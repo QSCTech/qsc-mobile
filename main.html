@@ -179,6 +179,19 @@
     </ul>
   </div>
 
+  <div id="login" class="mask hidden">
+    <div class="logo" onclick="$('#login').hide();$('#menu').show();"></div>
+    <br><br>
+    <form action="" method="post" accept-charset="utf-8">
+      <input type="text" name="stuid" id="stuid" value="" placeholder="学号" autofocus="autofocus" />
+      <br>
+      <input type="password" name="pwd" id="pwd" value="" placeholder="教务部密码" />
+      <br>
+      <div id="login_submit">戳我登入</div>
+    </form>
+  </div>
+
+
   <!-- 放在底部，避免阻塞 -->
 
-<script src="js/relativeUnits.js"></script>
+  <script src="js/relativeUnits.js"></script>

@@ -75,7 +75,6 @@ window.RelativeUnits =  (function(){
 
     function updateCSS() {
         var stylesheet = '',
-        //            matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
             oldStyle = document.querySelectorAll('style#' + relativeUnitsStylesheetID),
             newStylesheet = null,
             i, j, a, v, n, d, styleProp, newProps, key, value;
@@ -93,11 +92,11 @@ window.RelativeUnits =  (function(){
                       continue;
 
                     // replace-regexp
-                    var result = value.replace(/[0-9.]*[ ]*(vm|vh|vw)/g, function(arg) {
+                    var result = value.replace(/-*[0-9.]*[ ]*(vm|vh|vw)/g, function(arg) {
 
-                        var x = arg.match(/([0-9.]*)[ ]*(vm|vh|vw)/);
-                        n = parseFloat(x[1]);
-                        switch(x[2]) {
+                        var x = arg.match(/(-)*([0-9.]*)[ ]*(vm|vh|vw)/);
+                        n = parseFloat(x[2]);
+                        switch(x[3]) {
                             case 'vw':
                             d = document.documentElement.clientWidth;
                             break;
@@ -108,9 +107,10 @@ window.RelativeUnits =  (function(){
                             d = Math.min(document.documentElement.clientWidth , document.documentElement.clientHeight);
                             break;
                         }
+                        var x1 = x[1] ? x[1] : '';
 
                         // 前后的空格是为了防止出乱子
-                        return ' '+ (n * d) / 100 + 'px ';
+                        return ' '+ x1 + (n * d) / 100 + 'px ';
                     });
 
                     result = key+':'+result+';';
