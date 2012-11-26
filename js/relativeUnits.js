@@ -1,5 +1,3 @@
-// zeno: i modified it for my project
-
 var RealtiveUnitsTemp = [];
 var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
 
@@ -77,33 +75,53 @@ window.RelativeUnits =  (function(){
 
     function updateCSS() {
         var stylesheet = '',
-//            matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
-            matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
+        //            matcher = /^\s*([a-z-]+)\s*\:\s*(([0-9.]+)(vw|vh|vm))\s*$/,
             oldStyle = document.querySelectorAll('style#' + relativeUnitsStylesheetID),
             newStylesheet = null,
-            i, j, a, v, n, d, styleProp, newProps;
+            i, j, a, v, n, d, styleProp, newProps, key, value;
 
         for(i = 0; i < cssRules.length; i++) {
             for(j = 0; j < cssRules[i].attr.length; j++) {
                 a = cssRules[i].attr[j];
-                v = a.match(matcher);
-                n = 0;
+                v = a.match(/^(.*):(.*)$/);
 
                 if(v != null) {
-                    // we're dealing with a relative unit
-                    n = parseFloat(v[3], 10);
-                    switch(v[4]) {
-                        case 'vw':
-                        d = window.innerWidth;
-                        break;
-                        case 'vh':
-                        d = window.innerHeight;
-                        break;
-                        case 'vm':
-                        d = Math.min(window.innerWidth, window.innerHeight);
-                        break;
-                    }
-                    stylesheet += cssRules[i].selector + ' { ' + v[1] + ' : ' + (n * d) / 100 + 'px }\n';
+                    key = v[1];
+                    value = v[2];
+
+                    // test if there exists vw || vh || vm
+                    var test = value.match(/.*(vw|vh|vm).*/);
+                    if(test == null)
+                      continue;
+
+                    // replace-regexp
+                    var result = value.replace(/([0-9. ]*)(vm|vh|vw)/g, function(arg) {
+                        arg.replace(/s*/g, '');
+
+                        var x = arg.match(/([0-9. ]*)(vm|vh|vw)/);
+                        n = parseFloat(x[1]);
+                        switch(x[2]) {
+                            case 'vw':
+                            d = window.innerWidth;
+                            break;
+                            case 'vh':
+                            d = window.innerHeight;
+                            break;
+                            case 'vm':
+                            d = Math.min(window.innerWidth, window.innerHeight);
+                            break;
+                        }
+                        return (n * d) / 100 + 'px ';
+                    });
+
+                    result = key+':'+result+';';
+
+                    // 替换多余空格（英语捉急）
+                    result = result.replace(/ ;/g, ';');
+                    result = result.replace(/  /g, ' ');
+
+                    stylesheet += cssRules[i].selector + ' {'+ result +'}\n';
+
                 }
             }
         }
