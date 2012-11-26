@@ -135,34 +135,6 @@ window.RelativeUnits =  (function(){
         newStylesheet.id = relativeUnitsStylesheetID;
         newStylesheet.innerHTML = stylesheet;
         document.querySelector('head').appendChild(newStylesheet);
-
-        /* Process the styled elements */
-        for(i = 0; i < styledElements.length; i++) {
-            styleProp = trim(clean(styledElements[i].getAttribute('style').replace(/\/\*×\*\/.*/g, ''))).split(';');
-            newProps = [];
-            for(j = 0; j < styleProp.length; j++) {
-                a = styleProp[j];
-                v = a.match(matcher);
-                n = 0;
-                if(matcher.test(a)) {
-                    // we're dealing with a relative unit
-                    n = parseFloat(v[3], 10);
-                    switch(v[4]) {
-                        case 'vw':
-                        d = window.innerWidth;
-                        break;
-                        case 'vh':
-                        d = window.innerHeight;
-                        break;
-                        case 'vm':
-                        d = Math.min(window.innerWidth, window.innerHeight);
-                        break;
-                    }
-                    newProps.push(v[1] + ' : ' + (n * d) + 'px');
-                }
-            }
-            styledElements[i].setAttribute('style', (styleProp.join(';') + ';/*×*/' + newProps.join(';')).replace(/;+/g, ';'));
-        }
     };
 
 
