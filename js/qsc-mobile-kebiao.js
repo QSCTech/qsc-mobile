@@ -133,12 +133,12 @@ function loadKeBiao() {
     setInterval("writeCountDownToDom('#timer')",1000);
 
     var i;
-    var xdate = new Date();
     var offset = today.getDay() == 0 ? today.getDay() + 6 : today.getDay() - 1;
     var weekArr = ['mon','tue','wed','thu','fri','sat','sun'];
 
     for(i=0; i<7; i++) {
-        xdate.setDate(today.getDate() - offset + i);
+        var xdate = new Date(today.getTime() + (i - offset) * 24 * 3600 * 1000);
+        console.log(xdate);
         writeClassToDom('#'+weekArr[i]+' .detail', xdate);
     }
 
