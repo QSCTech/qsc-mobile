@@ -275,20 +275,6 @@ Date.prototype.earierThan = function (timeString) {
 };
 
 
-// Date.prototype.getMDay = function() {
-//     return (this.getDay() + 6) %7;
-// }
-// Date.prototype.getISOYear = function() {
-//     var thu = new Date(this.getFullYear(), this.getMonth(), this.getDate()+3-this.getMDay());
-//     return thu.getFullYear();
-// }
-// Date.prototype.getIsoWeek = function() {
-//     var onejan = new Date(this.getISOYear(),0,1);
-//     var wk = Math.ceil((((this - onejan) / 86400000) + onejan.getMDay()+1)/7);
-//     if (onejan.getMDay() > 3) wk--;return wk;
-// }
-
-
 /**
  * Returns the week number for this date. dowOffset is the day of week the week
  * "starts" on for your locale - it can be from 0 to 6. If dowOffset is 1 (Monday),
