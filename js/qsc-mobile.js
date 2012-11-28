@@ -18,7 +18,15 @@ $.extend({
     }
 });
 
+
 $.includePath = 'js/';
+
+
+(function ($) {
+    $.fn["myhide"] = function () {
+        this.addClass('hide');
+    };
+})(jq);
 
 var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 //var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
@@ -63,7 +71,7 @@ $(document).ready(function() {
         $('#menu .user').html('注销');
 
         if(config['gaikuang_as_default']) {
-            $('#menu').hide(200);
+            $('#menu').myhide();
             pleaseLoginIfNotLogin(function() {
                 $('#gaikuang').show(200);
                 $.include(['qsc-mobile-kebiao.js']);
@@ -76,17 +84,17 @@ $(document).ready(function() {
 
 
     $('.logo').bind("mousedown", function(){
-        $(this).parent().hide();
-        $('#menu').show();
+        $(this).parent().myhide();
+        $('#menu').myshow();
         return false;
     });
 
     $('.backward').bind("mousedown", function(){
-        $(this).parent().parent().hide(200);
+        $(this).parent().parent().myhide();
 
         // 设置延迟，防止鼠标事件被意外传递（opera mobile）
         setTimeout(function() {
-            $('#menu').show()
+            $('#menu').myshow()
         }, 10);
         return false;
     });
@@ -94,51 +102,51 @@ $(document).ready(function() {
     $('#menu .kebiao').bind("mousedown", function(){
 
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
+            $('#menu').myhide();
             $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
 
     $('#menu .config').bind("mousedown", function(){
-        $('#menu').hide(200);
+        $('#menu').myhide();
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
         return false;
     });
 
     $('#menu .xiaoche').bind("click", function(){
-        $('#menu').hide(200);
+        $('#menu').myhide();
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
         return false;
     });
 
     $('#menu .about').bind("click", function() {
-        $('#menu').hide();
-        $('#about').show();
+        $('#menu').myhide();
+        $('#about').myshow();
     });
 
     $('#menu .xiaoli').bind("click", function() {
-        $('#menu').hide();
-        $('#xiaoli').show();
+        $('#menu').myhide();
+        $('#xiaoli').myshow();
         $.include(['qsc-mobile-xiaoli.js']);
     });
 
     $('#menu .shida').bind("click", function(){
-        $('#menu').hide();
-        $('#shida').show();
+        $('#menu').myhide();
+        $('#shida').myshow();
     });
 
     $('#menu .xiaohua').bind("click", function(){
-        $('#menu').hide(200);
+        $('#menu').myhide();
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
     });
 
     $('#menu .gaikuang').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
+            $('#menu').myhide();
             $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
@@ -147,7 +155,7 @@ $(document).ready(function() {
 
     $('#menu .kaoshi').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
+            $('#menu').myhide();
             $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
@@ -156,7 +164,7 @@ $(document).ready(function() {
 
     $('#menu .chengji').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
+            $('#menu').myhide();
             $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
         });
@@ -171,8 +179,8 @@ $(document).ready(function() {
 
     $('#menu .zuoye').bind("click", function(){
         pleaseLoginIfNotLogin(function(){
-            $('#menu').hide(200);
-            $('#zuoye').show();
+            $('#menu').myhide();
+            $('#zuoye').myshow();
             $.include(['qsc-mobile-zuoye.js']);
         });
     });
@@ -180,7 +188,7 @@ $(document).ready(function() {
 
     $('#menu .login').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').show();
+            $('#menu').myshow();
         });
     });
 
