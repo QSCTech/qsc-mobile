@@ -59,7 +59,7 @@ input,textarea,select{outline:none;}
 #xiaohua .next{background:#219eee;margin-left:1.5625vw;}
 #xiaohua .next,#xiaohua .love{font-size:5.625vw;padding:3.125vw;border-radius:1.5625vw;color:#fff;float:left;width:35.15625vw;font-weight:bold;text-align:center;cursor:pointer;}
 #xiaoche{width:84.375vw;}#xiaoche .header{background:url(../img/class-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/bus-blue.png) no-repeat left bottom;}
-#xiaoche select{padding:0;margin:0;font-size:5.0vw;width:41.71875vw;background:#fff;border:2px solid #777;color:#555;}
+#xiaoche select{padding:0;margin:0;font-size:5.0vw;width:40vw;background:#fff;border:2px solid #777;color:#555;}
 #xiaoche #bus_info{font-size:5.0vw;color:#666666;}#xiaoche #bus_info .bus_info{font-size:4.375vw;}#xiaoche #bus_info .bus_info .detail{font-size:4.375vw;line-height:5.625vw;}
 #xiaoche #bus_info .bus_info:first-child .detail,#xiaoche #bus_info .bus_info:hover .detail{display:block;}
 #xiaoche #bus_info .bus_info span{margin-right:1.5625vw;}
