@@ -1,4 +1,4 @@
-function myGetJsonp(name, showMsg, callback) {
+function myGetJsonp(name, showMsg, callback, getArray) {
     if(!navigator.onLine) {
         myShowMsg('好的嘛，这是已经离线的节奏……');
         return;

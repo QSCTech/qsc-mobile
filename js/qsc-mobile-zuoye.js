@@ -1,4 +1,5 @@
 var shareHomework = true;
+var zuoYeData;
 $(document).ready(function(){
     $('#share_homework').attr('class', shareHomework);
 
@@ -11,4 +12,23 @@ $(document).ready(function(){
         shareHomework = !shareHomework;
         $('#share_homework').attr('class', shareHomework);
     });
+
+
+
 });
+
+function loadZuoYe() {
+    var md5;
+}
+
+if (localStorage.getItem('zuoYe')) {
+    zuoYeData = JSON.parse(localStorage.getItem('zuoYe'));
+    loadZuoYe();
+} else {
+    myGetJsonp('zuoye', true, function(data) {
+        if(!data) return;
+        zuoYeData = data;
+        localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
+        loadZuoYe();
+    });
+}

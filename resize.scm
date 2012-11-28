@@ -14,6 +14,6 @@
 	     (gimp-image-scale image 500 500)
 
 	     (file-png-save RUN-NONINTERACTIVE
-			     image drawable output output 1 0 1 0 "Created with Gimp" 0 1 0 0)
+			     image drawable output output 1 1 1 1 1 1 1)
              (gimp-image-delete image))
            (set! filelist (cdr filelist)))))
