@@ -21,19 +21,12 @@ $.extend({
 
 $.includePath = 'js/';
 
-
-(function ($) {
-    $.fn["myhide"] = function () {
-        this.addClass('hide');
-    };
-})(jq);
-
 var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 //var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
 
 // 在phonegap下出错
 // window.addEventListener('offline', function() {
-//     myShowMsg('好的嘛，这是掉线的节奏……');
+//     showMsg('好的嘛，这是掉线的节奏……');
 // });
 // window.addEventListener('online', function() {});
 
@@ -71,7 +64,7 @@ $(document).ready(function() {
         $('#menu .user').html('注销');
 
         if(config['gaikuang_as_default']) {
-            $('#menu').myhide();
+            $('#menu').hide();
             pleaseLoginIfNotLogin(function() {
                 $('#gaikuang').show(200);
                 $.include(['qsc-mobile-kebiao.js']);
@@ -84,17 +77,17 @@ $(document).ready(function() {
 
 
     $('.logo').bind("mousedown", function(){
-        $(this).parent().myhide();
-        $('#menu').myshow();
+        $(this).parent().hide();
+        $('#menu').show();
         return false;
     });
 
     $('.backward').bind("mousedown", function(){
-        $(this).parent().parent().myhide();
+        $(this).parent().parent().hide();
 
         // 设置延迟，防止鼠标事件被意外传递（opera mobile）
         setTimeout(function() {
-            $('#menu').myshow()
+            $('#menu').show()
         }, 10);
         return false;
     });
@@ -102,51 +95,51 @@ $(document).ready(function() {
     $('#menu .kebiao').bind("mousedown", function(){
 
         pleaseLoginIfNotLogin(function() {
-            $('#menu').myhide();
+            $('#menu').hide();
             $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
     });
 
     $('#menu .config').bind("mousedown", function(){
-        $('#menu').myhide();
+        $('#menu').hide();
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
         return false;
     });
 
     $('#menu .xiaoche').bind("click", function(){
-        $('#menu').myhide();
+        $('#menu').hide();
         $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
         return false;
     });
 
     $('#menu .about').bind("click", function() {
-        $('#menu').myhide();
-        $('#about').myshow();
+        $('#menu').hide();
+        $('#about').show();
     });
 
     $('#menu .xiaoli').bind("click", function() {
-        $('#menu').myhide();
-        $('#xiaoli').myshow();
+        $('#menu').hide();
+        $('#xiaoli').show();
         $.include(['qsc-mobile-xiaoli.js']);
     });
 
     $('#menu .shida').bind("click", function(){
-        $('#menu').myhide();
-        $('#shida').myshow();
+        $('#menu').hide();
+        $('#shida').show();
     });
 
     $('#menu .xiaohua').bind("click", function(){
-        $('#menu').myhide();
+        $('#menu').hide();
         $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
     });
 
     $('#menu .gaikuang').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').myhide();
+            $('#menu').hide();
             $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
         });
@@ -155,7 +148,7 @@ $(document).ready(function() {
 
     $('#menu .kaoshi').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').myhide();
+            $('#menu').hide();
             $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
         });
@@ -164,7 +157,7 @@ $(document).ready(function() {
 
     $('#menu .chengji').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').myhide();
+            $('#menu').hide();
             $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
         });
@@ -172,15 +165,15 @@ $(document).ready(function() {
     });
 
     $('#menu .update').bind("click", function(){
-        myShowMsg('更新中……');
+        showMsg('更新中……');
         getAllJsonp(true);
         return false;
     });
 
     $('#menu .zuoye').bind("click", function(){
         pleaseLoginIfNotLogin(function(){
-            $('#menu').myhide();
-            $('#zuoye').myshow();
+            $('#menu').hide();
+            $('#zuoye').show();
             $.include(['qsc-mobile-zuoye.js']);
         });
     });
@@ -188,7 +181,7 @@ $(document).ready(function() {
 
     $('#menu .login').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').myshow();
+            $('#menu').show();
         });
     });
 
@@ -198,7 +191,7 @@ $(document).ready(function() {
         var isLogin = false;
         // 清空localStorage
         localStorage.clear();
-        myShowMsg('注销成功', function(msg) {
+        showMsg('注销成功', function(msg) {
             // 刷新以重载js以及到dom
             setTimeout(function() {
   		window.location.reload();
