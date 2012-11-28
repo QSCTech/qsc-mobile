@@ -78,11 +78,14 @@
     .gaikuang {
 	background-image: url(../img/general.png);
     }
+    .update {
+	background-image: url(../img/update.png);
+    }
     .xiaoli {
 	background-image: url(../img/calendar.png);
     }
     .kebiao {
-	background-image: url(../img/class.png);
+	background-image: url(../img/curriculum.png);
     }
     .chengji {
 	background-image: url(../img/gpa.png);
@@ -100,7 +103,7 @@
 	background-image: url(../img/rooms.png);
     }
     .xiaohua{
-	background-image: url(../img/jokes.png);
+	background-image: url(../img/joke.png);
     }
     .login {
 	background-image: url(../img/login.png);
@@ -109,7 +112,7 @@
 	background-image: url(../img/exit.png);
     }
     .config {
-	background-image: url(../img/settings.png);
+	background-image: url(../img/setting.png);
     }
     .zuoye {
 	background-image: url(../img/homework.png);
@@ -254,7 +257,7 @@
     width:84.375vw;
     .header {
 	#kebiao .header;
-	background:url(../img/settings-blue.png) no-repeat left bottom;
+	background:url(../img/setting-blue.png) no-repeat left bottom;
     }
     #config_items {
 	font-size:5.625vw;
@@ -308,7 +311,7 @@
     width:84.375vw;
     .header {
 	#kebiao .header;
-	background:url(../img/jokes-blue.png) no-repeat left bottom;
+	background:url(../img/joke-blue.png) no-repeat left bottom;
     }
 }
 #kaoshi{
@@ -439,7 +442,7 @@ hr.blue {
 #kebiao {
     outline:none;
     .header{
-	background:url(../img/class-blue.png) no-repeat left bottom;
+	background:url(../img/curriculum-blue.png) no-repeat left bottom;
 	background-size:23.5vw 23.5vw;
 	max-height:23.4375vw;
 	line-height:31.25vw;
@@ -533,8 +536,8 @@ hr.blue {
 	padding: 2.1875vw 0;
 	background:@theme;
 	text-align:center;
-	height:8vw;
-	line-height:8vw;
+	height:16vw;
+	line-height:16vw;
 	font-size:6vw;
 	color:#fff;
 	border-radius:1.25vw;
@@ -548,32 +551,78 @@ hr.blue {
 	    -webkit-appearance:none;
 	    margin-top:1vh;
 	    padding:0;
-	    border:none;
 	    background:#ddd;
 	    margin:0;
+	    border:3vw solid #ddd;
 	    border-radius:2.1875vw;
-	    width:100%;
+	    width:79vw;
 	    height:20vh;
 	    line-height:7.5vw;
 	    font-size:5.625vw;
 	    resize:none;
-	    text-indent:1em;
 	}
-	#share_homework, #add_homework_submit {
+	#share_homework {
+	    text-indent:3vh;
+	    width:85vw;
+	    height:12vw;
+	    line-height:12vw;
+	    font-size:5vw;
+	    background:#555;
+	    border-radius:1vh;
+	    margin:2vh 0;
+	    color:#ddd;
+	    &.true, &.false {
+		&:after {
+		    height:100%;
+		    text-indent:0;
+		    display:block;
+		    text-align:center;
+		    content:'ON';
+		    background: @color2;
+		    color:#fff;
+		    float:right;
+		    font-weight:bold;
+		    text-align:center;
+		    width:20vw;
+		    border-top-right-radius:1vh;
+		    border-bottom-right-radius:1vh;
+		}
+	    }
+	    &.false {
+		&:after {
+		    content:"OFF";
+		    background:@color1;
+		}
+	    }
+	}
+	#add_homework_submit {
+	    margin:0;
+	    padding:0;
 	    margin-top:2vh;
 	    background:@color1;
-	    height:7vh;
-	    width:40vw;
+	    height:10vh;
+	    width:100%;
 	    font-size:5vh;
-	    line-height:7vh;
+	    line-height:10vh;
 	    color:#fff;
 	    text-align:center;
 	    border-radius:1.25vw;
 	    display:inline-block;
-	}
-	#add_homework_submit {
 	    background:@color2;
-	    float:right;
+	    cursor:pointer;
+	}
+    }
+}
+#about {
+    .header{
+	#kebiao .header;
+	background:url(../img/homework-blue.png) no-repeat left bottom;
+    }
+    .content {
+	header {
+	    h2 {
+		font-size:5vw;
+	    }
 	}
     }
 }

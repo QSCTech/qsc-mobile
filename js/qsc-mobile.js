@@ -114,6 +114,11 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#menu .about').bind("click", function() {
+        $('#menu').hide();
+        $('#about').show();
+    });
+
     $('#menu .xiaoli').bind("click", function() {
         $('#menu').hide();
         $('#xiaoli').show();
