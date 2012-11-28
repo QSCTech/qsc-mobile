@@ -2,7 +2,7 @@
 function echo_md5($file) {
     echo md5_file($file);
     echo ' ';
-    echo $file;
+    echo "html/" . $file;
     echo "\n";
 }
 
