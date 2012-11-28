@@ -26,10 +26,8 @@ input,textarea,select{outline:none;}
 #menu .zuoye{background-image:url(../img/homework.png);}
 #menu:after{content:'';clear:both;display:block;}
 .mask{width:100%;height:100%;}
-.hidden{display:none;}
 .logo{display:block;width:37.5vw;height:22vw;background:url(../img/logo.png) no-repeat left top;background-size:37.5vw 22vw;float:left;cursor:pointer;}
-.hide{max-height:0;overflow:hidden;}
-.show{max-height:20000px;}
+.hide{display:none;}
 #gaikuang{width:84.375vw;}#gaikuang .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/general-blue.png) no-repeat left bottom;}
 #gaikuang #zju_date_info{font-size:5.625vw;color:#555;line-height:2em;}
 #gaikuang #timer{font-size:5.625vw;color:#219eee;line-height:5.625vw;}#gaikuang #timer .msg_timer{width:48%;float:left;}
@@ -82,7 +80,7 @@ hr.blue{border-color:#219eee;}
 .slide >div{max-height:18.75vw;overflow:hidden;}
 .slide header{padding-left:1em;text-transform:capitalize;font-family:ubuntu;height:12.5vw;line-height:12.5vw;font-size:9.375vw;border:1px solid #555;border-radius:1.25vw;color:#555;margin:4.6875vw 0;cursor:pointer;background:url(../img/downward.png) no-repeat 90% center;background-size:9.375vw 9.375vw;}
 .slide .detail{font-size:7.5vw;color:#666666;overflow:hidden;}
-.slide .hide{max-height:18.75vw;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;}
+.slide .hide{display:block;max-height:18.75vw;transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;}
 .slide .show{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;max-height:1562.5vw;}.slide .show header{background:url(../img/upward.png) no-repeat 90% center;background-size:9.375vw 9.375vw;}
 .em{color:#219eee;}
 #zuoye .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
