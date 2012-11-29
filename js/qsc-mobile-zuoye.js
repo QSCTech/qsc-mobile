@@ -12,9 +12,6 @@ $(document).ready(function(){
         shareHomework = !shareHomework;
         $('#share_homework').attr('class', shareHomework);
     });
-
-
-
 });
 
 function loadZuoYe() {
