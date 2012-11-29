@@ -23,7 +23,6 @@ function loadBusInfo(){
             s += '<div class="bus_info"><header><span class="begin">'+theBus[i]['发车时间']+'</span><span class="id">#'+theBus[i]['车号']+'</span></header><div class="detail"><span class="end">到站时间：'+theBus[i]['到站时间']+'</span><br><br><span class="date">'+theBus[i]['运行时间']+'</span><br><br><span class="place">'+theBus[i]['停靠地点']+'</span></div></div>';
         }
         $('#bus_info').html(s);
-        slideBind();
     }
 }
 
