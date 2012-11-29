@@ -30,8 +30,18 @@ function loadNotice() {
     var htmlNotice = '';
     for(var j=0; j<noticeData.length; j++) {
         var item = noticeData[j];
+
+
+        var timeEnd = new Date(item.time_end);
+        var now = new Date();
+        timeEnd.setHours(23, 59, 59);
+
+        if(now.getTime() > timeEnd.getTime())
+          continue;
+
         htmlNotice += '<li><div class="title">'+item.title+ '</div><div class="location">'+item.location+'</div><div class="time_start">'+item.time_start+'</div><div class="time_end">'+item.time_end+'</div></li>';
     }
+    htmlNotice = htmlNotice ? htmlNotice : "<li>好的嘛，目前木有活动了……</li>";
     $('#xiaoli_notice ul').html(htmlNotice);
 
 }
