@@ -569,10 +569,10 @@ hr.blue {
 	    height:12vw;
 	    line-height:12vw;
 	    font-size:5vw;
-	    background:#555;
+	    background:#cdcdcd;
 	    border-radius:1vh;
 	    margin:2vh 0;
-	    color:#ddd;
+	    color:#777;
 	    &.true, &.false {
 		&:after {
 		    height:100%;
@@ -580,8 +580,9 @@ hr.blue {
 		    display:block;
 		    text-align:center;
 		    content:'ON';
-		    background: @color2;
-		    color:#fff;
+//		    text-shadow: 0 0 8px @theme;
+		    background: #eee;
+		    color:@theme;
 		    float:right;
 		    font-weight:bold;
 		    text-align:center;
@@ -593,7 +594,6 @@ hr.blue {
 	    &.false {
 		&:after {
 		    content:"OFF";
-		    background:@color1;
 		}
 	    }
 	}
@@ -601,7 +601,6 @@ hr.blue {
 	    margin:0;
 	    padding:0;
 	    margin-top:2vh;
-	    background:@color1;
 	    height:10vh;
 	    width:100%;
 	    font-size:5vh;
@@ -610,7 +609,7 @@ hr.blue {
 	    text-align:center;
 	    border-radius:1.25vw;
 	    display:inline-block;
-	    background:@color2;
+	    background:@theme;
 	    cursor:pointer;
 	}
     }
