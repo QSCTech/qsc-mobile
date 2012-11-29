@@ -5,8 +5,10 @@ function loadXiaoHua(){
         if(!data)
           myShowMsg('好的嘛，拉取数据失败……');
 
-        if(data.available == false)
-          myShowMsg('好的嘛，笑话都已经被你看光了……');
+        if(data.available == false) {
+            $('#xiaohua .content').html('好的嘛，笑话都已经被你看光了……');
+            return;
+        }
 
         xiaoHuaData = data;
         var content = xiaoHuaData['content'];
