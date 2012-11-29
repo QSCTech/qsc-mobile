@@ -5,7 +5,8 @@ var globalScripts = {};
 //$.inlcude(['file1', 'file2', ...]);
 $.extend({
     include: function(files) {
-        for (file in files) {
+        for (var i=0; i<files.length; i++) {
+            var file = files[i];
             if ( !(("js/" + file) in globalScripts) ) {
                 var scriptNode = document.createElement("script");
                 scriptNode.src = "js/" + file;
