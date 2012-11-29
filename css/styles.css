@@ -49,14 +49,14 @@ input,textarea,select{outline:none;}
 #config #config_items{font-size:5.625vw;}#config #config_items li{margin:3.75vw 0;padding:0 3.75vw;border-radius:0.78125vw;background:#fff;border:1px solid #777;color:#666666;height:15.625vw;line-height:15.625vw;}
 #config #config_items .true:after{display:block;width:10.9375vw;text-align:center;margin:2.1875vw 1.5625vw 0 0;line-height:7.8125vw;content:'ON';background:#9acd32;border-radius:1.5625vw;padding:1.5625vw;color:#fff;float:right;font-weight:bold;}
 #config #config_items .false:after{display:block;width:10.9375vw;text-align:center;margin:2.1875vw 1.5625vw 0 0;line-height:7.8125vw;content:'OFF';background:#dc143c;border-radius:1.5625vw;padding:1.5625vw;color:#fff;float:right;font-weight:bold;}
-#xiaohua{width:84.375vw;}#xiaohua .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/joke-blue.png) no-repeat left bottom;}
-#kaoshi{width:84.375vw;font-size:5.625vw;color:#666666;}#kaoshi .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
-#kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
-#kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
+kaoshi{width:84.375vw;font-size:5.625vw;color:#666666;}kaoshi .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/gpa-blue.png) no-repeat left bottom;}
+kaoshi .kaoshi{margin-bottom:2em;}kaoshi .kaoshi .name{font-size:1.2em;}
+kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
 #xiaoli{width:84.375vw;}#xiaoli .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
 #xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:1px solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}
+#xiaohua{width:84.375vw;}#xiaohua .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/joke-blue.png) no-repeat left bottom;}
 #xiaohua .content{font-size:7.5vw;margin:3.75vw 0;}
-#xiaohua .love.false{background:#aaa;}
+#xiaohua .love{background:#aaa;}
 #xiaohua .love.true{background:#dc143c;}
 #xiaohua .next{background:#219eee;margin-left:1.5625vw;}
 #xiaohua .next,#xiaohua .love{font-size:5.625vw;padding:3.125vw;border-radius:1.5625vw;color:#fff;float:left;width:35.15625vw;font-weight:bold;text-align:center;cursor:pointer;}
