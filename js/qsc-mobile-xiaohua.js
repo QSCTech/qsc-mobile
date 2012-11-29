@@ -3,7 +3,10 @@ var xiaoHuaData;
 function loadXiaoHua(){
     myGetJsonp('xiaohua', true, function(data) {
         if(!data)
-            myShowMsg('好的嘛，拉取数据失败……');
+          myShowMsg('好的嘛，拉取数据失败……');
+
+        if(data.available == false)
+          myShowMsg('好的嘛，笑话都已经被你看光了……');
 
         xiaoHuaData = data;
         var content = xiaoHuaData['content'];
