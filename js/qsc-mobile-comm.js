@@ -161,9 +161,3 @@ function pleaseLoginIfNotLogin(callback) {
         });
     }
 }
-$(document).ready(function() {
-    $('#msg .close').bind("click", function(){
-        $('#msg').hide(800);
-        return false;
-    });
-});

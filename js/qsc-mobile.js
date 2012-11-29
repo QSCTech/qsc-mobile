@@ -205,12 +205,17 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#msg .close').bind("click", function(){
+        $('#msg').hide(800);
+        return false;
+    });
 
     // 自动更新数据
     if(config.update_automatically) {
         getAllJsonp();
     }
 
+    // delagete click event
     $('#wrap').on('click', '.slide > div > header', function(){
         if($(this).parent().hasClass('show')) {
             $(this).parent().removeClass('show');
