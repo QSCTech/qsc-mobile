@@ -1,24 +1,21 @@
-$.extend({
-    // 封装的include_once
-    // $.include(['json2.js', 'jquery.tree.js', 'jquery.tree.css']);
-    include: function(files) {
-        outerLoop:
-        for(var i=0; i< files.length; i++){
-            var scriptNode = document.createElement('script');
-            scriptNode.src = 'js/'+files[i];
+//储存全局script的src元素，不包括JSONP
+var globalScripts = {};
 
-            var scripts = document.getElementsByTagName('script');
-            for(var j=0; j<scripts.length; j++){
-                if(scripts[j].src == scriptNode.src){
-                    break outerLoop; // file already exists
-                }
+//自定义jQuery.include方法，实现include once功能
+//$.inlcude(['file1', 'file2', ...]);
+$.extend({
+    include: function(files) {
+        for (file in files) {
+            if ( !(("js/" + file) in globalScripts) ) {
+                var scriptNode = document.createElement("script");
+                scriptNode.src = "js/" + file;
+                document.head.appendChild(scriptNode);
+                globalScripts[scriptNode.src] = '';
             }
-            document.head.appendChild(scriptNode);
         }
     }
 });
 
-$.includePath = 'js/';
 
 //var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
@@ -57,6 +54,14 @@ if(localStorage.getItem('jwbData')) {
 }
 
 $(document).ready(function() {
+
+    //加入已有script
+    $("script").each(function (index, element) {
+        var src = $(element).attr("src");
+        if ( src.indexOf("js/") == 0 ) {
+            globalScripts[src] = '';
+        }
+    });
 
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
