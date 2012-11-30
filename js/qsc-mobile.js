@@ -7,11 +7,11 @@ $.extend({
     include: function(files) {
         for (var i=0; i<files.length; i++) {
             var file = files[i];
-            if ( typeof(globalScripts["js/" + file] == "undefined" )) {
+            if ( typeof(globalScripts["js/" + file]) == "undefined" ) {
                 var scriptNode = document.createElement("script");
+                globalScripts["js/" + file] = true;
                 scriptNode.src = "js/" + file;
                 document.head.appendChild(scriptNode);
-                globalScripts[scriptNode.src] = '';
             }
         }
     }
@@ -60,7 +60,7 @@ $(document).ready(function() {
     $("script").each(function (index, element) {
         var src = $(element).attr("src");
         if ( src.indexOf("js/") == 0 ) {
-            globalScripts[src] = '';
+            globalScripts[src] = true;
         }
     });
 
