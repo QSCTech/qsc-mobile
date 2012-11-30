@@ -479,7 +479,7 @@ hr.blue {
 	overflow:hidden;
     }
     header {
-	padding-left:1em;
+	padding-left:5vw;
 	text-transform: capitalize;
 	font-family:ubuntu;
 	height:12.5vw;
@@ -499,13 +499,18 @@ hr.blue {
 	overflow:hidden;
     }
     .hide {
+	header {
+	    .transition(.3s);
+	}
 	display:block;
 
     }
     .show {
-//	.transition(.3s);
 	height:auto;
 	header {
+	    .transition(.3s);
+	    color:@theme;
+	    font-size: 11vw;
 	    background:url(../img/arrow-u.png) no-repeat 90% center;
 	    background-size:9.375vw 9.375vw;
 	}
