@@ -206,8 +206,8 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#msg .close').bind("click", function(){
-        $('#msg').hide(800);
+    $('#msg, #loading').bind("click", function(){
+        $(this).hide(800);
         return false;
     });
 
