@@ -57,7 +57,7 @@ $(document).ready(function(){
 
     $('#add_homework_submit').bind("click", function() {
         var homework_content = $('#add_homework_textarea').val();
-        homework_content = Base64.encode64(homework_content);
+        homework_content = encodeURIComponent(Base64.encode64(homework_content));
 
         var homework_share = $('#share_homework').attr('class');
         var course_id_md5 = $('#add_homework_course').val();
