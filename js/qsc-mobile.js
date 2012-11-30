@@ -7,7 +7,7 @@ $.extend({
     include: function(files) {
         for (var i=0; i<files.length; i++) {
             var file = files[i];
-            if ( !(("js/" + file) in globalScripts) ) {
+            if ( typeof(globalScripts["js/" + file] == "undefined" )) {
                 var scriptNode = document.createElement("script");
                 scriptNode.src = "js/" + file;
                 document.head.appendChild(scriptNode);
