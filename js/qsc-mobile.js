@@ -20,6 +20,7 @@ $.extend({
 
 //var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
 var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
+//var siteUrl = 'http://localhost/getproxy/index.php';
 
 // 在phonegap下出错
 // window.addEventListener('offline', function() {
@@ -179,7 +180,7 @@ $(document).ready(function() {
         pleaseLoginIfNotLogin(function(){
             $('#menu').hide(200);
             $('#zuoye').show();
-            $.include(['qsc-mobile-zuoye.js']);
+            $.include(['qsc-mobile-zuoye.js', 'base64.js']);
         });
     });
 

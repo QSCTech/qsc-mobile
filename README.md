@@ -51,6 +51,13 @@ permission notices:
   Licensed under the MIT license.
 
 
+- base64.coffee, v1.0
+
+  Copyright 2012 Pavel Pravosud
+
+  Licensed under the MIT license.
+
+
 - BarrettMu.js
 
   Copyright 2004-2005 David Shapiro.
