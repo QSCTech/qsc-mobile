@@ -475,7 +475,7 @@ hr.blue {
 }
 .slide{
     & > div {
-	max-height:18.75vw;
+	height:18.75vw;
 	overflow:hidden;
     }
     header {
@@ -500,16 +500,15 @@ hr.blue {
     }
     .hide {
 	display:block;
-	max-height:18.75vw;
-	.transition(.3s);
+
     }
     .show {
+//	.transition(.3s);
+	height:auto;
 	header {
 	    background:url(../img/arrow-u.png) no-repeat 90% center;
 	    background-size:9.375vw 9.375vw;
 	}
-	.transition(.3s);
-	max-height:none;
     }
 }
 .em {
