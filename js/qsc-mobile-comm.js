@@ -4,8 +4,7 @@ function myGetJsonp(name, showMsg, callback, getArray) {
         return;
     }
 
-    if(showMsg)
-      $('#loading').show(100);
+    //$('#loading').show();
 
     if(!pwd)
       pwd = '';
@@ -51,7 +50,7 @@ function myGetJsonp(name, showMsg, callback, getArray) {
 function myShowMsg(msg, callback) {
     $('#loading').hide();// 既然显示消息就不必显示loading了
 
-    $('#msg').show(200);
+    $('#msg').show();
     $('#msg .content').html(msg);
 
     // 回调函数
