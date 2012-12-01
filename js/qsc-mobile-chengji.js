@@ -5,7 +5,7 @@ function loadChengji(){
     var gpa = chengJiData['junji_array'];
 
     var html = '';
-    for(var i = 0; i < chengJiArray.length; i++) {
+    for(var i = chengJiArray.length - 1; i > -1; i--) {
         html += '<div class="chengji>';
         html += '<div class="name">' + chengJiArray[i]['课程名称'] + '</div>';
         html += '<div class="score">成绩：'+chengJiArray[i]['成绩'] + '</div>';
@@ -18,7 +18,8 @@ function loadChengji(){
 
     // gpa
     html = '';
-    for(i = 0; i < gpa.length; i++) {
+    gpa.push(gpa.shift());
+    for(i = gpa.length - 1; i > -1; i--) {
         html += '<div class="gpa">';
         html += '<div class="date">';
         html += gpa[i]['时间'];
