@@ -199,13 +199,16 @@ var token = localStorage.getItem('token',false) ? localStorage.getItem('token') 
 
 // 初始化用户配置
 // 默认关闭自动给老师好评
-var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
-var config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
-for(var i = 0; i < config_list.length; i++) {
-    var item = config_list[i];
-    if(typeof(config[item]) == "undefined")
-      config[item] = false; // 默认关闭特性
+function loadConfig() {
+    var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
+    var config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
+    for(var i = 0; i < config_list.length; i++) {
+        var item = config_list[i];
+        if(typeof(config[item]) == "undefined")
+          config[item] = false; // 默认关闭特性
+    }
 }
+loadConfig();
 
 // 读取教务部数据：单双周、学期之类
 var jwbData;
@@ -233,7 +236,7 @@ $(document).ready(function() {
         $('#menu .user').html('注销');
 
         if(config['gaikuang_as_default']) {
-            $('#menu').hide(200);
+            $('#menu').hide();
             pleaseLoginIfNotLogin(function() {
                 $('#gaikuang').show(200);
                 $.include(['qsc-mobile-kebiao.js']);
@@ -349,31 +352,42 @@ $(document).ready(function() {
 
 
     $('.user').bind("click", function(){
-//        var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
-
-//        console.log('hello');
-//        console.log(isLogin);
-
         if(isLogin) {
-            stuid = '';
-            pwd = '';
-            isLogin = false;
+            for (var i=0; i<localStorage.length; i++) {
+                var key = localStorage.key(i);
+                var zuoYeKeepKey = stuid+'zuoYe';
+                if(key == zuoYeKeepKey)
+                  continue;
+                localStorage.removeItem(key);
+            }
+            //  	    window.location.reload();
 
-            // window.location.reload();
-
-            myShowMsg('注销成功', function(msg) {
-                // 刷新以重载js以及dom
-                setTimeout(function() {
-  	            window.location.reload();
-                }, 1000);
-            });
-
-            localStorage.clear();
+            // myShowMsg('注销成功', function(msg) {
+            //     // 刷新以重载js以及dom
+            //     setTimeout(function() {
+            // }, 500);
+            // });
         } else {
             pleaseLoginIfNotLogin(function() {
                 $('#menu').show();
             });
         }
+
+        isLogin = !isLogin;
+
+        stuid = '';
+        pwd = '';
+        $('#pwd').val('');
+
+        if(isLogin) {
+            $('#menu .user').attr('class', 'box user logout');
+            $('#menu .user').html('注销');
+        } else {
+            $('#menu .user').attr('class', 'box user login');
+            $('#menu .user').html('登录');
+        }
+
+        loadConfig();
     });
 
 

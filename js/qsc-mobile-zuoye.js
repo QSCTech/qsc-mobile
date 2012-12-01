@@ -1,4 +1,4 @@
-var zuoYeData = localStorage.getItem('zuoYe') ? JSON.parse(localStorage.getItem('zuoYe')) : [];
+var zuoYeData = localStorage.getItem(stuid+'zuoYe') ? JSON.parse(localStorage.getItem(stuid+'zuoYe')) : [];
 
 $.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
          success:function(data) {
@@ -16,7 +16,7 @@ $.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+
                  }
 //处理新的data，合并到原先的zuoyedata
                  //zuoYeData = data;
-                 localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
+                 localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
              }
              loadZuoYe();
          },
@@ -66,7 +66,7 @@ function loadZuoYe(changeId) {
 
         if(item.hashId == changeId) {
             zuoYeData[i].done = !zuoYeData[i].done;
-            localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
+            localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
         }
 
         var done = item.done ? 'done' : 'todo';
@@ -125,7 +125,7 @@ $(document).ready(function(){
 
         // 存入localStroage
         zuoYeData.push({"content":homework_content, "done": false, "courseHash":course_id_md5, "hashId":hashId, "course":course_name});
-        localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
+        localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
 
         // 隐藏表单
         $('#add_homework').attr('class', 'hide');
@@ -135,7 +135,7 @@ $(document).ready(function(){
 
         // 若分享则提交服务器端
         if(homework_share) {
-            $.jsonP({url:siteUrl+'/jsonp/submit_homework'+'?hash_id='+hashId+'&last_timestamp='+last_timestamp+'&content='+homework_content_base64+'&assign_time='+assign_time+'&course_id_md5='+course_id_md5+'&stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
+            $.jsonP({url:siteUrl+'/jsonp/submit_homework'+'?hash_id='+hashId+'&last_timestamp='+last_timestamp+'&content='+homework_content_base64+'&assign_time='+assign_time+'&course_name='+course_name+'&course_id_md5='+course_id_md5+'&stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
                      success:function(data) {
                          //                     myShowMsg('好的嘛，提交成功');
                      },
