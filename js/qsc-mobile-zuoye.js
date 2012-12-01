@@ -4,9 +4,19 @@ $.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+
          success:function(data) {
              if(data) {
                  console.log(data);
-                 //处理新的data，合并到原先的zuoyedata
+                 var k;
+
+                 //php 传回course_name
+                 //php 判断stuid，若为本人不要传回本人提交的数据
+                 var course_name;
+
+                 for(k=0; k<data.length; k++) {
+                     var item = data[k];
+                     zuoYeData.push({"content":Base64.decode64(item.content), "done": false, "courseHash":item.course_id_md5, "hashId":item.hash_id, "course":course_name});
+                 }
+//处理新的data，合并到原先的zuoyedata
                  //zuoYeData = data;
-                 //localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
+                 localStorage.setItem('zuoYe', JSON.stringify(zuoYeData));
              }
              loadZuoYe();
          },
