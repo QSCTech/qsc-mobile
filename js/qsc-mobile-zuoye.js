@@ -1,22 +1,21 @@
-var zuoYeData = localStorage.getItem(stuid+'zuoYe') ? JSON.parse(localStorage.getItem(stuid+'zuoYe')) : [];
+var zuoYeData = localStorage.getItem(stuid+'zuoYeKeep') ? JSON.parse(localStorage.getItem(stuid+'zuoYeKeep')) : [];
 
-$.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?',
+var timestamp = localStorage.getItem(stuid+'zuoYeLastPullKeep') ? localStorage.getItem(stuid+'zuoYeLastPullKeep') : 0;
+
+$.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&last_timestamp='+timestamp+'&token='+token+'&callback=?',
          success:function(data) {
              if(data) {
-                 console.log(data);
                  var k;
-
-                 //php 传回course_name
-                 //php 判断stuid，若为本人不要传回本人提交的数据
-                 var course_name;
-
                  for(k=0; k<data.length; k++) {
                      var item = data[k];
-                     zuoYeData.push({"content":Base64.decode64(item.content), "done": false, "courseHash":item.course_id_md5, "hashId":item.hash_id, "course":course_name});
+                     zuoYeData.push({"content":Base64.decode64(item.content), "done": false, "courseHash":item.course_id_md5, "hashId":item.hash_id, "course":item.course_name});
                  }
-//处理新的data，合并到原先的zuoyedata
+                 //处理新的data，合并到原先的zuoyedata
                  //zuoYeData = data;
-                 localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
+                 localStorage.setItem(stuid+'zuoYeKeep', JSON.stringify(zuoYeData));
+                 var now = new Date();
+                 timestamp = parseInt(now.getTime() / 1000);
+                 localStorage.setItem(stuid+'zuoYeLastPullKeep', timestamp)
              }
              loadZuoYe();
          },
@@ -66,7 +65,7 @@ function loadZuoYe(changeId) {
 
         if(item.hashId == changeId) {
             zuoYeData[i].done = !zuoYeData[i].done;
-            localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
+            localStorage.setItem(stuid+'zuoYeKeep', JSON.stringify(zuoYeData));
         }
 
         var done = item.done ? 'done' : 'todo';
@@ -125,7 +124,7 @@ $(document).ready(function(){
 
         // 存入localStroage
         zuoYeData.push({"content":homework_content, "done": false, "courseHash":course_id_md5, "hashId":hashId, "course":course_name});
-        localStorage.setItem(stuid+'zuoYe', JSON.stringify(zuoYeData));
+        localStorage.setItem(stuid+'zuoYeKeep', JSON.stringify(zuoYeData));
 
         // 隐藏表单
         $('#add_homework').attr('class', 'hide');

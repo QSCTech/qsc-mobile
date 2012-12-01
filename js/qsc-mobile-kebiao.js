@@ -1,5 +1,18 @@
 var keBiaoData;
 
+if (localStorage.getItem('keBiao')) {
+    keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
+    loadKeBiao();
+} else {
+    myGetJsonp('kebiao', true, function(data) {
+        if(data) {
+            keBiaoData = data;
+            loadKeBiao();
+            localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
+        }
+    });
+}
+
 // 设定日子
 var today = new Date();
 var weekArr = ['sun','mon','tue','wed','thu','fri','sat'];
@@ -142,17 +155,4 @@ function loadKeBiao() {
     }
 
     $('#mon .detail').show();
-}
-
-if (localStorage.getItem('keBiao')) {
-    keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
-    loadKeBiao();
-} else {
-    myGetJsonp('kebiao', true, function(data) {
-        if(data) {
-            keBiaoData = data;
-            loadKeBiao();
-            localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
-        }
-    });
 }

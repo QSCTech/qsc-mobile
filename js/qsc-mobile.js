@@ -355,18 +355,13 @@ $(document).ready(function() {
         if(isLogin) {
             for (var i=0; i<localStorage.length; i++) {
                 var key = localStorage.key(i);
-                var zuoYeKeepKey = stuid+'zuoYe';
-                if(key == zuoYeKeepKey)
-                  continue;
-                localStorage.removeItem(key);
-            }
-            //  	    window.location.reload();
 
-            // myShowMsg('注销成功', function(msg) {
-            //     // 刷新以重载js以及dom
-            //     setTimeout(function() {
-            // }, 500);
-            // });
+                if(key.indexOf('Keep') != -1)
+                  continue;
+
+                localStorage.removeItem(key);
+                localStorage.setItem('stuid', false);
+            }
         } else {
             pleaseLoginIfNotLogin(function() {
                 $('#menu').show();
@@ -375,7 +370,7 @@ $(document).ready(function() {
 
         isLogin = !isLogin;
 
-        stuid = '';
+        stuid = false;
         pwd = '';
         $('#pwd').val('');
 
