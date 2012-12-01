@@ -2,7 +2,7 @@ var RealtiveUnitsTemp = [];
 var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
 
 window.RelativeUnits =  (function(){
-    var API, cssRules, styledElements,
+    var API, cssRules = [], styledElements,
         relativeUnitsStylesheetID = 'relative-units-stylesheet';
 
     function trim(s) {

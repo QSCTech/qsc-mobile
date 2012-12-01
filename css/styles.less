@@ -510,7 +510,6 @@ hr.blue {
 	header {
 	    .transition(.3s);
 	    color:@theme;
-	    font-size: 11vw;
 	    background:url(../img/arrow-u.png) no-repeat 90% center;
 	    background-size:9.375vw 9.375vw;
 	}
@@ -524,20 +523,19 @@ hr.blue {
 	#kebiao .header;
 	background:url(../img/homework-blue.png) no-repeat left bottom;
     }
-    #add_homework_button {
-	padding: 2.1875vw 0;
-	background:@theme;
-	text-align:center;
-	height:16vw;
-	line-height:16vw;
-	font-size:6vw;
-	color:#fff;
-	border-radius:1.25vw;
-	cursor:pointer;
-	width:100%;
-    }
+    // #add_homework_button {
+    // 	padding: 2.1875vw 0;
+    // 	background:@theme;
+    // 	text-align:center;
+    // 	height:16vw;
+    // 	line-height:16vw;
+    // 	font-size:6vw;
+    // 	color:#fff;
+    // 	border-radius:1.25vw;
+    // 	cursor:pointer;
+    // 	width:100%;
+    // }
     #add_homework {
-	display:none;
 	padding-top:1.5vh;
 	textarea {
 	    -webkit-appearance:none;
@@ -570,7 +568,7 @@ hr.blue {
 		    display:block;
 		    text-align:center;
 		    content:'ON';
-//		    text-shadow: 0 0 8px @theme;
+		    //		    text-shadow: 0 0 8px @theme;
 		    background: #eee;
 		    color:@theme;
 		    float:right;
@@ -591,27 +589,61 @@ hr.blue {
 	    margin:0;
 	    padding:0;
 	    margin-top:2vh;
-	    height:10vh;
+	    height:15vw;
 	    width:100%;
-	    font-size:5vh;
-	    line-height:10vh;
+	    font-size:8vw;
+	    line-height:15vw;
 	    color:#fff;
 	    text-align:center;
-	    border-radius:1.25vw;
+	    border-radius:1vh;
 	    display:inline-block;
 	    background:@theme;
 	    cursor:pointer;
 	}
 	#add_homework_course {
 	    -webkit-appearance: none;
+	    background:#ddd;
 	    color:@theme;
 	    font-weight:bold;
 	    text-indent:3vh;
 	    width:100%;
-	    font-size:3vh;
-	    line-height:10vh;
+	    font-size:5vw;
+	    line-height:12vw;
+	    height:12vw;
 	    border:none;
 	    border-radius:1vh;
+	}
+    }
+    #zuoye_list {
+	li {
+	    border:1px solid #333;
+	    border-radius:3px;
+	    margin:4vw 0;
+	    padding:2vw;
+	    font-size:5vw;
+	    .course {
+		font-size:3vw;
+		color:#555;
+	    }
+	    &::after {
+		display:block;
+		content:'';
+		float:right;
+		height:5vw;
+		margin-top:-7.5vw;
+	    }
+	}
+	li.done {
+	    color:#555;
+	    &::after {
+		content:"DONE";
+	    }
+	}
+	li.todo {
+	    color:@color1;
+	    &::after {
+		content:"TODO";
+	    }
 	}
     }
 }
