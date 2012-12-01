@@ -43,7 +43,7 @@ function myGetJsonp(name, showMsg, callback, getArray) {
                  if(!showMsg) return;
 
                  $('#loading').hide(100);
-                 myShowMsg('好的嘛，获取数据失败……');
+                 myShowMsg('好的嘛，断网了吧？');
              }
             });
 }
@@ -348,26 +348,34 @@ $(document).ready(function() {
     });
 
 
-    $('#menu .login').bind("click", function(){
-        pleaseLoginIfNotLogin(function() {
-            $('#menu').show();
-        });
+    $('.user').bind("click", function(){
+//        var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
+
+//        console.log('hello');
+//        console.log(isLogin);
+
+        if(isLogin) {
+            stuid = '';
+            pwd = '';
+            isLogin = false;
+
+            // window.location.reload();
+
+            myShowMsg('注销成功', function(msg) {
+                // 刷新以重载js以及dom
+                setTimeout(function() {
+  	            window.location.reload();
+                }, 1000);
+            });
+
+            localStorage.clear();
+        } else {
+            pleaseLoginIfNotLogin(function() {
+                $('#menu').show();
+            });
+        }
     });
 
-    $('#menu .logout').bind("click", function(){
-        var stuid = '';
-        var pwd = '';
-        var isLogin = false;
-        // 清空localStorage
-        localStorage.clear();
-        myShowMsg('注销成功', function(msg) {
-            // 刷新以重载js以及到dom
-            setTimeout(function() {
-  		window.location.reload();
-            }, 1000);
-        });
-        return false;
-    });
 
     $('#msg, #loading').bind("click", function(){
         $(this).hide(800);
