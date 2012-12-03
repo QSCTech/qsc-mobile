@@ -9,8 +9,10 @@ if (stripos( $ua, 'Windows Phone' ) !== FALSE) {
     
 } elseif (stripos( $ua, 'Apple-iPad' ) !== FALSE) {
 
-} else {
+} elseif (stripos( $ua , 'Android' ) !== FALSE) {
     header('Location: mobile_QSC.apk');
+} else {
+    header('Location: all-app.html');
 }
 
 exit();
