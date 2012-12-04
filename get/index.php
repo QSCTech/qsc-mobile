@@ -1,6 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
 // 判断useragent
-$ua = _SERVER['HTTP_USER_AGENT'];
+$ua = $_SERVER['HTTP_USER_AGENT'];
 
 if (stripos( $ua, 'Windows Phone' ) !== FALSE) {
     header('https://build.phonegap.com/apps/245666/download/winphone');
@@ -14,5 +18,3 @@ if (stripos( $ua, 'Windows Phone' ) !== FALSE) {
 } else {
     header('Location: all-app.html');
 }
-
-exit();
