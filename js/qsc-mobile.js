@@ -200,11 +200,13 @@ var pwd = localStorage.getItem('pwd',false) ? localStorage.getItem('pwd') : fals
 var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
 var token = localStorage.getItem('token',false) ? localStorage.getItem('token') : false;
 
+var config;
+var config_list;
 // 初始化用户配置
 // 默认关闭自动给老师好评
 function loadConfig() {
-    var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
-    var config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
+    config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
+    config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
     for(var i = 0; i < config_list.length; i++) {
         var item = config_list[i];
         if(typeof(config[item]) == "undefined")
