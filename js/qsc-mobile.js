@@ -185,9 +185,8 @@ $.extend({
 });
 
 
-//var siteUrl = 'http://localhost/qsc-mobile-back/index.php';
-var siteUrl = 'http://m.myqsc.com/dev3/mobile2/index.php';
-//var siteUrl = 'http://localhost/getproxy/index.php';
+var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
+//var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
 
 // 在phonegap下出错
 // window.addEventListener('offline', function() {
