@@ -124,7 +124,7 @@ function pleaseLoginIfNotLogin(callback) {
         $('#login').show();
         $.include(['BigInt.js','Barrett.js','RSA.js']);
 
-        $('#login_submit').bind("click", function(){
+        $('#login_form').bind("submit", function(){
             stuid = $("#stuid").val();
 
 
@@ -162,6 +162,8 @@ function pleaseLoginIfNotLogin(callback) {
                     myShowMsg('登录失败');
                 }
             });
+
+            return false;
         });
     }
 }
