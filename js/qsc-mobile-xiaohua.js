@@ -1,7 +1,7 @@
 var xiaoHuaData;
 
 function loadXiaoHua(){
-    myGetJsonp('xiaohua', false, function(data) {
+    myGetJsonp('xiaohua', true, function(data) {
         if(!data)
           myShowMsg('好的嘛，拉取数据失败……');
 
