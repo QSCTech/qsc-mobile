@@ -52,7 +52,7 @@ input,textarea,select{outline:none;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
 #xiaoli{width:84.375vw;}#xiaoli .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
-#xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:1px solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}
+#xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:1px solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}#xiaoli #xiaoli_content ul li .title{font-weight:bold;}
 #xiaohua{width:84.375vw;}#xiaohua .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/joke-blue.png) no-repeat left bottom;}
 #xiaohua .content{font-size:7.5vw;margin:3.75vw 0;}
 #xiaohua .love{background:#aaa;}
