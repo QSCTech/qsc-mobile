@@ -4,7 +4,8 @@ function myGetJsonp(name, showMsg, callback, getArray) {
         return;
     }
 
-    $('#loading').show();
+    if(showMsg)
+      $('#loading').show();
 
     if(!pwd)
       pwd = '';
