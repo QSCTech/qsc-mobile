@@ -1,0 +1,102 @@
+body{
+    background:#eee;
+}
+#header {
+    background:#ddd;
+    width:100%;
+    height:100px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    font-size:18px;
+    line-height:24px;
+    text-indent:50px;
+}
+#header h2 {
+    padding:0;
+    margin:0;
+    font-size:24px;
+    color:#555;
+    line-height:60px;
+    font-weight:normal;
+}
+#header p {
+    margin:0;
+    padding:0;
+    color:#777;
+}
+#wrap {
+    margin:50px auto;
+    color:#666;
+    width:80%;
+    font-size:36px;
+    line-height:100px;
+    box-shadow: 0 0 5px #777;
+    border-radius:5px;
+}
+#main {
+    padding: 5%;
+    padding-left:50px;
+    padding-top:50px;
+    background: #fff url(qr.gif) no-repeat right top;
+}
+#main a {
+    width:200px;
+    border-radius:8px;
+    text-align:center;
+    line-height:80px;
+    background: #219eee;
+    font-family:JennaSue;
+    text-decoration:none;
+    color:#fff;
+    font-weight:bold;
+    box-shadow: 0 0 7px #333;
+    color:#000;
+    text-decoration:none;
+    display:block;
+    border:1px solid #DDD;
+
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -o-border-radius:5px;
+    border-radius:5px;
+
+    background:#FFFFFF;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+    background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;    
+}
+#main a:first-child {
+    margin-bottom:50px;
+}
+a, h1 {
+    color: #219eee;
+}
+img {
+    border:none;
+    max-width:100%;
+}
+@font-face {
+    font-family: 'JennaSue';
+    src: url('./JennaSue.eot');
+    src: url('./JennaSue.eot?#iefix') format('eot'),
+    url('./JennaSue.ttf') format('truetype');
+}
+@media all and (max-width: 700px) {
+    #main {
+	background:#fff url(about:blank);
+    }
+    #header p {
+	display:none;
+    }
+    #header {
+	height:60px;
+    }
+}
