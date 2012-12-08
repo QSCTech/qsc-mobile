@@ -7,9 +7,9 @@ ini_set('display_startup_errors', TRUE);
 $ua = $_SERVER['HTTP_USER_AGENT'];
 
 if (stripos( $ua, 'Apple-iPhone' ) !== FALSE) {
-    
+    header('Location: iQSC.ipa');
 } elseif (stripos( $ua, 'Apple-iPad' ) !== FALSE) {
-
+    header('Location: iQSC.ipa');
 } elseif (stripos( $ua , 'Android' ) !== FALSE) {
     header('Location: mobile_QSC.apk');
 } else {
