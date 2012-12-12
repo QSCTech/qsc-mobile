@@ -26,6 +26,9 @@ $(document).ready(function(){
     });
 
     $('#xiaohua .love').bind("click", function(){
+        if(typeof(xiaoHuaData) == 'undefined')
+          return;
+
         xiaoHuaData['whether_like'] = !xiaoHuaData['whether_like'];
 
         // request to 远端
