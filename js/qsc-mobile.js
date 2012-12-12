@@ -256,13 +256,13 @@ $(document).ready(function() {
     }
 
 
-    $('.logo').bind("mousedown", function(){
+    $('.logo').bind("click", function(){
         $(this).parent().hide();
         $('#menu').show();
         return false;
     });
 
-    $('.backward').bind("mousedown", function(){
+    $('.backward').bind("click", function(){
         $(this).parent().parent().hide(200);
 
         // 设置延迟，防止鼠标事件被意外传递（opera mobile）
@@ -272,7 +272,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .kebiao').bind("mousedown", function(){
+    $('#menu .kebiao').bind("click", function(){
 
         pleaseLoginIfNotLogin(function() {
             $('#menu').hide(200);
@@ -281,7 +281,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#menu .config').bind("mousedown", function(){
+    $('#menu .config').bind("click", function(){
         $('#menu').hide(200);
         $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
@@ -370,6 +370,7 @@ $(document).ready(function() {
                 localStorage.removeItem(key);
                 localStorage.setItem('stuid', false);
             }
+            window.location.reload();
         } else {
             pleaseLoginIfNotLogin(function() {
                 $('#menu').show();
