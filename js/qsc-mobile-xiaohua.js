@@ -21,7 +21,11 @@ function loadXiaoHua(){
 $(document).ready(function(){
     loadXiaoHua();
 
+    var objDiv;
+
     $('#xiaohua .next').bind("click", function(){
+        objDiv = document.getElementById("xiaohua");
+        window.scrollBy(0, -objDiv.scrollHeight);
         loadXiaoHua();
     });
 
