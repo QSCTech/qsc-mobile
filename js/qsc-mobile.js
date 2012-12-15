@@ -228,6 +228,8 @@ if(localStorage.getItem('jwbData')) {
 
 // 存储当前处于哪个界面，方便返回时选取
 var currentLayout = '#menu';
+// 清除hash，进入默认界面
+window.location.hash = '';
 
 $(document).ready(function() {
 
