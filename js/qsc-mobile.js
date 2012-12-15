@@ -59,7 +59,7 @@ function myShowMsg(msg, callback) {
         callback(msg);
     };
 }
-function getAllJsonp(showDone){
+function getAllJsonp(showDone) {
     var request_count = 3;
 
     if(showDone) {
@@ -120,15 +120,12 @@ function pleaseLoginIfNotLogin(callback) {
             callback();
         }
     } else {
-        $('#menu').hide();
+        $(currentLayout).hide();
         $('#login').show();
         $.include(['BigInt.js','Barrett.js','RSA.js']);
 
         $('#login_form').bind("submit", function(){
             stuid = $("#stuid").val();
-
-
-//            var rsa_n = "AA18ABA43B50DEEF38598FAF87D2AB634E4571C130A9BCA7B878267414FAAB8B471BD8965F5C9FC3818485EAF529C26246F3055064A8DE19C8C338BE5496CBAEB059DC0B358143B44A35449EB264113121A455BD7FDE3FAC919E94B56FB9BB4F651CDB23EAD439D6CD523EB08191E75B35FD13A7419B3090F24787BD4F4E1967";
 
             // new rsa key
             var rsa_n = "B31C73F556614A46E1405B116264A60039ACF9A33F45C121C9ED3A9CDF743566D82FFE73623941C629BFAA9EDFD8B4B5944954FABAB2795D0B09787990562C17400EEB12E5AFCC7D4707B589708F09EE878742113D3CBDD41A8BA5455FB558DBD2A5BEADF739389A953687FD4E1113E68DC48C97346EF7930ECCF7743E2FFB9D";
@@ -229,9 +226,31 @@ if(localStorage.getItem('jwbData')) {
     });
 }
 
+// 存储当前处于哪个界面，方便返回时选取
+var currentLayout = '#menu';
+
 $(document).ready(function() {
 
-    //加入已有script
+    // 监听hashchange，处理后退、前进（不支持老旧浏览器）
+    // 除登陆外所有跳转均需通过修改 window.location.hash 来实现
+    $(window).on("hashchange", function(){
+        if (window.location.hash == '') {
+            // 返回主界面
+            $(currentLayout).hide(200);
+
+            // 设置延迟，防止鼠标事件被意外传递（opera mobile）
+            setTimeout(function() {
+                $('#menu').show()
+            }, 10);
+            currentLayout = '#menu';
+        } else {
+            $(currentLayout).hide();
+            $(window.location.hash).show();
+            currentLayout = window.location.hash;
+        }
+    });
+
+    // 加入已有script
     $("script").each(function (index, element) {
         var src = $(element).attr("src");
         if ( src.indexOf("js/") == 0 ) {
@@ -244,10 +263,9 @@ $(document).ready(function() {
         $('#menu .user').html('注销');
 
         if(config['gaikuang_as_default']) {
-            $('#menu').hide();
             pleaseLoginIfNotLogin(function() {
-                $('#gaikuang').show(200);
                 $.include(['qsc-mobile-kebiao.js']);
+                window.location.hash='gaikuang';
             });
         }
     } else {
@@ -263,83 +281,72 @@ $(document).ready(function() {
     });
 
     $('.backward').bind("click", function(){
-        $(this).parent().parent().hide(200);
-
-        // 设置延迟，防止鼠标事件被意外传递（opera mobile）
-        setTimeout(function() {
-            $('#menu').show()
-        }, 10);
+        history.back();
         return false;
     });
 
     $('#menu .kebiao').bind("click", function(){
 
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
-            $('#kebiao').show(200);
             $.include(['qsc-mobile-kebiao.js']);
+            window.location.hash='kebiao';
         });
     });
 
     $('#menu .config').bind("click", function(){
-        $('#menu').hide(200);
-        $('#config').show(200);
         $.include(['qsc-mobile-config.js']);
+        window.location.hash='config';
         return false;
     });
 
     $('#menu .xiaoche').bind("click", function(){
-        $('#menu').hide(200);
-        $('#xiaoche').show(200);
         $.include(['qsc-mobile-bus.js']);
+        window.location.hash='xiaoche';
         return false;
     });
 
     $('#menu .about').bind("click", function() {
-        $('#menu').hide();
-        $('#about').show();
+        window.location.hash='about';
+        return false;
     });
 
     $('#menu .xiaoli').bind("click", function() {
-        $('#menu').hide();
-        $('#xiaoli').show();
         $.include(['qsc-mobile-xiaoli.js']);
+        window.location.hash='xiaoli';
+        return false;
     });
 
     $('#menu .shida').bind("click", function(){
-        $('#menu').hide();
-        $('#shida').show();
+        window.location.hash='shida';
+        return false;
     });
 
     $('#menu .xiaohua').bind("click", function(){
-        $('#menu').hide(200);
-        $('#xiaohua').show(200);
         $.include(['qsc-mobile-xiaohua.js']);
+        window.location.hash='xiaohua';
+        return false;
     });
 
     $('#menu .gaikuang').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
-            $('#gaikuang').show(200);
             $.include(['qsc-mobile-kebiao.js']);
+            window.location.hash='gaikuang';
         });
         return false;
     });
 
     $('#menu .kaoshi').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
-            $('#kaoshi').show(200);
             $.include(['qsc-mobile-kaoshi.js']);
+            window.location.hash='kaoshi';
         });
         return false;
     });
 
     $('#menu .chengji').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $('#menu').hide(200);
-            $('#chengji').show(200);
             $.include(['qsc-mobile-chengji.js']);
+            window.location.hash='chengji';
         });
         return false;
     });
@@ -352,10 +359,10 @@ $(document).ready(function() {
 
     $('#menu .zuoye').bind("click", function(){
         pleaseLoginIfNotLogin(function(){
-            $('#menu').hide(200);
-            $('#zuoye').show();
             $.include(['qsc-mobile-zuoye.js', 'base64.js']);
+            window.location.hash='zuoye';
         });
+        return false;
     });
 
 
@@ -364,20 +371,18 @@ $(document).ready(function() {
             for (var i=0; i<localStorage.length; i++) {
                 var key = localStorage.key(i);
 
-                if(key.indexOf('Keep') != -1)
-                  continue;
+                if(key.indexOf('Keep') != -1) continue;
 
                 localStorage.removeItem(key);
                 localStorage.setItem('stuid', false);
             }
+            isLogin = false;
             window.location.reload();
         } else {
             pleaseLoginIfNotLogin(function() {
                 $('#menu').show();
             });
         }
-
-        isLogin = !isLogin;
 
         stuid = false;
         pwd = '';

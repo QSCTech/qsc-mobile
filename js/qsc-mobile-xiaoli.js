@@ -39,7 +39,7 @@ function loadNotice() {
         if(now.getTime() > timeEnd.getTime())
           continue;
 
-        htmlNotice += '<li id="notice_id_'+item.id+'"><div class="title">'+item.title+ '</div><div class="location">'+item.location+'</div><div class="time_start">'+item.time_start+'</div><div class="time_end">'+item.time_end+'</div><div class="content" style="display:none"></div></li>';
+        htmlNotice += '<li id="notice_id_'+item.id+'"><div class="title">'+item.title+ '</div><div class="location">'+item.location+'</div><div class="time_start">开始：'+item.time_start+'</div><div class="time_end">结束：'+item.time_end+'</div><div class="content" style="display:none"></div></li>';
     }
     htmlNotice = htmlNotice ? htmlNotice : "<li>好的嘛，目前木有活动了……</li>";
     $('#xiaoli_notice ul').html(htmlNotice);
