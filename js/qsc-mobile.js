@@ -260,20 +260,6 @@ $(document).ready(function() {
         }
     });
 
-    if(isLogin) {
-        $('#menu .user').attr('class', 'box user logout');
-        $('#menu .user').html('注销');
-
-        if(config['gaikuang_as_default']) {
-            pleaseLoginIfNotLogin(function() {
-                $.include(['qsc-mobile-kebiao.js']);
-                window.location.hash='gaikuang';
-            });
-        }
-    } else {
-        $('#menu .user').attr('class', 'box user login');
-        $('#menu .user').html('登录');
-    }
 
 
     $('.logo').bind("click", function(){
@@ -406,6 +392,24 @@ $(document).ready(function() {
         $(this).hide(800);
         return false;
     });
+
+    if(isLogin) {
+        $('#menu .user').attr('class', 'box user logout');
+        $('#menu .user').html('注销');
+
+        if(config['gaikuang_as_default']) {
+            pleaseLoginIfNotLogin(function() {
+                $.include(['qsc-mobile-kebiao.js']);
+                window.history.pushState(null, document.title, '#');
+                window.location.hash='gaikuang';
+            });
+        }
+    } else {
+        $('#menu .user').attr('class', 'box user login');
+        $('#menu .user').html('登录');
+    }
+
+
 
     // 自动更新数据
     if(config.update_automatically) {
