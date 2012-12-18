@@ -67,19 +67,18 @@ function myShowMsg(msg, callback) {
 function getAllJsonp(showDone, callback) {
     var request_count = 3;
 
-    if(showDone) {
-        var request_done_check = setInterval(function(){
-            if(request_count !== 0)
-	      return;
+    var request_done_check = setInterval(function(){
+        if(request_count !== 0)
+	  return;
 
-            myShowMsg('好的嘛，请求完毕');
-            clearInterval(request_done_check);
+        if(showDone)
+          myShowMsg('好的嘛，请求完毕');
+        clearInterval(request_done_check);
 
-            if(typeof(callback)=='function'){
-                callback();
-            };
-        }, 10);
-    }
+        if(typeof(callback)=='function'){
+            callback();
+        };
+    }, 10);
 
     myGetJsonp('jwbdata', false, function(data) {
         if(!data) return;
@@ -417,9 +416,9 @@ $(document).ready(function() {
     var now = new Date();
     var updateDate = new Date('2012-12-19');
     var lastUpdate = localStorage.getItem('update') || 0;
-    if(lastUpdate < updateDate) {
+    if(lastUpdate < updateDate.getTime()) {
         getAllJsonp(false, function() {
-            localStorage.setItem('update', now.getTime);
+            localStorage.setItem('update', now.getTime());
         });
     }
 
@@ -431,7 +430,9 @@ $(document).ready(function() {
         if(config['gaikuang_as_default']) {
             pleaseLoginIfNotLogin(function() {
                 $.include(['qsc-mobile-kebiao.js']);
-                window.history.pushState(null, document.title, '#');
+                if(window.history.pushState) {
+                    window.history.pushState(null, document.title, '#');
+                }
                 window.location.hash='gaikuang';
             });
         }
