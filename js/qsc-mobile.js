@@ -1,7 +1,7 @@
 var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
 //var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
 
-var version = 'QSC Mobile Build 20121218.6X';
+var version = 'QSC Mobile Build 20121218.8X';
 
 function myGetJsonp(name, showMsg, callback, getArray) {
     if(!navigator.onLine) {
@@ -397,22 +397,16 @@ $(document).ready(function() {
     });
 
 
-    if(isLogin) {
-        $('#menu .user').attr('class', 'box user logout');
-        $('#menu .user').html('注销');
-
-        if(config['gaikuang_as_default']) {
-            pleaseLoginIfNotLogin(function() {
-                $.include(['qsc-mobile-kebiao.js']);
-                window.history.pushState(null, document.title, '#');
-                window.location.hash='gaikuang';
-            });
+    // delagete click event
+    $('#wrap').on('click', '.slide > div > header', function(){
+        if($(this).parent().hasClass('show')) {
+            $(this).parent().removeClass('show');
+            $(this).parent().addClass('hide');
+        } else {
+            $(this).parent().removeClass('hide');
+            $(this).parent().addClass('show');
         }
-    } else {
-        $('#menu .user').attr('class', 'box user login');
-        $('#menu .user').html('登录');
-    }
-
+    });
 
     // 自动更新数据
     if(config.update_automatically) {
@@ -429,14 +423,20 @@ $(document).ready(function() {
         });
     }
 
-    // delagete click event
-    $('#wrap').on('click', '.slide > div > header', function(){
-        if($(this).parent().hasClass('show')) {
-            $(this).parent().removeClass('show');
-            $(this).parent().addClass('hide');
-        } else {
-            $(this).parent().removeClass('hide');
-            $(this).parent().addClass('show');
+
+    if(isLogin) {
+        $('#menu .user').attr('class', 'box user logout');
+        $('#menu .user').html('注销');
+
+        if(config['gaikuang_as_default']) {
+            pleaseLoginIfNotLogin(function() {
+                $.include(['qsc-mobile-kebiao.js']);
+                window.history.pushState(null, document.title, '#');
+                window.location.hash='gaikuang';
+            });
         }
-    });
+    } else {
+        $('#menu .user').attr('class', 'box user login');
+        $('#menu .user').html('登录');
+    }
 });
