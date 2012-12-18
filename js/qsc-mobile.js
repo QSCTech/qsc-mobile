@@ -1,3 +1,8 @@
+var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
+//var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
+
+var version = 'QSC Mobile Build 20121218.6X';
+
 function myGetJsonp(name, showMsg, callback, getArray) {
     if(!navigator.onLine) {
         myShowMsg('好的嘛，这是已经离线的节奏……');
@@ -59,7 +64,7 @@ function myShowMsg(msg, callback) {
         callback(msg);
     };
 }
-function getAllJsonp(showDone) {
+function getAllJsonp(showDone, callback) {
     var request_count = 3;
 
     if(showDone) {
@@ -69,6 +74,10 @@ function getAllJsonp(showDone) {
 
             myShowMsg('好的嘛，请求完毕');
             clearInterval(request_done_check);
+
+            if(typeof(callback)=='function'){
+                callback();
+            };
         }, 10);
     }
 
@@ -185,14 +194,6 @@ $.extend({
 });
 
 
-var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
-//var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
-
-// 在phonegap下出错
-// window.addEventListener('offline', function() {
-//     myShowMsg('好的嘛，这是掉线的节奏……');
-// });
-// window.addEventListener('online', function() {});
 
 // 读取用户信息
 var stuid = localStorage.getItem('stuid',false) ? localStorage.getItem('stuid') : false;
@@ -233,6 +234,8 @@ window.location.hash = '';
 
 $(document).ready(function() {
 
+    $('#version').html(version);
+
     // 监听hashchange，处理后退、前进（不支持老旧浏览器）
     // 除登陆外所有跳转均需通过修改 window.location.hash 来实现
     $(window).on("hashchange", function(){
@@ -269,7 +272,7 @@ $(document).ready(function() {
     });
 
     $('.backward').bind("click", function(){
-        history.back();
+        window.history.back();
         return false;
     });
 
@@ -393,6 +396,7 @@ $(document).ready(function() {
         return false;
     });
 
+
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
         $('#menu .user').html('注销');
@@ -410,10 +414,19 @@ $(document).ready(function() {
     }
 
 
-
     // 自动更新数据
     if(config.update_automatically) {
         getAllJsonp();
+    }
+
+    // 强制更新数据
+    var now = new Date();
+    var updateDate = new Date('2012-12-19');
+    var lastUpdate = localStorage.getItem('update') || 0;
+    if(lastUpdate < updateDate) {
+        getAllJsonp(false, function() {
+            localStorage.setItem('update', now.getTime);
+        });
     }
 
     // delagete click event
