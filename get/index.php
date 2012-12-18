@@ -11,7 +11,7 @@ if (stripos( $ua, 'Apple-iPhone' ) !== FALSE) {
 } elseif (stripos( $ua, 'Apple-iPad' ) !== FALSE) {
     header('Location: iQSC.ipa');
 } elseif (stripos( $ua , 'Android' ) !== FALSE) {
-    header('Location: mobile_QSC.apk');
+    header('Location: mobile.apk');
 } else {
     header('Location: download.html');
 }
