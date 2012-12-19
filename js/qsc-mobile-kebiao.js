@@ -336,7 +336,7 @@ function getAndLoadKebiao() {
 
 if (localStorage.getItem('keBiao')) {
     keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
-    if(keBiaoData)
+    if(keBiaoData.length > 0)
       loadKeBiao();
     else
       getAndLoadKebiao();
