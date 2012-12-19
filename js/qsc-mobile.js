@@ -65,7 +65,7 @@ function myShowMsg(msg, callback) {
     };
 }
 function getAllJsonp(showDone, callback) {
-    var request_count = 3;
+    var request_count = 2;
 
     var request_done_check = setInterval(function(){
         if(request_count !== 0)
@@ -80,11 +80,6 @@ function getAllJsonp(showDone, callback) {
         };
     }, 10);
 
-    myGetJsonp('jwbdata', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('jwbData', JSON.stringify(data));
-        request_count--;
-    });
     myGetJsonp('xiaoche', false, function(data) {
         if(!data) return;
         localStorage.setItem('xiaoChe', JSON.stringify(data));
@@ -215,25 +210,12 @@ function loadConfig() {
 }
 loadConfig();
 
-// 读取教务部数据：单双周、学期之类
-var jwbData;
-if(localStorage.getItem('jwbData')) {
-    jwbData = JSON.parse(localStorage.getItem('jwbData'));
-} else {
-    myGetJsonp('jwbdata', true, function(data) {
-        jwbData = data;
-        localStorage.setItem('jwbData', JSON.stringify(data));
-    });
-}
-
 // 存储当前处于哪个界面，方便返回时选取
 var currentLayout = '#menu';
 // 清除hash，进入默认界面
 window.location.hash = '';
 
 $(document).ready(function() {
-
-    $('#version').html(version);
 
     // 监听hashchange，处理后退、前进（不支持老旧浏览器）
     // 除登陆外所有跳转均需通过修改 window.location.hash 来实现

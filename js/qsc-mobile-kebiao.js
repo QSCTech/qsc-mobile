@@ -1,17 +1,7 @@
 // Copyright (C) 2012 QSC Tech. All Rights Reserved.
 
-/**
- * @fileoverview QSC Jwb Library V1.1
- * @author zenoes@qq.com (Zeno Zeng)
- * @version 1.1
- */
 
-// 通常, 使用 functionNamesLikeThis, variableNamesLikeThis, ClassNamesLikeThis, EnumNamesLikeThis, methodNamesLikeThis, 和 SYMBOLIC_CONSTANTS_LIKE_THIS.
-
-/*!
- * 基础函数
- *
- */
+var jwbData = {"oddWeekArray":[43,47,49,51,1,3,10,12,14,16,18,19,21,23,25,27],"evenWeekArray":[44,45,46,48,50,52,2,4,9,11,13,15,17,20,22,24,26],"chun":[9,10,11,12,13,14,15,16,17,18],"xia":[19,20,21,22,23,24,25,26,27],"qiu":[43,44,45,46],"dong":[1,2,3,4,47,48,49,50,51,52],"hanjia":[5,6,7,8],"shujia":[28,29,30,31,32,33]};
 
 
 /**
@@ -21,9 +11,11 @@
  * 感谢产品的同学提供数据
  */
 Date.prototype.getZjuWeek = function () {
-    var oddWeekArray = jwbData.oddWeekArray;
-    var evenWeekArray = jwbData.evenWeekArray;
-    var week = this.getIsoWeek();
+    var oddWeekArray, evenWeekArray, week;
+
+    oddWeekArray = jwbData.oddWeekArray;
+    evenWeekArray = jwbData.evenWeekArray;
+    week = this.getIsoWeek();
 
     if(oddWeekArray.indexOf(week) != -1) return 'odd';
     if(evenWeekArray.indexOf(week) != -1) return 'even';
