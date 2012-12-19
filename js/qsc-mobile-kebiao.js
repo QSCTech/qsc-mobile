@@ -324,17 +324,24 @@ Date.prototype.getIsoWeek = function () {
 
 var keBiaoData;
 
-if (localStorage.getItem('keBiao')) {
-    keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
-    loadKeBiao();
-} else {
+function getAndLoadKebiao() {
     myGetJsonp('kebiao', true, function(data) {
         if(data) {
             keBiaoData = data;
-            loadKeBiao();
             localStorage.setItem('keBiao', JSON.stringify(keBiaoData));
+            loadKeBiao();
         }
     });
+}
+
+if (localStorage.getItem('keBiao')) {
+    keBiaoData = JSON.parse(localStorage.getItem('keBiao'));
+    if(keBiaoData)
+      loadKeBiao();
+    else
+      getAndLoadKebiao();
+} else {
+    getAndLoadKebiao();
 }
 
 // 设定日子
