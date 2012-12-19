@@ -1,7 +1,7 @@
 var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
 //var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
 
-var version = 'QSC Mobile Build 20121218.8X';
+var version = 'QSC Mobile Build 20121219.1X';
 
 function myGetJsonp(name, showMsg, callback, getArray) {
     if(!navigator.onLine) {
@@ -414,11 +414,15 @@ $(document).ready(function() {
 
     // 强制更新数据
     var now = new Date();
-    var updateDate = new Date('2012-12-19');
+    var updateDate = new Date('2012-12-18');
     var lastUpdate = localStorage.getItem('update') || 0;
-    if(lastUpdate < updateDate.getTime()) {
-        getAllJsonp(false, function() {
-            localStorage.setItem('update', now.getTime());
+    if(window.navigator.onLine && lastUpdate < updateDate.getTime()) {
+        myGetJsonp('kebiao', true, function(data) {
+            if(data) {
+                localStorage.setItem('keBiao', JSON.stringify(data));
+                localStorage.setItem('update', now.getTime());
+                window.location.reload();
+            }
         });
     }
 
