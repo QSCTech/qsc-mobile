@@ -271,7 +271,7 @@ $(document).ready(function() {
     });
 
     $('.backward').bind("click", function(){
-        window.history.back();
+        history.back();
         return false;
     });
 
@@ -416,7 +416,7 @@ $(document).ready(function() {
     var now = new Date();
     var updateDate = new Date('2012-12-18');
     var lastUpdate = localStorage.getItem('update') || 0;
-    if(isLogin && window.navigator.onLine && lastUpdate < updateDate.getTime()) {
+    if(isLogin && navigator.onLine && lastUpdate < updateDate.getTime()) {
         myGetJsonp('kebiao', true, function(data) {
             if(data) {
                 localStorage.setItem('keBiao', JSON.stringify(data));
