@@ -312,6 +312,11 @@ Date.prototype.getIsoWeek = function () {
     var daynum = Math.floor((this.getTime() - newYear.getTime() -
 			     (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
     var weeknum;
+
+    // 若是周日，返回昨天的weeknum
+    if(this.getDay() == 0)
+      daynum--;
+
     //if the year starts before the middle of a week
     if(day < 4) {
 	weeknum = Math.floor((daynum+day-1)/7) + 1;
@@ -326,9 +331,6 @@ Date.prototype.getIsoWeek = function () {
 	weeknum = Math.floor((daynum+day-1)/7);
     }
 
-    // 判断当前是不是周日，若是则周返回weeknum-1
-    if(this.getDay() == 0)
-      weeknum--;
 
     return weeknum;
 };
