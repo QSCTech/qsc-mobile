@@ -1,8 +1,6 @@
-// Copyright (C) 2012 QSC Tech. All Rights Reserved.
-
+// Copyright (C) 2012-2013 QSC Tech. All Rights Reserved.
 
 var jwbData = {"oddWeekArray":[43,47,49,51,1,3,10,12,14,16,18,19,21,23,25,27],"evenWeekArray":[44,45,46,48,50,52,2,4,9,11,13,15,17,20,22,24,26],"chun":[9,10,11,12,13,14,15,16,17,18],"xia":[19,20,21,22,23,24,25,26,27],"qiu":[43,44,45,46],"dong":[1,2,3,4,47,48,49,50,51,52],"hanjia":[5,6,7,8],"shujia":[28,29,30,31,32,33]};
-
 
 /**
  * 返回输入日期所在周是单还是双
@@ -101,33 +99,38 @@ Date.prototype.getClassNthNext = function () {
 function KeBiao(data, date){
     var week = date.getZjuWeek();
     var semester = date.getZjuSemester();
-    var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var weekday = ["7","1","2","3","4","5","6"];
     var weekdate = weekday[date.getDay()];
     var i, j, classes, n;
     var keBiao = [];
 
     for (i=0; i<data.length; i++)
     {
-        if(typeof(data[i].time) == "undefined")
-          continue;
-	if(typeof(data[i]['time'][week]) == "undefined")
-	  continue;
-	if(typeof(data[i]['time'][week][weekdate]) == "undefined")
-	  continue;
-	if(data[i]['semester'].indexOf(semester, 0) === -1)
-	  continue;
-
-	classes = data[i]['time'][week][weekdate];
-	for(j=0; j<classes.length; j++) {
-	    n = {
-		'id':data[i]['id'],
-		'name':data[i]['name'],
-		'teacher':data[i]['teacher'],
-		'classroom':data[i]['place'][week][weekdate]
-	    };
-	    keBiao[classes[j]] = n;
+        var theClass = data[i]['class'];
+        for (j=0; j<theClass.length; j++) {
+            var item = theClass[j];
+            if(data[i]['semester'].indexOf(semester) != -1) {
+                if(item['week'] == week || item['week'] == 'both') {
+                    if(item['weekday'] == weekdate) {
+                        for(var k=0; k<item['class'].length; k++) {
+	                    n = {
+		                'id':data[i]['id'],
+		                'name':data[i]['name'],
+		                'teacher':data[i]['teacher'],
+		                'classroom':item['place']
+	                    };
+                            keBiao[item['class'][k]] = n;
+                        }
+                    }
+                }
+            }
         }
     }
+
+
+    this.kebiaoDebug = function() {
+        console.log(keBiao);
+    };
 
     // 返回第n节课的课程代号
     this.getCourseId = function(nth) {
@@ -287,7 +290,7 @@ Date.prototype.getIsoWeek = function () {
     var day = newYear.getDay() - dowOffset; //the day of week the year begins on
     day = (day >= 0 ? day : day + 7);
     var daynum = Math.floor((this.getTime() - newYear.getTime() -
-			     (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
+	                     (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
     var weeknum;
 
     // 若是周日，返回昨天的weeknum
@@ -311,7 +314,6 @@ Date.prototype.getIsoWeek = function () {
 
     return weeknum;
 };
-
 
 
 var keBiaoData;

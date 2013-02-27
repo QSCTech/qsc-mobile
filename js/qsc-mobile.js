@@ -17,6 +17,10 @@ function myGetJsonp(name, showMsg, callback, getArray) {
 
     var myJsonpUrl = siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?';
 
+    if(name == 'kebiao') {
+        myJsonpUrl = 'http://m.myqsc.com/stable/jw/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?';
+    }
+
     $.jsonP({url:myJsonpUrl,
              success:function(data){
                  if(typeof(data['code']) != "undefined") {
@@ -396,7 +400,7 @@ $(document).ready(function() {
 
     // 强制更新数据
     var now = new Date();
-    var updateDate = new Date('2012-12-18');
+    var updateDate = new Date('2013-02-27');
     var lastUpdate = localStorage.getItem('update') || 0;
     if(isLogin && navigator.onLine && lastUpdate < updateDate.getTime()) {
         myGetJsonp('kebiao', true, function(data) {
