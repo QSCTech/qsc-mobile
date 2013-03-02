@@ -100,12 +100,12 @@ $(document).ready(function(){
         $('#share_homework').attr('class', shareHomework);
     });
 
-    //    console.log('new');
     $('#clear_homework_log').bind('click', function() {
-        console.log('cl');
-        $('#zuoye_list').html('');
-        var zuoYeData = [];
-        localStorage.setItem(stuid+'zuoYeKeep', zuoYeData);
+        if(confirm('确认清空作业?') == true) {
+            $('#zuoye_list').html('');
+            var zuoYeData = [];
+            localStorage.setItem(stuid+'zuoYeKeep', zuoYeData);
+        }
     });
 
     $('#add_homework_submit').bind("click", function() {
