@@ -1,61 +1,133 @@
-var siteUrl = 'http://m.myqsc.com/php-dev/index.php';
-//var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
+// Qsc-Mobile -- the HTML5 version
+// Copyright (C) 2013 QSC Tech
 
-var version = 'QSC Mobile Build 20121219.1X';
+// Init
+
+var debugOn = false;
+var branch = "stable"; // dev or stable
+var version = "The QSC Mobile HTML5 Nightly Build Version 3 / 20130304";
+
+// load config
+
+var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
+var config_list = ['update_automatically',
+                   'evaluate_teacher_automatically',
+                   'gaikuang_as_default',
+                   'debug_on',
+                   'switch_to_dev_branch'];
+for(var i = 0; i < config_list.length; i++) {
+    var item = config_list[i];
+    if(typeof(config[item]) == "undefined")
+      config[item] = false; // 默认关闭特性
+}
+
+if(config['switch_to_dev_branch']) {
+    branch = "dev";
+}
+if(config['debug_on']) {
+    debugOn = true;
+}
+
+// set url
+
+var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
+if(branch == "dev") {
+    siteUrl = 'http://m.myqsc.com/php-dev/index.php';
+}
+
+// get user data
+
+var stuid = localStorage.getItem('stuid',false) ? localStorage.getItem('stuid') : false;
+var pwd = localStorage.getItem('pwd',false) ? localStorage.getItem('pwd') : false;
+var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
+
+// turn on debug
+
+var _log = console ? console.log : function(){};
+console.log = function(log) {
+    if(!debugOn) return;
+    _log.call( console, log );
+    var html = $('#debug').html();
+    $('#debug').html(log+"<br>"+html);
+};
+console.error = function(e) {
+    console.log(e);
+};
+console.warn = function(w) {
+    console.log(w);
+};
+
+if(debugOn) {
+    $('#debug').show();
+    console.log(version);
+}
+
+// Common Functions
 
 function myGetJsonp(name, showMsg, callback, getArray) {
-    if(!navigator.onLine) {
-        myShowMsg('好的嘛，这是已经离线的节奏……');
-        return;
-    }
+    try {
+        if(!navigator.onLine) {
+            myShowMsg('好的嘛，这是已经离线的节奏……');
+            return;
+        }
 
-    if(showMsg)
-      $('#loading').show();
+        if(showMsg)
+          $('#loading').show();
 
-    if(!pwd)
-      pwd = '';
+        if(!pwd)
+          pwd = '';
 
-    var myJsonpUrl = siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&token='+token+'&callback=?';
+        var myJsonpUrl = siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&callback=?';
 
-    if(name == 'kebiao') {
-        myJsonpUrl = 'http://m.myqsc.com/stable/jw/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?';
-    }
+        if(name == 'kebiao') {
+            myJsonpUrl = 'http://m.myqsc.com/stable/jw/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?';
+        }
 
-    $.jsonP({url:myJsonpUrl,
-             success:function(data){
-                 if(typeof(data['code']) != "undefined") {
-                     if(data['code'] == 0) {
-                         // 远端返回错误
-                         myShowMsg(data['msg']);
-                         return;
+        $.jsonP({url:myJsonpUrl,
+                 success:function(data){
+
+                     console.log('getJson:'+JSON.stringify(data));
+
+                     if(typeof(data['code']) != "undefined") {
+                         if(data['code'] == 0) {
+                             // 远端返回错误
+                             myShowMsg(data['msg']);
+                             return;
+                         }
+                         if(data['code'] == 1) {
+                             console.log('getJson: code = 1');
+
+                             // 远端返回消息
+                             myShowMsg(data['msg']);
+
+                             // 再次访问远端来获取内容（递归）
+                             myGetJsonp(name, callback);
+                         } else {
+                             // 未知情况
+                             console.log('getJson:未知情况');
+                             return;
+                         }
                      }
-                     if(data['code'] == 1) {
-                         // 远端返回消息
-                         myShowMsg(data['msg']);
 
-                         // 再次访问远端来获取内容（递归）
-                         myGetJsonp(name, callback);
-                     } else {
-                         // 未知情况
-                         return;
-                     }
+                     if(showMsg)
+                       $('#loading').hide(100);
+
+                     // 回调函数
+                     if(typeof(callback)=='function'){
+                         callback(data);
+                     };
+                 },
+                 error:function(){
+                     if(!showMsg) return;
+
+                     $('#loading').hide(100);
+                     myShowMsg('好的嘛，断网了吧？');
                  }
+                });
 
-                 if(showMsg)
-                   $('#loading').hide(100);
-
-                 // 回调函数
-                 if(typeof(callback)=='function'){
-                     callback(data);
-                 };
-             },
-             error:function(){
-                 if(!showMsg) return;
-
-                 $('#loading').hide(100);
-                 myShowMsg('好的嘛，断网了吧？');
-             }
-            });
+    } catch(e) {
+        console.log("getJson:"+e);
+    }
 }
 function myShowMsg(msg, callback) {
     $('#loading').hide();// 既然显示消息就不必显示loading了
@@ -146,11 +218,11 @@ function pleaseLoginIfNotLogin(callback) {
                     token = data['token'];
 
                     localStorage.setItem('stuid', stuid);
-                    localStorage.setItem('pwd', pwd);
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('isLogin', true);
-                    isLogin = true;
-                    $('#login').hide(200);
+                localStorage.setItem('pwd', pwd);
+                localStorage.setItem('token', token);
+                localStorage.setItem('isLogin', true);
+                isLogin = true;
+                $('#login').hide(200);
 
                     $('#menu .user').attr('class', 'box user logout');
                     $('#menu .user').html('注销');
@@ -192,27 +264,6 @@ $.extend({
 });
 
 
-
-// 读取用户信息
-var stuid = localStorage.getItem('stuid',false) ? localStorage.getItem('stuid') : false;
-var pwd = localStorage.getItem('pwd',false) ? localStorage.getItem('pwd') : false;
-var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
-var token = localStorage.getItem('token',false) ? localStorage.getItem('token') : false;
-
-var config;
-var config_list;
-// 初始化用户配置
-// 默认关闭自动给老师好评
-function loadConfig() {
-    config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
-    config_list = ['update_automatically', 'evaluate_teacher_automatically', 'gaikuang_as_default'];
-    for(var i = 0; i < config_list.length; i++) {
-        var item = config_list[i];
-        if(typeof(config[item]) == "undefined")
-          config[item] = false; // 默认关闭特性
-    }
-}
-loadConfig();
 
 // 存储当前处于哪个界面，方便返回时选取
 var currentLayout = '#menu';
@@ -256,10 +307,10 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.backward').bind("click", function(){
-        history.back();
-        return false;
-    });
+            $('.backward').bind("click", function(){
+                history.back();
+                return false;
+            });
 
     $('#menu .kebiao').bind("click", function(){
 

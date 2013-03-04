@@ -2,7 +2,7 @@ var zuoYeData = localStorage.getItem(stuid+'zuoYeKeep') ? JSON.parse(localStorag
 
 var timestamp = localStorage.getItem(stuid+'zuoYeLastPullKeep') ? localStorage.getItem(stuid+'zuoYeLastPullKeep') : 0;
 
-$.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&last_timestamp='+timestamp+'&token='+token+'&callback=?',
+$.jsonP({url:siteUrl+'/jsonp/zuoye'+'?stuid='+stuid+'&pwd='+pwd+'&last_timestamp='+timestamp+'&callback=?',
          success:function(data) {
              if(data) {
                  var k;
