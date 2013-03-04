@@ -9,9 +9,9 @@
 // please keep this header.
 //
 // Thanks!
-// 
+//
 // Dave Shapiro
-// dave@ohdave.com 
+// dave@ohdave.com
 
 function RSAKeyPair(encryptionExponent, decryptionExponent, modulus)
 {
