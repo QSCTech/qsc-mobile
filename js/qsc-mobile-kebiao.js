@@ -363,8 +363,9 @@ function writeCountDownToDom(dom){
     var now = new Date();
     var keBiao = new KeBiao(keBiaoData, now);
 
-    if(!keBiao.haveClass())
-      return;
+    if(!keBiao.haveClass()) {
+        return;
+    }
 
     var classNthNow = now.getClassNth();
 
@@ -388,7 +389,7 @@ function writeCountDownToDom(dom){
     }
 
 
-    if(delta) {
+    if(delta > 0) {
 	var hours = formatNumberLength(Math.floor(delta/3600));
 	var minutes = formatNumberLength(Math.floor((delta-hours*3600)/60), 2);
 	var seconds = formatNumberLength(Math.floor(delta%60), 2);
@@ -416,6 +417,8 @@ function writeCountDownToDom(dom){
         html += '</div>';
 
         $(dom).html(html);
+    } else {
+        $(dom).html('');
     }
 }
 
@@ -443,6 +446,7 @@ function writeClassToDom(dom, date){
         if(keBiao.getCourseName(theClass)) {
             htmlString += '<div class="class_name">'+keBiao.getCourseName(theClass)+'</div>';
             htmlString += '<div class="class_nth_all">'+keBiao.getClassNthAll(theClass).join(',')+'</div>';
+            htmlString += '<div class="class_teacher_name">'+keBiao.getTeacherName(theClass)+'</div>';
             htmlString += '<div class="class_time">'+keBiao.getCourseTime(theClass).join('-')+'</div>';
             htmlString += '<div class="class_classroom">'+keBiao.getClassroom(theClass)+'</div>';
 
