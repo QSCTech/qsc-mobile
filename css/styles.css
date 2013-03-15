@@ -66,7 +66,6 @@ input,textarea,select{outline:none;}
 #xiaoche #bus_info .bus_info span{margin-right:1.5625vw;}
 #xiaoche #bus_info .bus_info .begin{float:left;}
 #xiaoche #bus_info .bus_info .id{color:#777;font-size:4.375vw;height:8.75vw;max-width:8.75vw;overflow:hidden;display:block;}
-#shida{width:84.375vw;}#shida .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/Top10-cc98-blue.png) no-repeat left bottom;}
 .clear{clear:both;}
 hr{border:1px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}

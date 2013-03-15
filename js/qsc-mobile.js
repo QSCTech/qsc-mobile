@@ -5,7 +5,7 @@
 
 var debugOn = false;
 var branch = "stable"; // dev or stable
-var version = "The QSC Mobile HTML5 Nightly Build Version 3 / 20130304";
+var version = "The QSC Mobile HTML5 Nightly Build Version 5 / 20130315";
 
 // load config
 

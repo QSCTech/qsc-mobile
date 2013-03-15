@@ -1,11 +1,12 @@
 CACHE MANIFEST
 
-# version 12
+# version 13
 NETWORK:
 http://m.myqsc.com/php-dev/
 http://m.myqsc.com/php-stable/
 http://m.myqsc.com/stable/
 http://m.myqsc.com/dev/
+css/styles.css
 
 CACHE:
 
@@ -49,7 +50,7 @@ img/update-blue.png
 img/update.png
 
 #CSS
-css/styles.css
+#css/styles.css
 
 #scripts
 js/Barrett.js
