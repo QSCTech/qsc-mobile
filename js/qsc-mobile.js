@@ -10,9 +10,7 @@ var version = "The QSC Mobile HTML5 Nightly Build Version 5 / 20130315";
 // load config
 
 var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
-var config_list = ['update_automatically',
-                   'evaluate_teacher_automatically',
-                   'gaikuang_as_default',
+var config_list = ['gaikuang_as_default',
                    'debug_on',
                    'switch_to_dev_branch'];
 for(var i = 0; i < config_list.length; i++) {
@@ -60,6 +58,11 @@ console.warn = function(w) {
 if(debugOn) {
     $('#debug').show();
     console.log(version);
+}
+
+// hide dev parts
+if(branch != 'dev') {
+    $('.dev').remove();
 }
 
 // Common Functions
@@ -446,12 +449,7 @@ $(document).ready(function() {
         }
     });
 
-    // 自动更新数据
-    if(config.update_automatically) {
-        getAllJsonp();
-    }
-
-    // 强制更新数据
+    // force to update
     var now = new Date();
     var updateDate = new Date('2013-02-27');
     var lastUpdate = localStorage.getItem('update') || 0;
