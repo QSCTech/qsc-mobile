@@ -6,24 +6,22 @@
 @color1: #DC143C;
 @color2: #9ACD32;
 
-#loading, #msg {
-    width:80vw;
-    height:30vh;
+#msg {
     position:fixed;
-    left:50%;
-    top:50%;
-    margin-left:-40vw;
-    margin-top:-15vh;
-    border-radius:3vw;
-    background:rgba(0, 0, 0, .8) url('../img/button.png') no-repeat;
-    box-shadow:0 0 15px #333;
-    background-position:65vw 2vw;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+    border-top: 5px solid #ddd;
+    border-bottom: 5px solid #ddd;
+    color: #555;
+    background:#efefef url('../img/button.png') no-repeat;
+    background-position:right 2vw;
     background-size:11vw 11vw;
     z-index:1000;
     font-size:5vw;
     line-height:32vh;
-    color:#ddd;
-    font-weight:bold;
     text-align:center;
     display:none;
     cursor:pointer;
@@ -522,18 +520,6 @@ hr.blue {
 	#kebiao .header;
 	background:url(../img/homework-blue.png) no-repeat left bottom;
     }
-    // #add_homework_button {
-    // 	padding: 2.1875vw 0;
-    // 	background:@theme;
-    // 	text-align:center;
-    // 	height:16vw;
-    // 	line-height:16vw;
-    // 	font-size:6vw;
-    // 	color:#fff;
-    // 	border-radius:1.25vw;
-    // 	cursor:pointer;
-    // 	width:100%;
-    // }
     #add_homework {
 	padding-top:1.5vh;
 	textarea {
@@ -642,19 +628,6 @@ hr.blue {
 	    color:@color1;
 	    &::after {
 		content:"TODO";
-	    }
-	}
-    }
-}
-#about {
-    .header{
-	#kebiao .header;
-	background:url(../img/homework-blue.png) no-repeat left bottom;
-    }
-    .content {
-	header {
-	    h2 {
-		font-size:5vw;
 	    }
 	}
     }

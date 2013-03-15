@@ -6,7 +6,7 @@ a{text-decoration:none;}a:focus,a:hover,a:active{outline:none;}
 pre{white-space:pre-wrap;word-wrap:break-word;}
 input,textarea,select{outline:none;}
 *{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
-#loading,#msg{width:80vw;height:30vh;position:fixed;left:50%;top:50%;margin-left:-40vw;margin-top:-15vh;border-radius:3vw;background:rgba(0, 0, 0, 0.8) url('../img/button.png') no-repeat;box-shadow:0 0 15px #333;background-position:65vw 2vw;background-size:11vw 11vw;z-index:1000;font-size:5vw;line-height:32vh;color:#ddd;font-weight:bold;text-align:center;display:none;cursor:pointer;}
+#msg{position:fixed;left:0;top:0;width:100%;height:100%;background:#efefef;border-top:5px solid #ddd;border-bottom:5px solid #ddd;color:#555;background:#efefef url('../img/button.png') no-repeat;background-position:right 2vw;background-size:11vw 11vw;z-index:1000;font-size:5vw;line-height:32vh;text-align:center;display:none;cursor:pointer;}
 #wrap{width:85vw;margin:0 auto;overflow:hidden;padding:7.5vw;}
 #menu{margin:0 auto;width:85vw;float:left;}#menu .box{display:block;width:40.625vw;height:40.625vw;float:left;padding:0;margin:0 0.78125vw 1.5625vw 0.78125vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:69.53125vw;font-size:5.9375vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
 #menu .gaikuang{background-image:url(../img/general.png);}
@@ -93,6 +93,4 @@ hr.blue{border-color:#219eee;}
 #zuoye #zuoye_list li::after{display:block;content:'';float:right;height:5vw;margin-top:-7.5vw;}
 #zuoye #zuoye_list li.done{color:#555;}#zuoye #zuoye_list li.done::after{content:"DONE";}
 #zuoye #zuoye_list li.todo{color:#dc143c;}#zuoye #zuoye_list li.todo::after{content:"TODO";}
-#about .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
-#about .content header h2{font-size:5vw;}
 #debug{overflow-y:scroll;background:#000;position:fixed;bottom:0;left:0;height:4vh;font-size:2vh;line-height:4vh;color:#fff;width:100%;display:none;}#debug:hover{height:80vh;}

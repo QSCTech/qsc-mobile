@@ -379,8 +379,10 @@ $(document).ready(function() {
     });
 
     $('#menu .update').bind("click", function(){
-        myShowMsg('更新中……');
-        getAllJsonp(true);
+        getAllJsonp(false, function() {
+            $('#menu .update').text('更新完毕');
+        });
+        $(this).text('更新中……');
         return false;
     });
 
