@@ -283,6 +283,7 @@ function pleaseLoginIfNotLogin(callback) {
     }
 }
 
+
 //储存全局script的src元素，不包括JSONP
 var globalScripts = {};
 
@@ -337,14 +338,6 @@ $(document).ready(function() {
         }
     });
 
-
-
-    $('.logo').bind("click", function(){
-        $(this).parent().hide();
-        $('#menu').show();
-        return false;
-    });
-
     $('.backward').bind("click", function(){
         history.back();
         return false;
@@ -369,25 +362,9 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .about').bind("click", function() {
-        window.location.hash='about';
-        return false;
-    });
-
     $('#menu .xiaoli').bind("click", function() {
         $.include(['qsc-mobile-xiaoli.js']);
         window.location.hash='xiaoli';
-        return false;
-    });
-
-    $('#menu .shida').bind("click", function(){
-        window.location.hash='shida';
-        return false;
-    });
-
-    $('#menu .xiaohua').bind("click", function(){
-        $.include(['qsc-mobile-xiaohua.js']);
-        window.location.hash='xiaohua';
         return false;
     });
 
@@ -452,13 +429,11 @@ $(document).ready(function() {
             $('#menu .user').attr('class', 'box user login');
             $('#menu .user').html('登录');
         }
-
-        loadConfig();
     });
 
 
     $('#msg, #loading').bind("click", function(){
-        $(this).hide(800);
+        $(this).hide();
         return false;
     });
 
