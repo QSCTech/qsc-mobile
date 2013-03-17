@@ -35,13 +35,59 @@ if(branch != 'dev') {
 }
 
 // Common Functions
-
 /**
  * @author Zeno Zeng
- * @returns {object}
+ * @desc update the Data and set it in localStroage
+ * @example getData('jw/kebiao');
+ */
+function updateData(item, success, error) {
+    if(!navigator.onLine) {
+        if(typeof(error) == 'function') {
+            error('好的嘛，这是已经离线的节奏……');
+        }
+        return;
+    }
+    var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
+    var jsonUrl = baseUrl+item;
+    error = typeof(error) == 'function' ? error : function(msg) {return;};
+    success = typeof(success) == 'function' ? success : function(msg) {return;};
+    $.jsonP({url:jsonUrl,
+             success:function(data){
+                 if(typeof(data['code']) != "undefined") {
+                     if(data['code'] == 0) {
+                         // 远端返回错误
+                         error(data['msg']);
+                         return;
+                     }
+                     if(data['code'] == 1) {
+                         console.log('getJson: code = 1');
+                         // 远端返回消息
+                         error(data['msg']);
+                         // 再次访问远端来获取内容（递归）
+                         updateData(item, success, error);
+                     } else {
+                         // 未知情况
+                         console.log('getJson:未知情况');
+                         return;
+                     }
+                 } else {
+                     localStorage.setItem(item, JSON.stringify(data));
+                     success(data);
+                 }
+             },
+             error:function() {
+                 error('好的嘛，好像有什么错误？');
+             }
+            });
+
+}
+/**
+ * @author Zeno Zeng
+ * @example getData('jw/kebiao');
  */
 function getData(item, success, error) {
-    var stuid, pwd;
+    var stuid, pwd, data;
+
     if(localStorage.getItem('tempStuid')) {
         stuid = localStorage.getItem('tempStuid');
         pwd = localStorage.getItem('tempPwd');
@@ -49,12 +95,21 @@ function getData(item, success, error) {
         stuid = localStorage.getItem('stuid');
         pwd = localStorage.getItem('pwd');
     }
-    // set url
-    var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
+    // try get from localStorage and update it, if not exists, wait for downloading complete
+    data = localStorage.getItem('item');
+    if(data) {
+        updateData(item);
+        if(typeof(success) == 'function') {
+            success(data);
+        }
+    } else {
+        updateData(item, function(data) {
 
-    // get from localStorage first
-    // if exist, return localStorage and check update with html5 Worker (if the config is on)
-    // else, waiting and download the data
+            if(typeof(success) == 'function') {
+                success(data);
+            }
+        }, error);
+    }
 }
 
 function showMsg(msg, callback) {}
@@ -123,17 +178,6 @@ function myGetJsonp(name, showMsg, callback, getArray) {
     } catch(e) {
         console.log("getJson:"+e);
     }
-}
-function myShowMsg(msg, callback) {
-    $('#loading').hide();// 既然显示消息就不必显示loading了
-
-    $('#msg').show();
-    $('#msg .content').html(msg);
-
-    // 回调函数
-    if(typeof(callback)=='function'){
-        callback(msg);
-    };
 }
 function getAllJsonp(showDone, callback) {
     var request_count = 2;
@@ -242,7 +286,7 @@ function pleaseLoginIfNotLogin(callback) {
 //储存全局script的src元素，不包括JSONP
 var globalScripts = {};
 
-    //自定义jQuery.include方法，实现include once功能
+//自定义jQuery.include方法，实现include once功能
 //$.inlcude(['file1', 'file2', ...]);
 $.extend({
     include: function(files) {
@@ -371,14 +415,6 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#menu .update').bind("click", function(){
-        getAllJsonp(false, function() {
-            $('#menu .update').text('更新完毕');
-        });
-        $(this).text('更新中……');
-        return false;
-    });
-
     $('#menu .zuoye').bind("click", function(){
         pleaseLoginIfNotLogin(function(){
             $.include(['qsc-mobile-zuoye.js', 'base64.js']);
@@ -386,8 +422,6 @@ $(document).ready(function() {
         });
         return false;
     });
-
-
 
     $('.user').bind("click", function(){
         if(isLogin) {
