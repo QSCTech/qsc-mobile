@@ -1,17 +1,17 @@
 // Qsc-Mobile -- the HTML5 version
 // Copyright (C) 2013 QSC Tech
+// todo: use js-doc
 
 // Init
 
 var debugOn = false;
 var branch = "stable"; // dev or stable
-var version = "The QSC Mobile HTML5 Nightly Build Version 5 / 20130315";
+var version = "The QSC Mobile HTML5 Nightly Build Version 6 / 130317";
 
 // load config
 
 var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
 var config_list = ['gaikuang_as_default',
-                   'debug_on',
                    'switch_to_dev_branch'];
 for(var i = 0; i < config_list.length; i++) {
     var item = config_list[i];
@@ -22,16 +22,6 @@ for(var i = 0; i < config_list.length; i++) {
 if(config['switch_to_dev_branch']) {
     branch = "dev";
 }
-if(config['debug_on']) {
-    debugOn = true;
-}
-
-// set url
-
-var siteUrl = 'http://m.myqsc.com/php-stable/index.php';
-if(branch == "dev") {
-    siteUrl = 'http://m.myqsc.com/php-dev/index.php';
-}
 
 // get user data
 
@@ -39,33 +29,35 @@ var stuid = localStorage.getItem('stuid',false) ? localStorage.getItem('stuid') 
 var pwd = localStorage.getItem('pwd',false) ? localStorage.getItem('pwd') : false;
 var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
 
-// turn on debug
-
-var _log = console ? console.log : function(){};
-console.log = function(log) {
-    if(!debugOn) return;
-    _log.call( console, log );
-    var html = $('#debug').html();
-    $('#debug').html(log+"<br>"+html);
-};
-console.error = function(e) {
-    console.log(e);
-};
-console.warn = function(w) {
-    console.log(w);
-};
-
-if(debugOn) {
-    $('#debug').show();
-    console.log(version);
-}
-
 // hide dev parts
 if(branch != 'dev') {
     $('.dev').remove();
 }
 
 // Common Functions
+
+/**
+ * @author Zeno Zeng
+ * @returns {object}
+ */
+function getData(item, success, error) {
+    var stuid, pwd;
+    if(localStorage.getItem('tempStuid')) {
+        stuid = localStorage.getItem('tempStuid');
+        pwd = localStorage.getItem('tempPwd');
+    } else {
+        stuid = localStorage.getItem('stuid');
+        pwd = localStorage.getItem('pwd');
+    }
+    // set url
+    var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
+
+    // get from localStorage first
+    // if exist, return localStorage and check update with html5 Worker (if the config is on)
+    // else, waiting and download the data
+}
+
+function showMsg(msg, callback) {}
 
 function myGetJsonp(name, showMsg, callback, getArray) {
     try {
@@ -221,11 +213,11 @@ function pleaseLoginIfNotLogin(callback) {
                     token = data['token'];
 
                     localStorage.setItem('stuid', stuid);
-                localStorage.setItem('pwd', pwd);
-                localStorage.setItem('token', token);
-                localStorage.setItem('isLogin', true);
-                isLogin = true;
-                $('#login').hide(200);
+                    localStorage.setItem('pwd', pwd);
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('isLogin', true);
+                    isLogin = true;
+                    $('#login').hide(200);
 
                     $('#menu .user').attr('class', 'box user logout');
                     $('#menu .user').html('注销');
@@ -250,7 +242,7 @@ function pleaseLoginIfNotLogin(callback) {
 //储存全局script的src元素，不包括JSONP
 var globalScripts = {};
 
-//自定义jQuery.include方法，实现include once功能
+    //自定义jQuery.include方法，实现include once功能
 //$.inlcude(['file1', 'file2', ...]);
 $.extend({
     include: function(files) {
@@ -275,7 +267,6 @@ window.location.hash = '';
 
 $(document).ready(function() {
 
-    // 监听hashchange，处理后退、前进（不支持老旧浏览器）
     // 除登陆外所有跳转均需通过修改 window.location.hash 来实现
     $(window).on("hashchange", function(){
         if (window.location.hash == '') {
@@ -310,13 +301,12 @@ $(document).ready(function() {
         return false;
     });
 
-            $('.backward').bind("click", function(){
-                history.back();
-                return false;
-            });
+    $('.backward').bind("click", function(){
+        history.back();
+        return false;
+    });
 
     $('#menu .kebiao').bind("click", function(){
-
         pleaseLoginIfNotLogin(function() {
             $.include(['qsc-mobile-kebiao.js']);
             window.location.hash='kebiao';
@@ -398,6 +388,7 @@ $(document).ready(function() {
     });
 
 
+
     $('.user').bind("click", function(){
         if(isLogin) {
             for (var i=0; i<localStorage.length; i++) {
@@ -448,21 +439,6 @@ $(document).ready(function() {
             $(this).parent().addClass('show');
         }
     });
-
-    // force to update
-    var now = new Date();
-    var updateDate = new Date('2013-02-27');
-    var lastUpdate = localStorage.getItem('update') || 0;
-    if(isLogin && navigator.onLine && lastUpdate < updateDate.getTime()) {
-        myGetJsonp('kebiao', true, function(data) {
-            if(data) {
-                localStorage.setItem('keBiao', JSON.stringify(data));
-                localStorage.setItem('update', now.getTime());
-                window.location.reload();
-            }
-        });
-    }
-
 
     if(isLogin) {
         $('#menu .user').attr('class', 'box user logout');
