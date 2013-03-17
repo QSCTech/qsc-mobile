@@ -16,31 +16,24 @@ var config_list = ['gaikuang_as_default',
 for(var i = 0; i < config_list.length; i++) {
     var item = config_list[i];
     if(typeof(config[item]) == "undefined")
-      config[item] = false; // 默认关闭特性
+	config[item] = false; // 默认关闭特性
 }
 
 if(config['switch_to_dev_branch']) {
     branch = "dev";
 }
 
-// get user data
-
-var stuid = localStorage.getItem('stuid',false) ? localStorage.getItem('stuid') : false;
-var pwd = localStorage.getItem('pwd',false) ? localStorage.getItem('pwd') : false;
-var isLogin = localStorage.getItem('isLogin',false) ? localStorage.getItem('isLogin') : false;
-
 // hide dev parts
 if(branch != 'dev') {
     $('.dev').remove();
 }
 
-// Common Functions
 /**
  * @author Zeno Zeng
  * @desc update the Data and set it in localStroage
  * @example getData('jw/kebiao');
  */
-function updateData(item, success, error) {
+function updateData(item, stuid, pwd, success, error) {
     if(!navigator.onLine) {
         if(typeof(error) == 'function') {
             error('好的嘛，这是已经离线的节奏……');
@@ -48,7 +41,7 @@ function updateData(item, success, error) {
         return;
     }
     var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
-    var jsonUrl = baseUrl+item;
+    var jsonUrl = baseUrl+item+'?stuid='+stuid+'&pwd='+pwd+'&callback=?';
     error = typeof(error) == 'function' ? error : function(msg) {return;};
     success = typeof(success) == 'function' ? success : function(msg) {return;};
     $.jsonP({url:jsonUrl,
@@ -97,14 +90,13 @@ function getData(item, success, error) {
     }
     // try get from localStorage and update it, if not exists, wait for downloading complete
     data = localStorage.getItem('item');
-    if(data) {
-        updateData(item);
+    if(data && !localStorage.getItem('tempStuid')) {
+        updateData(item, stuid, pwd);
         if(typeof(success) == 'function') {
             success(data);
         }
     } else {
-        updateData(item, function(data) {
-
+        updateData(item, stuid, pwd, function(data) {
             if(typeof(success) == 'function') {
                 success(data);
             }
@@ -112,203 +104,63 @@ function getData(item, success, error) {
     }
 }
 
-function showMsg(msg, callback) {}
-
-function myGetJsonp(name, showMsg, callback, getArray) {
-    try {
-        if(!navigator.onLine) {
-            myShowMsg('好的嘛，这是已经离线的节奏……');
-            return;
-        }
-
-        if(showMsg)
-          $('#loading').show();
-
-        if(!pwd)
-          pwd = '';
-
-        var myJsonpUrl = siteUrl+'/jsonp/'+name+'?stuid='+stuid+'&pwd='+pwd+'&callback=?';
-
-        if(name == 'kebiao') {
-            myJsonpUrl = 'http://m.myqsc.com/stable/jw/kebiao?stuid='+stuid+'&pwd='+pwd+'&callback=?';
-        }
-
-        $.jsonP({url:myJsonpUrl,
-                 success:function(data){
-
-                     console.log('getJson:'+JSON.stringify(data));
-
-                     if(typeof(data['code']) != "undefined") {
-                         if(data['code'] == 0) {
-                             // 远端返回错误
-                             myShowMsg(data['msg']);
-                             return;
-                         }
-                         if(data['code'] == 1) {
-                             console.log('getJson: code = 1');
-
-                             // 远端返回消息
-                             myShowMsg(data['msg']);
-
-                             // 再次访问远端来获取内容（递归）
-                             myGetJsonp(name, callback);
-                         } else {
-                             // 未知情况
-                             console.log('getJson:未知情况');
-                             return;
-                         }
-                     }
-
-                     if(showMsg)
-                       $('#loading').hide(100);
-
-                     // 回调函数
-                     if(typeof(callback)=='function'){
-                         callback(data);
-                     };
-                 },
-                 error:function(){
-                     if(!showMsg) return;
-
-                     $('#loading').hide(100);
-                     myShowMsg('好的嘛，断网了吧？');
-                 }
-                });
-
-    } catch(e) {
-        console.log("getJson:"+e);
+/**
+ * @author Zeno Zeng
+ * @returns (bool)
+ */
+function isLogin() {
+    if(localStorage.getItem('stuid') && localStorage.getItem('stuid') != "false") {
+	return true;
+    } else {
+	return false;
     }
 }
-function getAllJsonp(showDone, callback) {
-    var request_count = 2;
-
-    var request_done_check = setInterval(function(){
-        if(request_count !== 0)
-	  return;
-
-        if(showDone)
-          myShowMsg('好的嘛，请求完毕');
-        clearInterval(request_done_check);
-
-        if(typeof(callback)=='function'){
-            callback();
-        };
-    }, 10);
-
-    myGetJsonp('xiaoche', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('xiaoChe', JSON.stringify(data));
-        request_count--;
-    });
-    myGetJsonp('calendar', false, function(data) {
-        if(!data) return;
-        localStorage.setItem('xiaoLi', JSON.stringify(data));
-        request_count--;
-    });
-
-    // 下面的需要登录
-    if(isLogin) {
-        request_count += 4;
-
-        myGetJsonp('kebiao', false, function(data) {
-            if(!data) return;
-            localStorage.setItem('keBiao', JSON.stringify(data));
-            request_count--;
-        });
-        myGetJsonp('notice', false, function(data) {
-            if(!data) return;
-            localStorage.setItem('notice', JSON.stringify(data));
-            request_count--;
-        });
-        myGetJsonp('chengji', false, function(data) {
-            if(!data) return;
-            localStorage.setItem('chengJi', JSON.stringify(data));
-            request_count--;
-        });
-        myGetJsonp('kaoshi', false, function(data) {
-            if(!data) return;
-            localStorage.setItem('kaoShi', JSON.stringify(data));
-            request_count--;
-        });
-    }
+function showMsg(msg, callback) {
+    $('#msg').show();
+    $('#msg').html(msg);
 }
 function pleaseLoginIfNotLogin(callback) {
-    if(isLogin) {
+    if(isLogin()) {
         if(typeof(callback) == 'function') {
             callback();
         }
     } else {
         $(currentLayout).hide();
         $('#login').show();
-        $.include(['BigInt.js','Barrett.js','RSA.js']);
 
-        $('#login_form').bind("submit", function(){
+        $('#login_form').bind("submit", function() {
             stuid = $("#stuid").val();
+	    pwd = $("#pwd").val();
 
-            // new rsa key
-            var rsa_n = "B31C73F556614A46E1405B116264A60039ACF9A33F45C121C9ED3A9CDF743566D82FFE73623941C629BFAA9EDFD8B4B5944954FABAB2795D0B09787990562C17400EEB12E5AFCC7D4707B589708F09EE878742113D3CBDD41A8BA5455FB558DBD2A5BEADF739389A953687FD4E1113E68DC48C97346EF7930ECCF7743E2FFB9D";
-            setMaxDigits(131); //131 => n的十六进制位数/2+3
-            var key      = new RSAKeyPair("10001", '', rsa_n); //10001 => e的十六进制
-            pwd = $("#pwd").val();
-            pwd = encryptedString(key, pwd); //不支持汉字
+	    getData('jw/validate',
+		    function(data){
+			if(data['stuid'] != '') {
+			    localStorage.setItem('stuid', stuid);
+			    localStorage.setItem('pwd', pwd);
+			    $('#login').hide();
 
-            myGetJsonp('validate', true, function(data) {
-                if(data['stuid'] != '') {
-                    token = data['token'];
+			    $('#menu .user').attr('class', 'box user logout');
+			    $('#menu .user').html('注销');
 
-                    localStorage.setItem('stuid', stuid);
-                    localStorage.setItem('pwd', pwd);
-                    localStorage.setItem('token', token);
-                    localStorage.setItem('isLogin', true);
-                    isLogin = true;
-                    $('#login').hide(200);
-
-                    $('#menu .user').attr('class', 'box user logout');
-                    $('#menu .user').html('注销');
-
-                    // 回调函数
-                    if(typeof(callback) == 'function') {
-                        callback();
-                    }
-
-                } else {
-                    localStorage.setItem('isLogin', false);
-                    isLogin = false;
-                    myShowMsg('登录失败');
-                }
-            });
-
-            return false;
+			    // 回调函数
+			    if(typeof(callback) == 'function') {
+				callback();
+			    }
+			} else {
+			    showMsg('登录失败');
+			}
+		    },
+		    function(data) {
+			showMsg(data);
+		    });
+	    return false;
         });
     }
 }
 
 
-//储存全局script的src元素，不包括JSONP
-var globalScripts = {};
-
-//自定义jQuery.include方法，实现include once功能
-//$.inlcude(['file1', 'file2', ...]);
-$.extend({
-    include: function(files) {
-        for (var i=0; i<files.length; i++) {
-            var file = files[i];
-            if ( typeof(globalScripts["js/" + file]) == "undefined" ) {
-                var scriptNode = document.createElement("script");
-                globalScripts["js/" + file] = true;
-                scriptNode.src = "js/" + file;
-                document.head.appendChild(scriptNode);
-            }
-        }
-    }
-});
-
-
-
-// 存储当前处于哪个界面，方便返回时选取
-var currentLayout = '#menu';
-// 清除hash，进入默认界面
-window.location.hash = '';
+var currentLayout = '#menu';// 存储当前处于哪个界面，方便返回时选取
+window.location.hash = '';// 清除hash，进入默认界面
 
 $(document).ready(function() {
 
@@ -330,14 +182,6 @@ $(document).ready(function() {
         }
     });
 
-    // 加入已有script
-    $("script").each(function (index, element) {
-        var src = $(element).attr("src");
-        if ( src.indexOf("js/") == 0 ) {
-            globalScripts[src] = true;
-        }
-    });
-
     $('.backward').bind("click", function(){
         history.back();
         return false;
@@ -345,7 +189,9 @@ $(document).ready(function() {
 
     $('#menu .kebiao').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $.include(['qsc-mobile-kebiao.js']);
+            getData('jw/kebiao', function(data) {
+                loadKebiao(data);
+            });
             window.location.hash='kebiao';
         });
     });
@@ -370,10 +216,11 @@ $(document).ready(function() {
 
     $('#menu .gaikuang').bind("click", function(){
         pleaseLoginIfNotLogin(function() {
-            $.include(['qsc-mobile-kebiao.js']);
+            getData('jw/kebiao', function(data) {
+                loadKebiao(data);
+            });
             window.location.hash='gaikuang';
         });
-        return false;
     });
 
     $('#menu .kaoshi').bind("click", function(){
@@ -401,16 +248,11 @@ $(document).ready(function() {
     });
 
     $('.user').bind("click", function(){
-        if(isLogin) {
+        if(isLogin()) {
             for (var i=0; i<localStorage.length; i++) {
                 var key = localStorage.key(i);
-
-                if(key.indexOf('Keep') != -1) continue;
-
                 localStorage.removeItem(key);
-                localStorage.setItem('stuid', false);
             }
-            isLogin = false;
             window.location.reload();
         } else {
             pleaseLoginIfNotLogin(function() {
@@ -449,9 +291,9 @@ $(document).ready(function() {
         }
     });
 
-    if(isLogin) {
-        $('#menu .user').attr('class', 'box user logout');
-        $('#menu .user').html('注销');
+if(isLogin()) {
+    $('#menu .user').attr('class', 'box user logout');
+    $('#menu .user').html('注销');
 
         if(config['gaikuang_as_default']) {
             pleaseLoginIfNotLogin(function() {

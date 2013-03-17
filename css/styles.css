@@ -10,7 +10,6 @@ input,textarea,select{outline:none;}
 #wrap{width:85vw;margin:0 auto;overflow:hidden;padding:7.5vw;}
 #menu{margin:0 auto;width:85vw;float:left;}#menu .box{display:block;width:40.625vw;height:40.625vw;float:left;padding:0;margin:0 0.78125vw 1.5625vw 0.78125vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:69.53125vw;font-size:5.9375vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
 #menu .gaikuang{background-image:url(../img/general.png);}
-#menu .update{background-image:url(../img/update.png);}
 #menu .chat{line-height:40vw;font-size:12vw;}
 #menu .xiaoli{background-image:url(../img/calendar.png);}
 #menu .kebiao{background-image:url(../img/curriculum.png);}

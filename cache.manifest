@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# version 20
+# version 25
 NETWORK:
 http://m.myqsc.com/php-dev/
 http://m.myqsc.com/php-stable/
@@ -52,21 +52,9 @@ img/update.png
 css/styles.css
 
 #scripts
-js/Barrett.js
-js/base64.js
-js/BigInt.js
-js/cordova.js
 js/jq.mobi.js
-js/qsc-mobile-bus.js
-js/qsc-mobile-chengji.js
-js/qsc-mobile-config.js
 js/qsc-mobile.js
-js/qsc-mobile-jwb.js
-js/qsc-mobile-kaoshi.js
 js/qsc-mobile-kebiao.js
-js/qsc-mobile-xiaohua.js
-js/qsc-mobile-xiaoli.js
-js/qsc-mobile-zuoye.js
 js/relativeUnits.js
-js/RSA.js
-js/tap.js
+js/helper.js
+js/qsc-mobile-views.js
