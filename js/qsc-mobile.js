@@ -1,12 +1,10 @@
 // Qsc-Mobile -- the HTML5 version
 // Copyright (C) 2013 QSC Tech
-// todo: use js-doc
 
 // Init
 
-var debugOn = false;
 var branch = "stable"; // dev or stable
-var version = "The QSC Mobile HTML5 Nightly Build Version 6 / 130317";
+var version = "The QSC Mobile HTML5 Nightly Build Version 7 / 130317";
 
 // load config
 
@@ -115,48 +113,88 @@ function isLogin() {
 	return false;
     }
 }
+/**
+ * @author Zeno Zeng
+ * @returns (bool)
+ */
+function isTempLogin() {
+    return localStorage.getItem('tempLogin') ? true : false;
+}
+/**
+ * @author Zeno Zeng
+ */
 function showMsg(msg, callback) {
     $('#msg').show();
     $('#msg').html(msg);
 }
+/**
+ * @author Zeno Zeng
+ */
+function showLogin(callback) {
+    $(currentLayout).hide();
+    $('#login').show();
+
+    $('#login_form').bind("submit", function() {
+        var stuid = $("#stuid").val();
+	var pwd = $("#pwd").val();
+
+        if(isTempLogin()) {
+            localStorage.removeItem('tempLogin');
+            localStorage.setItem('tempStuid', stuid);
+            localStorage.setItem('tempPwd', pwd);
+        } else {
+            localStorage.setItem('stuid', stuid);
+            localStorage.setItem('pwd', pwd);
+        }
+
+	getData('jw/validate',
+		function(data){
+		    if(data['stuid'] != '') {
+			$('#login').hide();
+
+			$('#menu .user').attr('class', 'box user logout');
+			$('#menu .user').html('注销');
+
+			// 回调函数
+			if(typeof(callback) == 'function') {
+			    callback();
+			}
+		    } else {
+			showMsg('登录失败');
+                        if(isTempLogin()) {
+                            localStorage.removeItem('tempLogin');
+                            localStorage.removeItem('tempStuid');
+                            localStorage.removeItem('tempPwd');
+                        } else {
+                            localStorage.clear();
+                        }
+		    }
+		},
+		function(data) {
+		    showMsg(data);
+                    if(isTempLogin()) {
+                        localStorage.removeItem('tempStuid');
+                        localStorage.removeItem('tempPwd');
+                    } else {
+                        localStorage.clear();
+                    }
+		});
+	return false;
+    });
+}
+/**
+ * @author Zeno Zeng
+ */
 function pleaseLoginIfNotLogin(callback) {
-    if(isLogin()) {
+    if(isLogin() || isTempLogin()) {
         if(typeof(callback) == 'function') {
             callback();
         }
     } else {
-        $(currentLayout).hide();
-        $('#login').show();
-
-        $('#login_form').bind("submit", function() {
-            stuid = $("#stuid").val();
-	    pwd = $("#pwd").val();
-
-	    getData('jw/validate',
-		    function(data){
-			if(data['stuid'] != '') {
-			    localStorage.setItem('stuid', stuid);
-			    localStorage.setItem('pwd', pwd);
-			    $('#login').hide();
-
-			    $('#menu .user').attr('class', 'box user logout');
-			    $('#menu .user').html('注销');
-
-			    // 回调函数
-			    if(typeof(callback) == 'function') {
-				callback();
-			    }
-			} else {
-			    showMsg('登录失败');
-			}
-		    },
-		    function(data) {
-			showMsg(data);
-		    });
-	    return false;
-        });
+        showLogin(callback);
     }
 }
+
 
 
 var currentLayout = '#menu';// 存储当前处于哪个界面，方便返回时选取
@@ -209,7 +247,9 @@ $(document).ready(function() {
     });
 
     $('#menu .xiaoli').bind("click", function() {
-        $.include(['qsc-mobile-xiaoli.js']);
+        getData('share/xiaoli', function(data) {
+            loadXiaoli(data);
+        });
         window.location.hash='xiaoli';
         return false;
     });
@@ -247,22 +287,29 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#menu .tempuser').bind("click", function() {
+        localStorage.setItem('tempLogin', true);
+        pleaseLoginIfNotLogin(function() {
+            $('#menu').show();
+        });
+    });
+
     $('.user').bind("click", function(){
         if(isLogin()) {
-            for (var i=0; i<localStorage.length; i++) {
-                var key = localStorage.key(i);
-                localStorage.removeItem(key);
+            if(isTempLogin()) {
+                localStorage.removeItem('tempLogin');
+                localStorage.removeItem('tempStuid');
+                localStorage.removeItem('tempPwd');
+            } else {
+                localStorage.clear();
+                $('#menu .user').attr('class', 'box user login');
+                $('#menu .user').html('登录');
             }
-            window.location.reload();
         } else {
             pleaseLoginIfNotLogin(function() {
                 $('#menu').show();
             });
         }
-
-        stuid = false;
-        pwd = '';
-        $('#pwd').val('');
 
         if(isLogin) {
             $('#menu .user').attr('class', 'box user logout');
@@ -274,7 +321,7 @@ $(document).ready(function() {
     });
 
 
-    $('#msg, #loading').bind("click", function(){
+    $('#msg').bind("click", function(){
         $(this).hide();
         return false;
     });

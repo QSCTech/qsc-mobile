@@ -95,7 +95,6 @@ function loadKebiao(data) {
                 htmlString += '<div class="class_teacher_name">'+keBiao.getTeacherName(theClass)+'</div>';
                 htmlString += '<div class="class_time">'+keBiao.getCourseTime(theClass).join('-')+'</div>';
                 htmlString += '<div class="class_classroom">'+keBiao.getClassroom(theClass)+'</div>';
-
             }
         }
 
