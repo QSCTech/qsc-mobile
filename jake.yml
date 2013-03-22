@@ -1,0 +1,25 @@
+---
+source_directory:     source
+build_directory:      js
+
+layout:               together
+
+header:               COPYRIGHT
+
+builds:
+  src:
+    minify:           false
+  min:
+    minify:           true
+    shrink_vars:      true
+    private:          true
+
+packages:
+  qsc-mobile-all:
+     - jq.mobi.js
+     - init.js
+     - functions.js
+     - kebiao.class.js
+     - views.js
+     - kebiao.js
+

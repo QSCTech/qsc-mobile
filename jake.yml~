@@ -1,0 +1,17 @@
+---
+source_directory:     source
+build_directory:      js
+
+layout:               together
+
+header:               COPYRIGHT
+
+builds:
+  src:
+    minify:           false
+  min:
+    shrink_vars:      true
+    private:          true
+
+packages:
+  [ DESCRIBED BELOW ]
