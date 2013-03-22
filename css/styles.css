@@ -7,12 +7,12 @@ pre{white-space:pre-wrap;word-wrap:break-word;}
 input,textarea,select{outline:none;}
 *{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
 #msg{position:fixed;left:0;top:0;width:100%;height:100%;background:#efefef;border-top:5px solid #ddd;border-bottom:5px solid #ddd;color:#555;background:#efefef url('../img/button.png') no-repeat;background-position:right 2vw;background-size:11vw 11vw;z-index:1000;font-size:5vw;line-height:32vh;text-align:center;display:none;cursor:pointer;}
-#wrap{width:85vw;margin:0 auto;overflow:hidden;padding:7.5vw;}
-#menu{margin:0 auto;width:85vw;float:left;}#menu .box{display:block;width:40.625vw;height:40.625vw;float:left;padding:0;margin:0 0.78125vw 1.5625vw 0.78125vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:69.53125vw;font-size:5.9375vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
+#wrap{width:85%;margin:0 auto;overflow:hidden;padding:5%;}
+#menu{margin:0 auto;width:83vw;float:left;}#menu .box{display:block;width:40vw;height:40vw;float:left;padding:0;margin:.5vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:70vw;font-size:6vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
+#menu .longbox{width:81vw;height:40vw;background:#219eee;margin:.5vw;}
 #menu .gaikuang{background-image:url(../img/general.png);}
 #menu .chat{line-height:40vw;font-size:12vw;}
 #menu .xiaoli{background-image:url(../img/calendar.png);}
-#menu .kebiao{background-image:url(../img/curriculum.png);}
 #menu .chengji{background-image:url(../img/GPA.png);}
 #menu .kaoshi{background-image:url(../img/exam.png);}
 #menu .shida{background-image:url(../img/Top10-cc98.png);}
@@ -28,38 +28,31 @@ input,textarea,select{outline:none;}
 .mask{width:100%;height:100%;}
 .logo{display:block;width:37.5vw;height:22vw;background:url(../img/logo-2.png) no-repeat left top;background-size:37.5vw 22vw;float:left;cursor:pointer;}
 .hide{display:none;}
-#gaikuang{width:84.375vw;}#gaikuang .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/general-blue.png) no-repeat left bottom;}
+#gaikuang{width:84.375vw;}#gaikuang .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #gaikuang #zju_date_info{font-size:5.625vw;color:#555;line-height:2em;}
 #gaikuang #timer{font-size:5.625vw;color:#219eee;line-height:5.625vw;}#gaikuang #timer .msg_timer{width:48%;float:left;}
 #gaikuang #timer .msg_course{width:48%;float:right;font-size:3.4375vw;margin-top:0.46875vw;text-overflow:ellipsis;}
 #gaikuang #timer:after{content:'';clear:both;display:block;}
-#gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:4.375vw;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:9.375vw;padding-left:.5em;color:#555;font-weight:bold;border:none;border-left:3.125vw solid #219eee;border-radius:10.9375vw;}
+#gaikuang #course_today,#gaikuang #course_tomorrow{color:#219eee;font-size:4.375vw;}#gaikuang #course_today:before,#gaikuang #course_tomorrow:before{content:"Tomorrow";display:block;font-size:9.375vw;color:#555;font-weight:bold;}
 #gaikuang #course_today{padding-bottom:2em;}#gaikuang #course_today:before{content:"Today";}
 #login{width:90%;margin:0 auto;padding-top:3.125vw;}#login input[type="text"],#login input[type="password"]{resize:none;border:3px solid #666666;font-size:7.5vw;line-height:11.875vw;padding:1.5625vw;height:15.0vw;margin-bottom:3.125vw;width:95%;}
 #login input[type="text"]{margin-top:4.6875vw;}
-#login #login_submit{background:#219eee;border:none;color:#fff;font-size:5vw;line-height:15vw;text-align:center;height:15.0vw;width:30vw;cursor:pointer;border-radius:1.5625vw;margin-right:0.3125vw;}
+#login #login_submit{background:#219eee;border:none;color:#fff;font-size:5vw;line-height:15vw;text-align:center;height:15.0vw;width:30vw;cursor:pointer;margin-right:0.3125vw;}
 #login header{font-size:15.0vw;float:right;text-align:right;line-height:25.0vw;color:#219eee;}
-#copyright{padding-top:1em;color:#666666;}
-#chengji{width:84.375vw;}#chengji .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/GPA-blue.png) no-repeat left bottom;}
+#chengji{width:84.375vw;}#chengji .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #chengji #danke .chengji{margin:3.125vw 0;}
 #chengji #gpa .detail{display:block;}
 #chengji #gpa .gpa{margin:3.125vw 0;text-transform:uppercase;}#chengji #gpa .gpa .date{font-weight:bold;font-size:1.2em;}
-#config{width:84.375vw;}#config .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/setting-blue.png) no-repeat left bottom;}
+#config{width:84.375vw;}#config .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #config #config_items{font-size:5.625vw;}#config #config_items li{margin:3.75vw 0;padding:0 3.75vw;border-radius:0.78125vw;background:#fff;border:1px solid #777;color:#666666;height:15.625vw;line-height:15.625vw;}
 #config #config_items .true:after{display:block;width:10.9375vw;text-align:center;margin:2.1875vw 1.5625vw 0 0;line-height:7.8125vw;content:'ON';background:#9acd32;border-radius:1.5625vw;padding:1.5625vw;color:#fff;float:right;font-weight:bold;}
 #config #config_items .false:after{display:block;width:10.9375vw;text-align:center;margin:2.1875vw 1.5625vw 0 0;line-height:7.8125vw;content:'OFF';background:#dc143c;border-radius:1.5625vw;padding:1.5625vw;color:#fff;float:right;font-weight:bold;}
-#kaoshi{width:84.375vw;font-size:5.625vw;color:#666666;}#kaoshi .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/exam-blue.png) no-repeat left bottom;}
+#kaoshi{width:84.375vw;font-size:5.625vw;color:#666666;}#kaoshi .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
-#xiaoli{width:84.375vw;}#xiaoli .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/calendar-blue.png) no-repeat left bottom;}
+#xiaoli{width:84.375vw;}#xiaoli .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:1px solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}#xiaoli #xiaoli_content ul li .title{font-weight:bold;}
-#xiaohua{width:84.375vw;}#xiaohua .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/joke-blue.png) no-repeat left bottom;}
-#xiaohua .content{font-size:7.5vw;margin:3.75vw 0;}
-#xiaohua .love{background:#aaa;}
-#xiaohua .love.true{background:#dc143c;}
-#xiaohua .next{background:#219eee;margin-left:1.5625vw;}
-#xiaohua .next,#xiaohua .love{font-size:5.625vw;padding:3.125vw;border-radius:1.5625vw;color:#fff;float:left;width:35.15625vw;font-weight:bold;text-align:center;cursor:pointer;}
-#xiaoche{width:84.375vw;}#xiaoche .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/bus-blue.png) no-repeat left bottom;}
+#xiaoche{width:84.375vw;}#xiaoche .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #xiaoche select{padding:0;margin:0;font-size:5.0vw;width:40vw;background:#fff;border:1px solid #777;color:#555;}
 #xiaoche #bus_info{font-size:5.0vw;color:#666666;}#xiaoche #bus_info .bus_info{font-size:4.375vw;}#xiaoche #bus_info .bus_info .detail{font-size:4.375vw;line-height:5.625vw;}
 #xiaoche #bus_info .bus_info:first-child .detail,#xiaoche #bus_info .bus_info:hover .detail{display:block;}
@@ -69,21 +62,21 @@ input,textarea,select{outline:none;}
 .clear{clear:both;}
 hr{border:1px solid #ddd;margin-bottom:1em;}
 hr.blue{border-color:#219eee;}
-#kebiao{outline:none;}#kebiao .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;}
+#kebiao{outline:none;}#kebiao .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 .kebiao .class_name{line-height:11.25vw;color:#666666;font-size:7.5vw;margin-top:1em;}
 .kebiao .class_nth_all{font-size:5.625vw;color:#219eee;}
 .kebiao .class_teacher_name{font-size:5.625vw;color:#219eee;}
 .kebiao .class_time{font-size:5.0vw;color:#666666;}
 .kebiao .class_classroom{font-size:5.0vw;color:#666666;}
 .kebiao .no_class{padding-top:9.375vw;font-size:7.5vw;color:#666666;}
-.backward{display:block;width:15.625vw;height:15.625vw;margin-top:7.8125vw;background:url(../img/arrow-l.png);background-size:15.625vw 15.625vw;float:right;cursor:pointer;}
+.backward{display:block;width:15.625vw;height:15.625vw;background:url(../img/arrow-l.png);background-size:15.625vw 15.625vw;float:right;cursor:pointer;}
 .slide>div{height:18.75vw;overflow:hidden;}
 .slide header{padding-left:5vw;text-transform:capitalize;font-family:ubuntu;height:12.5vw;line-height:12.5vw;font-size:9.375vw;border:1px solid #555;border-radius:1.25vw;color:#555;margin:4.6875vw 0;cursor:pointer;background:url(../img/arrow-d.png) no-repeat 90% center;background-size:9.375vw 9.375vw;}
 .slide .detail{font-size:7.5vw;color:#666666;overflow:hidden;}
 .slide .hide{display:block;}.slide .hide header{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;}
 .slide .show{height:auto;}.slide .show header{transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-webkit-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;color:#219eee;background:url(../img/arrow-u.png) no-repeat 90% center;background-size:9.375vw 9.375vw;}
 .em{color:#219eee;}
-#zuoye .header{background:url(../img/curriculum-blue.png) no-repeat left bottom;background-size:23.5vw 23.5vw;max-height:23.4375vw;line-height:31.25vw;padding-left:25.0vw;font-size:15.625vw;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
+#zuoye .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;background:url(../img/homework-blue.png) no-repeat left bottom;}
 #zuoye #add_homework{padding-top:1.5vh;}#zuoye #add_homework textarea{-webkit-appearance:none;margin-top:1vh;padding:0;background:#ddd;margin:0;border:3vw solid #ddd;border-radius:2.1875vw;width:79vw;height:20vh;line-height:7.5vw;font-size:5.625vw;resize:none;}
 #zuoye #add_homework #share_homework{text-indent:3vh;width:85vw;height:12vw;line-height:12vw;font-size:5vw;background:#cdcdcd;border-radius:1vh;margin:2vh 0;color:#777;}#zuoye #add_homework #share_homework.true:after,#zuoye #add_homework #share_homework.false:after{height:100%;text-indent:0;display:block;content:'ON';background:#eee;color:#219eee;float:right;font-weight:bold;text-align:center;width:20vw;border-top-right-radius:1vh;border-bottom-right-radius:1vh;}
 #zuoye #add_homework #share_homework.false:after{content:"OFF";}

@@ -131,7 +131,19 @@ function pleaseLoginIfNotLogin(callback) {
 
 
 /**
- * @author Unknow
- * @desc format the number to LENGTH
+ * @author Chris Nielsen
+ * @desc format the number to LENGTH 2
  */
-function formatNumberLength(num, length) {
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+/**
+ * @author Zeno Zeng
+ * @desc format the Time Delta to H:m or m:s
+ */
+function formatTimeDelta(seconds) {
+    var hours = parseInt(seconds / 3600),
+        minutes = parseInt(seconds % 3600 / 60);
+    seconds = parseInt(seconds % 60);
+    return hours > 0 ? pad(hours)+':'+pad(minutes)+':'+pad(seconds) : pad(minutes)+':'+pad(seconds);
+}

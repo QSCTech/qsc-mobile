@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# version 27
+# version 32
 NETWORK:
 http://m.myqsc.com/php-dev/
 http://m.myqsc.com/php-stable/
@@ -52,9 +52,4 @@ img/update.png
 css/styles.css
 
 #scripts
-js/jq.mobi.js
-js/qsc-mobile.js
-js/qsc-mobile-kebiao.js
-js/relativeUnits.js
-js/helper.js
-js/qsc-mobile-views.js
+js/qsc-mobile-all-min.js

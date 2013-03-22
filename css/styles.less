@@ -28,35 +28,41 @@
 }
 
 #wrap {
-    width:85vw;
+    width:85%;
     margin:0 auto;
     overflow:hidden;
-    padding:7.5vw;
+    padding:5%;
 }
 #menu {
     margin:0 auto;
-    width:85vw;
+    width:83vw;
     float:left;
     .box {
 	display:block;
-	width:40.625vw;
-	height:40.625vw;
+	width:40vw;
+	height:40vw;
 	float:left;
 	padding:0;
-	margin: 0 0.78125vw 1.5625vw 0.78125vw;
+	margin: .5vw;
 	background-color:@theme;
 	background-repeat:no-repeat;
 	background-position:50% 4.6875vw;
 	background-size:23.5vw 23.5vw;
 	color:#fff;
-	line-height:69.53125vw;
-	font-size:5.9375vw;
+	line-height:70vw;
+	font-size:6vw;
 	text-align:center;
 	overflow:hidden;
 	cursor:pointer;
 	&:nth-child(4n+1), &:nth-child(4n){
 	    background-color:@color;
 	}
+    }
+    .longbox {
+	width: 81vw;
+	height: 40vw;
+	background: @theme;
+	margin: .5vw;
     }
     .gaikuang {
 	background-image: url(../img/general.png);
@@ -67,9 +73,6 @@
     }
     .xiaoli {
 	background-image: url(../img/calendar.png);
-    }
-    .kebiao {
-	background-image: url(../img/curriculum.png);
     }
     .chengji {
 	background-image: url(../img/GPA.png);
@@ -156,12 +159,8 @@
 	    content:"Tomorrow";
 	    display:block;
 	    font-size:9.375vw;
-	    padding-left:.5em;
 	    color:#555;
 	    font-weight:bold;
-	    border:none;
-	    border-left: 3.125vw solid @theme;
-	    border-radius:10.9375vw;
 	}
 	color:@theme;
 	font-size:4.375vw;
@@ -200,7 +199,6 @@
 	height:15.0vw;
 	width:30vw;
 	cursor:pointer;
-	border-radius:1.5625vw;
 	margin-right:0.3125vw;
     }
     header{
@@ -215,7 +213,6 @@
     width:84.375vw;
     .header{
 	#kebiao .header;
-	background:url(../img/GPA-blue.png) no-repeat left bottom;
     }
     #danke .chengji {
 	margin:3.125vw 0;
@@ -238,7 +235,6 @@
     width:84.375vw;
     .header {
 	#kebiao .header;
-	background:url(../img/setting-blue.png) no-repeat left bottom;
     }
     #config_items {
 	font-size:5.625vw;
