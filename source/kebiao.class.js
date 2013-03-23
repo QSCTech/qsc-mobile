@@ -1,25 +1,16 @@
-// Copyright (C) 2012-2013 QSC Tech.
-// Licensed unser agpl
-
-var jwbData = {"oddWeekArray":[43,47,49,51,1,3,10,12,14,16,18,19,21,23,25,27],"evenWeekArray":[44,45,46,48,50,52,2,4,9,11,13,15,17,20,22,24,26],"chun":[9,10,11,12,13,14,15,16,17,18],"xia":[19,20,21,22,23,24,25,26,27],"qiu":[43,44,45,46],"dong":[1,2,3,4,47,48,49,50,51,52],"hanjia":[5,6,7,8],"shujia":[28,29,30,31,32,33]};
-
 /**
  * 返回输入日期所在周是单还是双
- * 返回odd/even
+ * 返回odd/even/null
  * the week is the ISO 8601 week number.
  * 感谢产品的同学提供数据
  */
 Date.prototype.getZjuWeek = function () {
-    var oddWeekArray, evenWeekArray, week;
-
-    oddWeekArray = jwbData.oddWeekArray;
-    evenWeekArray = jwbData.evenWeekArray;
-    week = this.getIsoWeek();
-
+    var oddWeekArray = [43,47,49,51,1,3,10,12,14,16,18,19,21,23,25,27],
+        evenWeekArray = [44,45,46,48,50,52,2,4,9,11,13,15,17,20,22,24,26],
+        week = this.getIsoWeek();
     if(oddWeekArray.indexOf(week) != -1) return 'odd';
     if(evenWeekArray.indexOf(week) != -1) return 'even';
-
-    return false;
+    return null;
 };
 
 /**
@@ -29,6 +20,7 @@ Date.prototype.getZjuWeek = function () {
  */
 Date.prototype.getZjuSemester = function () {
     var week = this.getIsoWeek();
+    var jwbData = {"chun":[9,10,11,12,13,14,15,16,17,18],"xia":[19,20,21,22,23,24,25,26,27],"qiu":[43,44,45,46],"dong":[1,2,3,4,47,48,49,50,51,52],"hanjia":[5,6,7,8],"shujia":[28,29,30,31,32,33]};
 
     switch (true) {
         case jwbData.chun.indexOf(week) != -1:
@@ -106,10 +98,10 @@ function KeBiao(data, date){
     var semester = date.getZjuSemester();
     var weekday = ["7","1","2","3","4","5","6"];
     var weekdate = weekday[date.getDay()];
-    var i, j, classes, n;
+    var j, classes, n;
     var keBiao = [];
 
-    for (i=0; i<data.length; i++)
+    for (var i=0, len = data.length; i<len; i++)
     {
         var theClass = data[i]['class'];
         for (j=0; j<theClass.length; j++) {
@@ -131,11 +123,6 @@ function KeBiao(data, date){
             }
         }
     }
-
-
-    this.kebiaoDebug = function() {
-        console.log(keBiao);
-    };
 
     // 返回第n节课的课程代号
     this.getCourseId = function(nth) {

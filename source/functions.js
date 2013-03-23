@@ -52,16 +52,16 @@ function getData(item, success, error) {
     if(isTempLogin) {
         fetchData(item, success, error);
     } else {
-        var data = localStorage.getItem('item');
+        var data = localStorage.getItem(item);
         if(!data) {
             fetchData(item, function(data){
-                success(data);
-                localStorage.setItem(item, JSON.stringify(data));
+                success(JSON.parse(data));
+                localStorage.setItem(item, data);
             }, error)
         } else {
-            success(data);
+            success(JSON.parse(data));
             fetchData(item, function(data){
-                localStorage.setItem(item, JSON.stringify(data));
+                localStorage.setItem(item, data);
             });
         }
     }
