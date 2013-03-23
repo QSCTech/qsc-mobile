@@ -144,7 +144,6 @@ function getData(item, success, error) {
         }
     }
 }
-
 /**
  * @author Zeno Zeng
  * @desc show a layyer above all
@@ -206,8 +205,6 @@ function pleaseLoginIfNotLogin(callback) {
         showLogin(callback);
     }
 }
-
-
 /**
  * @author Chris Nielsen
  * @desc format the number to LENGTH 2
@@ -556,22 +553,18 @@ $(window).on("hashchange", function(){
 
 $('.backward').bind("click", function(){
     history.back();
-    return false;
 });
 
 $('#menu .kebiao').bind("click", function(){
     pleaseLoginIfNotLogin(function() {
-        getData('jw/kebiao', function(data) {
-            loadKebiao(data);
-        });
+        loadKebiao();
         window.location.hash='kebiao';
     });
 });
 
 $('#menu .config').bind("click", function(){
-    $.include(['qsc-mobile-config.js']);
+    loadConfig();
     window.location.hash='config';
-    return false;
 });
 
 $('#menu .xiaoche').bind("click", function(){
@@ -586,15 +579,6 @@ $('#menu .xiaoli').bind("click", function() {
     });
     window.location.hash='xiaoli';
     return false;
-});
-
-$('#menu .gaikuang').bind("click", function(){
-    pleaseLoginIfNotLogin(function() {
-        getData('jw/kebiao', function(data) {
-            loadKebiao(data);
-        });
-        window.location.hash='gaikuang';
-    });
 });
 
 $('#menu .kaoshi').bind("click", function(){
@@ -657,11 +641,9 @@ $('.user').bind("click", function(){
 
 $('#msg').bind("click", function(){
     $(this).hide();
-    return false;
 });
 
 
-// delagete click event
 $('#wrap').on('click', '.slide > div > header', function(){
     if($(this).parent().hasClass('show')) {
         $(this).parent().removeClass('show');
@@ -704,4 +686,61 @@ function displayKebiaoSummary() {
     html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
 
     $('#menu .kebiao').html(html);
+}
+function writeClassToDom(dom, date){
+    var htmlString = '';
+    var theClass = 0;
+
+    var keBiao;
+    keBiao = new KeBiao(kebiaoData, date);
+
+    if(!keBiao.haveClass()) {
+        $(dom).html('<div class="no_class">好的嘛，没有课了……</div>');
+        return;
+    }
+
+    while(theClass !== false) {
+        theClass = keBiao.getCourseNext(theClass);
+
+        if(keBiao.getCourseName(theClass)) {
+            htmlString += '<div class="class_name">'+keBiao.getCourseName(theClass)+'</div>';
+            htmlString += '<div class="class_nth_all">'+keBiao.getClassNthAll(theClass).join(',')+'</div>';
+            htmlString += '<div class="class_time">'+keBiao.getCourseTime(theClass).join('-')+'</div>';
+            htmlString += '<div class="class_classroom">'+keBiao.getClassroom(theClass)+'</div>';
+
+        }
+    }
+
+    $(dom).append(htmlString);
+}
+function loadKebiao() {
+    var zjuWeekInfo;
+    var today = new Date();
+    var tomorrow = new Date();
+    tomorrow.setTime(tomorrow.getTime() + 1000*3600*24);
+
+    writeClassToDom('#today .detail', today);
+    writeClassToDom('#tomorrow .detail', tomorrow);
+
+    var i;
+    var offset = today.getDay() == 0 ? today.getDay() + 6 : today.getDay() - 1;
+    var weekArr = ['mon','tue','wed','thu','fri','sat','sun'];
+
+    for(i=0; i<7; i++) {
+        var xdate = new Date(today.getTime() + (i - offset) * 24 * 3600 * 1000);
+        writeClassToDom('#'+weekArr[i]+' .detail', xdate);
+    }
+}
+
+function loadConfig() {
+    for(var i = 0; i < config_list.length; i++) {
+        var item = config_list[i];
+        $('#'+item).attr("class", config[item]);
+    }
+    $('#config_items li').bind("mousedown", function(){
+        var item = $(this).attr('id');
+        config[item] = !config[item];
+        localStorage.setItem('config', JSON.stringify(config));
+        $(this).attr("class", config[item]);
+    });
 }

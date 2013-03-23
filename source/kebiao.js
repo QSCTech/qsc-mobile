@@ -31,3 +31,47 @@ function displayKebiaoSummary() {
 
     $('#menu .kebiao').html(html);
 }
+function writeClassToDom(dom, date){
+    var htmlString = '';
+    var theClass = 0;
+
+    var keBiao;
+    keBiao = new KeBiao(kebiaoData, date);
+
+    if(!keBiao.haveClass()) {
+        $(dom).html('<div class="no_class">好的嘛，没有课了……</div>');
+        return;
+    }
+
+    while(theClass !== false) {
+        theClass = keBiao.getCourseNext(theClass);
+
+        if(keBiao.getCourseName(theClass)) {
+            htmlString += '<div class="class_name">'+keBiao.getCourseName(theClass)+'</div>';
+            htmlString += '<div class="class_nth_all">'+keBiao.getClassNthAll(theClass).join(',')+'</div>';
+            htmlString += '<div class="class_time">'+keBiao.getCourseTime(theClass).join('-')+'</div>';
+            htmlString += '<div class="class_classroom">'+keBiao.getClassroom(theClass)+'</div>';
+
+        }
+    }
+
+    $(dom).append(htmlString);
+}
+function loadKebiao() {
+    var zjuWeekInfo;
+    var today = new Date();
+    var tomorrow = new Date();
+    tomorrow.setTime(tomorrow.getTime() + 1000*3600*24);
+
+    writeClassToDom('#today .detail', today);
+    writeClassToDom('#tomorrow .detail', tomorrow);
+
+    var i;
+    var offset = today.getDay() == 0 ? today.getDay() + 6 : today.getDay() - 1;
+    var weekArr = ['mon','tue','wed','thu','fri','sat','sun'];
+
+    for(i=0; i<7; i++) {
+        var xdate = new Date(today.getTime() + (i - offset) * 24 * 3600 * 1000);
+        writeClassToDom('#'+weekArr[i]+' .detail', xdate);
+    }
+}

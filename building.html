@@ -14,7 +14,6 @@
 
 <div id="wrap">
   <div id="menu">
-    <!-- <div class="box gaikuang">概况</div> -->
     <div class="longbox kebiao">
       <div id="zju_date_info"></div>
       <div id="timer"></div>
@@ -73,6 +72,8 @@
     </header>
     <br><hr>
     <div class="slide">
+      <div id="today"><header>Today</header><div class="detail"></div></div>
+      <div id="tomorrow"><header>Tomorrow</header><div class="detail"></div></div>
       <div id="mon"><header>mon</header><div class="detail"></div></div>
       <div id="tue"><header>tue</header><div class="detail"></div></div>
       <div id="wed"><header>wed</header><div class="detail"></div></div>
@@ -139,8 +140,6 @@
     </header>
     <br><hr>
     <ul id="config_items">
-      <li id="gaikuang_as_default">打开默认显示概况</li>
-      <li id="debug_on">Debug On</li>
       <li id="switch_to_dev_branch">Switch to Dev Branch</li>
     </ul>
     <p id="version"></p>
@@ -185,9 +184,6 @@
     </ul>
 
   </div>
-
-  <pre id="debug">
-  </pre>
 
 </div>
 <script src="js/qsc-mobile-all-src.js" charset="UTF-8"></script>

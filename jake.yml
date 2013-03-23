@@ -22,4 +22,5 @@ packages:
      - kebiao.class.js
      - views.js
      - kebiao.js
+     - config.js
 

@@ -21,22 +21,18 @@ $(window).on("hashchange", function(){
 
 $('.backward').bind("click", function(){
     history.back();
-    return false;
 });
 
 $('#menu .kebiao').bind("click", function(){
     pleaseLoginIfNotLogin(function() {
-        getData('jw/kebiao', function(data) {
-            loadKebiao(data);
-        });
+        loadKebiao();
         window.location.hash='kebiao';
     });
 });
 
 $('#menu .config').bind("click", function(){
-    $.include(['qsc-mobile-config.js']);
+    loadConfig();
     window.location.hash='config';
-    return false;
 });
 
 $('#menu .xiaoche').bind("click", function(){
@@ -51,15 +47,6 @@ $('#menu .xiaoli').bind("click", function() {
     });
     window.location.hash='xiaoli';
     return false;
-});
-
-$('#menu .gaikuang').bind("click", function(){
-    pleaseLoginIfNotLogin(function() {
-        getData('jw/kebiao', function(data) {
-            loadKebiao(data);
-        });
-        window.location.hash='gaikuang';
-    });
 });
 
 $('#menu .kaoshi').bind("click", function(){
@@ -122,11 +109,9 @@ $('.user').bind("click", function(){
 
 $('#msg').bind("click", function(){
     $(this).hide();
-    return false;
 });
 
 
-// delagete click event
 $('#wrap').on('click', '.slide > div > header', function(){
     if($(this).parent().hasClass('show')) {
         $(this).parent().removeClass('show');
