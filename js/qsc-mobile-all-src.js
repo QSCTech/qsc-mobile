@@ -133,13 +133,13 @@ function getData(item, success, error) {
         var data = localStorage.getItem(item);
         if(!data) {
             fetchData(item, function(data){
-                success(JSON.parse(data));
-                localStorage.setItem(item, data);
+                success(data);
+                localStorage.setItem(item, JSON.stringify(data));
             }, error)
         } else {
             success(JSON.parse(data));
             fetchData(item, function(data){
-                localStorage.setItem(item, data);
+                localStorage.setItem(item, JSON.stringify(data));
             });
         }
     }
@@ -331,8 +331,6 @@ function KeBiao(data, date){
     for (var i=0, len = data.length; i<len; i++)
     {
         var theClass = data[i]['class'];
-        console.log(i);
-        console.log(theClass);
         for (j=0; j<theClass.length; j++) {
             var item = theClass[j];
             if(data[i]['semester'].indexOf(semester) != -1) {

@@ -55,18 +55,17 @@ function getData(item, success, error) {
         var data = localStorage.getItem(item);
         if(!data) {
             fetchData(item, function(data){
-                success(JSON.parse(data));
-                localStorage.setItem(item, data);
+                success(data);
+                localStorage.setItem(item, JSON.stringify(data));
             }, error)
         } else {
             success(JSON.parse(data));
             fetchData(item, function(data){
-                localStorage.setItem(item, data);
+                localStorage.setItem(item, JSON.stringify(data));
             });
         }
     }
 }
-
 /**
  * @author Zeno Zeng
  * @desc show a layyer above all
@@ -128,8 +127,6 @@ function pleaseLoginIfNotLogin(callback) {
         showLogin(callback);
     }
 }
-
-
 /**
  * @author Chris Nielsen
  * @desc format the number to LENGTH 2
