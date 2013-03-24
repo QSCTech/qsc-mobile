@@ -11,7 +11,14 @@ function fetchData(item, success, error) {
         return;
     }
     var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
-    var jsonUrl = baseUrl+item+'?stuid='+stuid+'&pwd='+pwd+'&callback=?';
+    var params = [];
+    if(item.indexOf('share') != -1) {
+        params = [
+          'stuid='+stuid,
+          'pwd='+pwd
+        ];
+    }
+    var jsonUrl = baseUrl + item +'?' + params.join('&') + '&callback=?';
     $.jsonP({url:jsonUrl,
              success:function(data){
                  if(typeof(data['code']) != "undefined") {

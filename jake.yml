@@ -19,11 +19,16 @@ packages:
      - jq.mobi.js
      - relativeUnits.js
      - init.js
+     - lazyload-min.js
      - functions.js
      - kebiao.class.js
      - ctrl.js
+     - lzload.js
      - kebiao.js
      - xiaoli.js
      - kaoshi.js
+     - chengji.js
+     - xiaoche.js
      - config.js
-
+  zuoye:
+     - zuoye.js

@@ -223,6 +223,10 @@ if(isLogin) {
     $('#menu-user').html('登录');
     $('#menu-user').attr('id', 'menu-login');
 }
+LazyLoad=function(k){function p(b,a){var g=k.createElement(b),c;for(c in a)a.hasOwnProperty(c)&&g.setAttribute(c,a[c]);return g}function l(b){var a=m[b],c,f;if(a)c=a.callback,f=a.urls,f.shift(),h=0,f.length||(c&&c.call(a.context,a.obj),m[b]=null,n[b].length&&j(b))}function w(){var b=navigator.userAgent;c={async:k.createElement("script").async===!0};(c.webkit=/AppleWebKit\//.test(b))||(c.ie=/MSIE/.test(b))||(c.opera=/Opera/.test(b))||(c.gecko=/Gecko\//.test(b))||(c.unknown=!0)}function j(b,a,g,f,h){var j=
+function(){l(b)},o=b==="css",q=[],d,i,e,r;c||w();if(a)if(a=typeof a==="string"?[a]:a.concat(),o||c.async||c.gecko||c.opera)n[b].push({urls:a,callback:g,obj:f,context:h});else{d=0;for(i=a.length;d<i;++d)n[b].push({urls:[a[d]],callback:d===i-1?g:null,obj:f,context:h})}if(!m[b]&&(r=m[b]=n[b].shift())){s||(s=k.head||k.getElementsByTagName("head")[0]);a=r.urls;d=0;for(i=a.length;d<i;++d)g=a[d],o?e=c.gecko?p("style"):p("link",{href:g,rel:"stylesheet"}):(e=p("script",{src:g}),e.async=!1),e.className="lazyload",
+e.setAttribute("charset","utf-8"),c.ie&&!o?e.onreadystatechange=function(){if(/loaded|complete/.test(e.readyState))e.onreadystatechange=null,j()}:o&&(c.gecko||c.webkit)?c.webkit?(r.urls[d]=e.href,t()):(e.innerHTML='@import "'+g+'";',u(e)):e.onload=e.onerror=j,q.push(e);d=0;for(i=q.length;d<i;++d)s.appendChild(q[d])}}function u(b){var a;try{a=!!b.sheet.cssRules}catch(c){h+=1;h<200?setTimeout(function(){u(b)},50):a&&l("css");return}l("css")}function t(){var b=m.css,a;if(b){for(a=v.length;--a>=0;)if(v[a].href===
+b.urls[0]){l("css");break}h+=1;b&&(h<200?setTimeout(t,50):l("css"))}}var c,s,m={},h=0,n={css:[],js:[]},v=k.styleSheets;return{css:function(b,a,c,f){j("css",b,a,c,f)},js:function(b,a,c,f){j("js",b,a,c,f)}}}(this.document);
 /**
  * @author Zeno Zeng
  * @desc fetch the Data
@@ -236,7 +240,14 @@ function fetchData(item, success, error) {
         return;
     }
     var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
-    var jsonUrl = baseUrl+item+'?stuid='+stuid+'&pwd='+pwd+'&callback=?';
+    var params = [];
+    if(item.indexOf('share') != -1) {
+        params = [
+          'stuid='+stuid,
+          'pwd='+pwd
+        ];
+    }
+    var jsonUrl = baseUrl + item +'?' + params.join('&') + '&callback=?';
     $.jsonP({url:jsonUrl,
              success:function(data){
                  if(typeof(data['code']) != "undefined") {
@@ -766,6 +777,12 @@ $('#wrap').on('click', '.slide > div > header', function(){
     }
 });
 
+function loadZuoye() {
+    LazyLoad.js('js/zuoye-min.js', function () {
+        loadZuoyeAll();
+    });
+}
+
 var kebiaoData;
 getData('jw/kebiao', function(data) {
     kebiaoData = data;
@@ -975,6 +992,81 @@ function loadKaoshi() {
     });
 }
 
+function loadChengji(){
+    getData('jw/chengji', function(chengJiData) {
+        var chengJiArray = chengJiData['chengji_array'];
+        var gpa = chengJiData['junji_array'];
+
+        var html = '';
+        for(var i = chengJiArray.length - 1; i > -1; i--) {
+            html += '<div class="chengji>';
+            html += '<div class="name">' + chengJiArray[i]['课程名称'] + '</div>';
+            html += '<div class="score">成绩：'+chengJiArray[i]['成绩'] + '</div>';
+            html += '<div class="credit">学分：'+chengJiArray[i]['学分'] + '</div>';
+            html += '<div class="gradepoint">绩点：'+chengJiArray[i]['绩点'] + '</div>';
+            html += '</div>';
+            html += '<br>';
+        }
+        $('#chengji #danke .detail').html(html);
+
+        // gpa
+        html = '';
+        gpa.push(gpa.shift());
+        for(i = gpa.length - 1; i > -1; i--) {
+            html += '<div class="gpa">';
+            html += '<div class="date">';
+            html += gpa[i]['时间'];
+            html += '</div>';
+            html += '<div class="junji">均绩：';
+            html += gpa[i]['均绩'];
+            html += '</div>';
+            html += '<div class="zongxuefen">总学分：';
+            html += gpa[i]['总学分'];
+            html += '</div>';
+            html += '</div>';
+        }
+        $('#gpa .detail').html(html);
+    });
+}
+
+function loadXiaoche(){
+    getData('share/xiaoche', function(xiaoCheData) {
+        window.xiaoCheData = xiaoCheData;
+        if(!xiaoCheData)
+          return;
+        loadXiaocheInfo(xiaoCheData);
+        (function() {
+            $('#xiaoche select').unbind("change");
+            $('#xiaoche select').bind("change", function() {
+                loadXiaocheInfo(xiaoCheData);
+            });
+        })()
+    });
+}
+function loadXiaocheInfo(xiaoCheData) {
+    var from = $('select#from').val();
+    var to = $('select#to').val();
+
+    var i;
+    var theBus = [];
+    for(i=0; i < xiaoCheData.length; i++) {
+        if(xiaoCheData[i]['起点'] != from)
+          continue;
+        if(xiaoCheData[i]['终点'] != to)
+          continue;
+        theBus.push(xiaoCheData[i]);
+    }
+    $('#bus_info').html('');// 清空旧数据
+    if(theBus.length == 0) {
+        $('#bus_info').html('<br>好像木有车的样子。');// 清空旧数据
+    } else {
+        var s = "";
+        for(i=0; i<theBus.length; i++) {
+            s += '<div class="bus_info"><header><span class="begin">'+theBus[i]['发车时间']+'</span><span class="id">#'+theBus[i]['车号']+'</span></header><div class="detail"><span class="end">到站时间：'+theBus[i]['到站时间']+'</span><br><br><span class="date">'+theBus[i]['运行时间']+'</span><br><br><span class="place">'+theBus[i]['停靠地点']+'</span></div></div>';
+        }
+        $('#bus_info').html(s);
+    }
+}
 function loadConfig() {
     (function() {
         for(var i = 0; i < config_list.length; i++) {

@@ -1,7 +1,18 @@
-function loadBusInfo(){
-    if(!xiaoCheData)
-        return;
-
+function loadXiaoche(){
+    getData('share/xiaoche', function(xiaoCheData) {
+        window.xiaoCheData = xiaoCheData;
+        if(!xiaoCheData)
+          return;
+        loadXiaocheInfo(xiaoCheData);
+        (function() {
+            $('#xiaoche select').unbind("change");
+            $('#xiaoche select').bind("change", function() {
+                loadXiaocheInfo(xiaoCheData);
+            });
+        })()
+    });
+}
+function loadXiaocheInfo(xiaoCheData) {
     var from = $('select#from').val();
     var to = $('select#to').val();
 
@@ -9,9 +20,9 @@ function loadBusInfo(){
     var theBus = [];
     for(i=0; i < xiaoCheData.length; i++) {
         if(xiaoCheData[i]['起点'] != from)
-            continue;
+          continue;
         if(xiaoCheData[i]['终点'] != to)
-            continue;
+          continue;
         theBus.push(xiaoCheData[i]);
     }
     $('#bus_info').html('');// 清空旧数据
@@ -25,21 +36,3 @@ function loadBusInfo(){
         $('#bus_info').html(s);
     }
 }
-
-var xiaoCheData;
-
-if (localStorage.getItem('xiaoChe')) {
-    xiaoCheData = JSON.parse(localStorage.getItem('xiaoChe'));
-    loadBusInfo();
-} else {
-    myGetJsonp('xiaoche', true, function(data) {
-        if(!data) return;
-        xiaoCheData = data;
-        localStorage.setItem('xiaoChe', JSON.stringify(xiaoCheData));
-        loadBusInfo();
-    });
-}
-
-$('#xiaoche select').bind("change", function() {
-    loadBusInfo();
-});
