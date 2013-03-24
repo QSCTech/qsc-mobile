@@ -3,7 +3,7 @@
 
 var branch = "stable"; // dev or stable
 var version = "QSC Mobile HTML5 Nightly Build Version 9 / 130323";
-var stuid, pwd, isLogin, isTempLogin = false;
+var stuid, pwd, isLogin = false, isTempLogin = false;
 
 var config = localStorage.getItem('config') ? JSON.parse(localStorage.getItem('config')) : {};
 var config_list = ['switch_to_dev_branch'];

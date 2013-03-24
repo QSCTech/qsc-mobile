@@ -7,7 +7,7 @@ getData('jw/kebiao', function(data) {
     }, 1000);
 });
 function displayKebiaoSummary() {
-    if(currentLayout != '#menu') return; // no need to show it
+    if(currentLayout != '#menu'&& currentLayout != '') return; // no need to show it
     if(!isLogin && !isTempLogin) {
         $('#menu-kebiao').html('课表');
         return;

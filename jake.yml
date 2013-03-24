@@ -23,5 +23,6 @@ packages:
      - kebiao.class.js
      - ctrl.js
      - kebiao.js
+     - xiaoli.js
      - config.js
 
