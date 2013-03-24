@@ -10,21 +10,16 @@ input,textarea,select{outline:none;}
 #wrap{width:85%;margin:0 auto;overflow:hidden;padding:5%;}
 #menu{margin:0 auto;width:83vw;float:left;}#menu .box{display:block;width:40vw;height:40vw;float:left;padding:0;margin:.5vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:70vw;font-size:6vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
 #menu .longbox{width:81vw;height:40vw;background:#219eee;margin:.5vw;}
-#menu .gaikuang{background-image:url(../img/general.png);}
-#menu .chat{line-height:40vw;font-size:12vw;}
-#menu .xiaoli{background-image:url(../img/calendar.png);}
-#menu .chengji{background-image:url(../img/GPA.png);}
-#menu .kaoshi{background-image:url(../img/exam.png);}
-#menu .shida{background-image:url(../img/Top10-cc98.png);}
-#menu .xiaoche{background-image:url(../img/bus.png);}
-#menu .jiaoshi{background-image:url(../img/rooms.png);}
-#menu .xiaohua{background-image:url(../img/joke.png);}
-#menu .login{background-image:url(../img/login.png);}
-#menu .logout{background-image:url(../img/exit.png);}
-#menu .config{background-image:url(../img/setting.png);}
-#menu .zuoye{background-image:url(../img/homework.png);}
-#menu .about{background-image:url(../img/about.png);}
-#menu:after{content:'';clear:both;display:block;}
+.gaikuang{background-image:url(../img/general.png);}
+.chat{line-height:40vw;font-size:12vw;}
+#menu-xiaoli{background-image:url(../img/calendar.png);}
+#menu-chengji{background-image:url(../img/GPA.png);}
+#menu-kaoshi{background-image:url(../img/exam.png);}
+#menu-xiaoche{background-image:url(../img/bus.png);}
+#menu-login{background-image:url(../img/login.png);}
+#menu-logout{background-image:url(../img/exit.png);}
+#menu-config{background-image:url(../img/setting.png);}
+#menu-zuoye{background-image:url(../img/homework.png);}
 .mask{width:100%;height:100%;}
 .logo{display:block;width:37.5vw;height:22vw;background:url(../img/logo-2.png) no-repeat left top;background-size:37.5vw 22vw;float:left;cursor:pointer;}
 .hide{display:none;}

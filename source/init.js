@@ -26,9 +26,9 @@ if(stuid && pwd) {
 }
 
 if(isLogin) {
-    $('#menu .user').attr('class', 'box user logout');
-    $('#menu .user').html('注销');
+    $('#menu-user').html('注销');
+    $('#menu-user').attr('id', 'menu-logout');
 } else {
-    $('#menu .user').attr('class', 'box user login');
-    $('#menu .user').html('登录');
+    $('#menu-user').html('登录');
+    $('#menu-user').attr('id', 'menu-login');
 }

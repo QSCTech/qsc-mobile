@@ -17,10 +17,11 @@ builds:
 packages:
   qsc-mobile-all:
      - jq.mobi.js
+     - relativeUnits.js
      - init.js
      - functions.js
      - kebiao.class.js
-     - views.js
+     - ctrl.js
      - kebiao.js
      - config.js
 

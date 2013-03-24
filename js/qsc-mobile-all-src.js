@@ -42,6 +42,153 @@ null,null,null,null,null,null);return b};e.bind=function(a,c,b){if(!a.__events)a
 x.push(a);I.push(c?c:{});J.push(b?b:[]);g.postMessage("jqm-asap","*")};g.addEventListener("message",function(a){a.source==g&&a.data=="jqm-asap"&&(a.stopPropagation(),x.length>0&&x.shift().apply(I.shift(),J.shift()))},!0);var K={};e.parseJS=function(a){if(a){if(typeof a=="string"){var c=h.createElement("div");c.innerHTML=a;a=c}a=a.getElementsByTagName("script");for(c=0;c<a.length;c++)if(a[c].src.length>0&&!K[a[c].src]){var b=h.createElement("script");b.type=a[c].type;b.src=a[c].src;h.getElementsByTagName("head")[0].appendChild(b);
 K[a[c].src]=1}else g.eval(a[c].innerHTML)}};["click","keydown","keyup","keypress","submit","load","resize","change","select","error"].forEach(function(a){e.fn[a]=function(c){return c?this.bind(a,c):this.trigger(a)}});return e}(window);"$"in window||(window.$=jq);if(!window.numOnly)window.numOnly=function(g){if(g===void 0||g==="")return 0;if(isNaN(parseFloat(g)))if(g.replace)g=g.replace(/[^0-9.-]/,"");else return 0;return parseFloat(g)}};
 
+var RealtiveUnitsTemp = [];
+var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
+
+window.RelativeUnits =  (function(){
+    var API, cssRules, styledElements,
+        relativeUnitsStylesheetID = 'relative-units-stylesheet';
+
+    function trim(s) {
+        return s.replace(/^\s+|\s+$/, '');
+    };
+
+    function clean(s) {
+        return s.replace(/\/\*.*?\*\//g, ' ').replace(/\s+/g, ' ').replace(/\}\s*/g, '}\n');
+    };
+
+    function parseRule(rule) {
+        var r = trim(clean(rule)),
+            selector = r.replace(/\{.*$/, ''),
+            attrs = r.replace(/.*?\{(.*?)\}/, '$1').split(';'),
+            ret = { selector: selector, attr: attrs };
+        return ret;
+    };
+
+    function refreshRules() {
+        var s;
+        var refreshCounter = 0;
+        cssRules = [];
+        styledElements = [];
+        for(var i = 0; i < RealtiveUnitsElms.length; i++) {
+            if(RealtiveUnitsElms[i].id == relativeUnitsStylesheetID) continue;
+            switch(RealtiveUnitsElms[i].nodeName.toLowerCase()) {
+                case 'link':
+                refreshCounter++;
+                var href = RealtiveUnitsElms[i].href;
+                $.get(href, function(s){
+                    s = trim(clean(s)).split('\n');
+                    for(var j = 0; j < s.length; j++) {
+                        if(s.length > 0) {
+                            RealtiveUnitsTemp.push(s[j]);
+                        }
+                    }
+                    refreshCounter--;
+                });
+                break;
+                case 'style':
+                s = RealtiveUnitsElms[i].innerHTML;
+                s = trim(clean(s)).split('\n');
+                for(var j = 0; j < s.length; j++) {
+                    if(s.length > 0) {
+                        RealtiveUnitsTemp.push(s[j]);
+                    }
+                }
+                break;
+                default:
+                // we're dealing with a style attribute
+                styledElements.push(RealtiveUnitsElms[i]);
+                break;
+            }
+        }
+        var requestDoneCheck = setInterval(function(){
+
+            if(refreshCounter !== 0)
+	      return;
+
+            for(i = 0; i < RealtiveUnitsTemp.length; i++) {
+                if(RealtiveUnitsTemp[i].length > 0) {
+                    cssRules.push(parseRule(RealtiveUnitsTemp[i]));
+                }
+            }
+
+            updateCSS();
+            clearInterval(requestDoneCheck);
+        }, 10);
+    };
+
+    function updateCSS() {
+        var stylesheet = '',
+            oldStyle = document.querySelectorAll('style#' + relativeUnitsStylesheetID),
+            newStylesheet = null,
+            i, j, a, v, n, d, styleProp, newProps, key, value;
+
+        for(i = 0; i < cssRules.length; i++) {
+            for(j = 0; j < cssRules[i].attr.length; j++) {
+                a = cssRules[i].attr[j];
+                v = a.match(/^(.*):(.*)$/);
+
+                if(v != null) {
+                    key = v[1];
+                    value = v[2];
+
+                    if(!value.match(/.*(vw|vh|vm).*/))
+                      continue;
+
+                    // replace-regexp
+                    var result = value.replace(/-*[0-9.]*[ ]*(vm|vh|vw)/g, function(arg) {
+
+                        var x = arg.match(/(-)*([0-9.]*)[ ]*(vm|vh|vw)/);
+                        n = parseFloat(x[2]);
+                        switch(x[3]) {
+                            case 'vw':
+                            d = document.documentElement.clientWidth;
+                            break;
+                            case 'vh':
+                            d = document.documentElement.clientHeight;
+                            break;
+                            case 'vm':
+                            d = Math.min(document.documentElement.clientWidth , document.documentElement.clientHeight);
+                            break;
+                        }
+                        var x1 = x[1] ? x[1] : '';
+
+                        // 前后的空格是为了防止出乱子
+                        return ' '+ x1 + (n * d) / 100 + 'px ';
+                    });
+
+                    result = key+':'+result+';';
+
+                    // 替换多余空格（英语捉急）
+                    result = result.replace(/ ;/g, ';');
+                    result = result.replace(/  /g, ' ');
+
+                    stylesheet += cssRules[i].selector + ' {'+ result +'}\n';
+
+                }
+            }
+        }
+        if(oldStyle != null) {
+            for(i = 0; i < oldStyle.length; i++) {
+                oldStyle[i].parentNode.removeChild(oldStyle[i]);
+            }
+        }
+
+        newStylesheet = document.createElement('style');
+        newStylesheet.id = relativeUnitsStylesheetID;
+        newStylesheet.innerHTML = stylesheet;
+        document.querySelector('head').appendChild(newStylesheet);
+    };
+
+
+    window.addEventListener('resize', function() { updateCSS(); });
+    window.addEventListener('load', function() { refreshRules(); });
+
+    return {
+        update: refreshRules,
+        recalculate: updateCSS
+    };
+}());
 // Qsc-Mobile -- the HTML5 version
 // Copyright (C) 2013 QSC Tech.
 
@@ -70,11 +217,11 @@ if(stuid && pwd) {
 }
 
 if(isLogin) {
-    $('#menu .user').attr('class', 'box user logout');
-    $('#menu .user').html('注销');
+    $('#menu-user').html('注销');
+    $('#menu-user').attr('id', 'menu-logout');
 } else {
-    $('#menu .user').attr('class', 'box user login');
-    $('#menu .user').html('登录');
+    $('#menu-user').html('登录');
+    $('#menu-user').attr('id', 'menu-login');
 }
 /**
  * @author Zeno Zeng
@@ -173,8 +320,9 @@ function showLogin(callback) {
 		    if(data['stuid'] != '') {
 			$('#login').hide();
                         if(!isTempLogin) {
-			    $('#menu .user').attr('class', 'box user logout');
-			    $('#menu .user').html('注销');
+                            isLogin = true;
+			    $('#menu-login').html('注销');
+			    $('#menu-login').attr('id','menu-logout');
                         }
 			if(typeof(callback) == 'function') {
 			    callback();
@@ -535,9 +683,10 @@ window.location.hash = '';// 清除hash，进入默认界面
 
 // 除登陆外所有跳转均需通过修改 window.location.hash 来实现
 $(window).on("hashchange", function(){
-    if (window.location.hash == '') {
+    var hash = window.location.hash.toLowerCase();
+    if (hash == '') {
         // 返回主界面
-        $(currentLayout).hide(200);
+        $(currentLayout).hide();
 
         // 设置延迟，防止鼠标事件被意外传递（opera mobile）
         setTimeout(function() {
@@ -546,8 +695,8 @@ $(window).on("hashchange", function(){
         currentLayout = '#menu';
     } else {
         $(currentLayout).hide();
-        $(window.location.hash).show();
-        currentLayout = window.location.hash;
+        $(hash).show();
+        currentLayout = hash;
     }
 });
 
@@ -555,89 +704,43 @@ $('.backward').bind("click", function(){
     history.back();
 });
 
-$('#menu .kebiao').bind("click", function(){
-    pleaseLoginIfNotLogin(function() {
-        loadKebiao();
-        window.location.hash='kebiao';
-    });
-});
-
-$('#menu .config').bind("click", function(){
-    loadConfig();
-    window.location.hash='config';
-});
-
-$('#menu .xiaoche').bind("click", function(){
-    $.include(['qsc-mobile-bus.js']);
-    window.location.hash='xiaoche';
-    return false;
-});
-
-$('#menu .xiaoli').bind("click", function() {
-    getData('share/xiaoli', function(data) {
-        loadXiaoli(data);
-    });
-    window.location.hash='xiaoli';
-    return false;
-});
-
-$('#menu .kaoshi').bind("click", function(){
-    pleaseLoginIfNotLogin(function() {
-        $.include(['qsc-mobile-kaoshi.js']);
-        window.location.hash='kaoshi';
-    });
-    return false;
-});
-
-$('#menu .chengji').bind("click", function(){
-    pleaseLoginIfNotLogin(function() {
-        $.include(['qsc-mobile-chengji.js']);
-        window.location.hash='chengji';
-    });
-    return false;
-});
-
-$('#menu .zuoye').bind("click", function(){
-    pleaseLoginIfNotLogin(function(){
-        $.include(['qsc-mobile-zuoye.js', 'base64.js']);
-        window.location.hash='zuoye';
-    });
-    return false;
-});
-
-$('#menu .tempuser').bind("click", function() {
-    localStorage.setItem('tempLogin', true);
-    pleaseLoginIfNotLogin(function() {
-        $('#menu').show();
-    });
-});
-
-$('.user').bind("click", function(){
-    if(isLogin()) {
-        if(isTempLogin()) {
-            localStorage.removeItem('tempLogin');
-            localStorage.removeItem('tempStuid');
-            localStorage.removeItem('tempPwd');
-        } else {
-            localStorage.clear();
-            $('#menu .user').attr('class', 'box user login');
-            $('#menu .user').html('登录');
-        }
-    } else {
+$('#menu').on('click', '#menu > div', function() {
+    var id = $(this).attr('id');
+    id = id.replace(/menu-/g, '');
+    id = id.charAt(0).toUpperCase() + id.slice(1);
+    switch(id)
+    {
+    case 'Login':
         pleaseLoginIfNotLogin(function() {
             $('#menu').show();
         });
-    }
-
-    if(isLogin) {
-        $('#menu .user').attr('class', 'box user logout');
-        $('#menu .user').html('注销');
-    } else {
-        $('#menu .user').attr('class', 'box user login');
-        $('#menu .user').html('登录');
+        break;
+    case 'Logout':
+        isLogin = false;
+        localStorage.clear();
+        $(this).html('登录');
+        $(this).attr('id', 'menu-login');
+        break;
+    case 'Tempuser':
+        isTempLogin = true;
+        showLogin(function() {
+            $('#menu').show();
+        });
+        break;
+    case 'Xiaoli':
+    case 'Xiaoche':
+    case 'Config':
+        eval('load'+id+'()');
+	window.location.hash = id;
+        break;
+    default:
+        pleaseLoginIfNotLogin(function() {
+            eval('load'+id+'()');
+	    window.location.hash = id;
+        });
+        break;
     }
 });
-
 
 $('#msg').bind("click", function(){
     $(this).hide();
@@ -664,6 +767,10 @@ getData('jw/kebiao', function(data) {
 });
 function displayKebiaoSummary() {
     if(currentLayout != '#menu') return; // no need to show it
+    if(!isLogin && !isTempLogin) {
+        $('#menu-kebiao').html('课表');
+        return;
+    }
     var now = new Date();
     var keBiao = new KeBiao(kebiaoData, now);
     var classNthNow = now.getClassNth();
@@ -685,7 +792,7 @@ function displayKebiaoSummary() {
     html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
     html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
 
-    $('#menu .kebiao').html(html);
+    $('#menu-kebiao').html(html);
 }
 function writeClassToDom(dom, date){
     var htmlString = '';
@@ -733,14 +840,17 @@ function loadKebiao() {
 }
 
 function loadConfig() {
-    for(var i = 0; i < config_list.length; i++) {
-        var item = config_list[i];
-        $('#'+item).attr("class", config[item]);
-    }
-    $('#config_items li').bind("mousedown", function(){
-        var item = $(this).attr('id');
-        config[item] = !config[item];
-        localStorage.setItem('config', JSON.stringify(config));
-        $(this).attr("class", config[item]);
-    });
+    (function() {
+        for(var i = 0; i < config_list.length; i++) {
+            var item = config_list[i];
+            $('#'+item).attr("class", config[item]);
+        }
+        $('#config_items li').unbind("click");
+        $('#config_items li').bind("click", function(){
+            var item = $(this).attr('id');
+            config[item] = !config[item];
+            localStorage.setItem('config', JSON.stringify(config));
+            $(this).attr("class", config[item]);
+        });
+    })()
 }

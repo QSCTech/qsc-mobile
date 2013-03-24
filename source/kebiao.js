@@ -8,6 +8,10 @@ getData('jw/kebiao', function(data) {
 });
 function displayKebiaoSummary() {
     if(currentLayout != '#menu') return; // no need to show it
+    if(!isLogin && !isTempLogin) {
+        $('#menu-kebiao').html('课表');
+        return;
+    }
     var now = new Date();
     var keBiao = new KeBiao(kebiaoData, now);
     var classNthNow = now.getClassNth();
@@ -29,7 +33,7 @@ function displayKebiaoSummary() {
     html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
     html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
 
-    $('#menu .kebiao').html(html);
+    $('#menu-kebiao').html(html);
 }
 function writeClassToDom(dom, date){
     var htmlString = '';

@@ -95,8 +95,9 @@ function showLogin(callback) {
 		    if(data['stuid'] != '') {
 			$('#login').hide();
                         if(!isTempLogin) {
-			    $('#menu .user').attr('class', 'box user logout');
-			    $('#menu .user').html('注销');
+                            isLogin = true;
+			    $('#menu-login').html('注销');
+			    $('#menu-login').attr('id','menu-logout');
                         }
 			if(typeof(callback) == 'function') {
 			    callback();
