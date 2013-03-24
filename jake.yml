@@ -24,5 +24,6 @@ packages:
      - ctrl.js
      - kebiao.js
      - xiaoli.js
+     - kaoshi.js
      - config.js
 
