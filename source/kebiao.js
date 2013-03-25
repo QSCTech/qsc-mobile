@@ -1,11 +1,16 @@
 var kebiaoData;
-getData('jw/kebiao', function(data) {
-    kebiaoData = data;
-    displayKebiaoSummary();
-    setInterval(function() {
-        displayKebiaoSummary();
-    }, 1000);
-});
+function kebiaoInit() {
+    (function() {
+        getData('jw/kebiao', function(data) {
+            kebiaoData = data;
+            displayKebiaoSummary();
+            var kbSummaryInt = setInterval(function() {
+                displayKebiaoSummary();
+            }, 1000);
+        });
+    })();
+}
+kebiaoInit();
 function displayKebiaoSummary() {
     if(currentLayout != '#menu'&& currentLayout != '') return; // no need to show it
     if(!isLogin && !isTempLogin) {
@@ -16,7 +21,7 @@ function displayKebiaoSummary() {
     var keBiao = new KeBiao(kebiaoData, now);
     var classNthNow = now.getClassNth();
     var classNthMaybe = keBiao.getClassMaybe();
-    var html;
+    var html = '';
 
     // get count down
     var countdown;
@@ -29,11 +34,24 @@ function displayKebiaoSummary() {
     } else {
         countdown = 0;
     }
-    html = '<div id="countdown">'+formatTimeDelta(countdown)+'</div>';
-    html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
-    html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
-
+    if(classNthMaybe) {
+        html += '<div id="countdown">'+formatTimeDelta(countdown)+'</div>';
+        html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
+        html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
+    } else {
+        html += displayTomorrowSummary();
+    }
     $('#menu-kebiao').html(html);
+}
+function displayTomorrowSummary() {
+    var html = '';
+    html += '明天的课:<div id="tomorrow-summary">';
+    var tomorrow = new Date();
+    tomorrow.setTime(tomorrow.getTime() + 1000*3600*24);
+    var keBiao = new KeBiao(kebiaoData, tomorrow);
+    html += keBiao.getCourseNameList().join(',<br>');
+    html += '</div>';
+    return html;
 }
 function writeClassToDom(dom, date){
     var htmlString = '';

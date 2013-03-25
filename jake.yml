@@ -30,5 +30,6 @@ packages:
      - chengji.js
      - xiaoche.js
      - config.js
+     - final.js
   zuoye:
      - zuoye.js

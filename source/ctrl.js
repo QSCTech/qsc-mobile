@@ -55,6 +55,7 @@ $('#menu').on('click', '#menu > div', function() {
                 $('#menu-tempuser').html(stuid + "<br>注销");
             });
         }
+        kebiaoInit();
         break;
     case 'Xiaoli':
     case 'Xiaoche':

@@ -296,9 +296,6 @@ function getData(item, success, error) {
             }, error)
         } else {
             success(JSON.parse(data));
-            fetchData(item, function(data){
-                localStorage.setItem(item, JSON.stringify(data));
-            });
         }
     }
 }
@@ -308,7 +305,7 @@ function getData(item, success, error) {
  */
 function updateData() {
     var hash = localStorage.getItem('hash');
-    if(!hash) hash = {};
+    hash = hash ? JSON.parse(hash) : {};
     var stuid = localStorage.getItem('stuid');
     var pwd = localStorage.getItem('pwd');
     var isValid = function(obj) {
@@ -325,6 +322,7 @@ function updateData() {
                         var callback = (function(item) {
                             return function(newdata) {
                                 hash[item] = data[item];
+                                localStorage.setItem('hash', JSON.stringify(hash));
                                 if(isValid(newdata)) {
                                     localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
                                 }
@@ -522,6 +520,7 @@ function KeBiao(data, date){
     var weekdate = weekday[date.getDay()];
     var j, classes, n;
     var keBiao = [];
+    var courseNameList = [];
 
     for (var i=0, len = data.length; i<len; i++)
     {
@@ -531,6 +530,7 @@ function KeBiao(data, date){
             if(data[i]['semester'].indexOf(semester) != -1) {
                 if(item['week'] == week || item['week'] == 'both') {
                     if(item['weekday'] == weekdate) {
+                        courseNameList.push(data[i]['name']);
                         for(var k=0; k<item['class'].length; k++) {
 	                    n = {
 		                'id':data[i]['id'],
@@ -544,6 +544,11 @@ function KeBiao(data, date){
                 }
             }
         }
+    }
+
+    // return an array of course name
+    this.getCourseNameList = function() {
+        return courseNameList;
     }
 
     // 返回第n节课的课程代号
@@ -571,7 +576,6 @@ function KeBiao(data, date){
         var hash = this.getCourseId(nth)+this.getClassroom(nth)+this.getTeacherName(nth);
         return hash;
     };
-
 
     this.getCourseTime = function(nth) {
         var nthArr = this.getClassNthAll(nth);
@@ -785,6 +789,7 @@ $('#menu').on('click', '#menu > div', function() {
                 $('#menu-tempuser').html(stuid + "<br>注销");
             });
         }
+        kebiaoInit();
         break;
     case 'Xiaoli':
     case 'Xiaoche':
@@ -823,13 +828,18 @@ function loadZuoye() {
 }
 
 var kebiaoData;
-getData('jw/kebiao', function(data) {
-    kebiaoData = data;
-    displayKebiaoSummary();
-    setInterval(function() {
-        displayKebiaoSummary();
-    }, 1000);
-});
+function kebiaoInit() {
+    (function() {
+        getData('jw/kebiao', function(data) {
+            kebiaoData = data;
+            displayKebiaoSummary();
+            var kbSummaryInt = setInterval(function() {
+                displayKebiaoSummary();
+            }, 1000);
+        });
+    })();
+}
+kebiaoInit();
 function displayKebiaoSummary() {
     if(currentLayout != '#menu'&& currentLayout != '') return; // no need to show it
     if(!isLogin && !isTempLogin) {
@@ -840,7 +850,7 @@ function displayKebiaoSummary() {
     var keBiao = new KeBiao(kebiaoData, now);
     var classNthNow = now.getClassNth();
     var classNthMaybe = keBiao.getClassMaybe();
-    var html;
+    var html = '';
 
     // get count down
     var countdown;
@@ -853,11 +863,24 @@ function displayKebiaoSummary() {
     } else {
         countdown = 0;
     }
-    html = '<div id="countdown">'+formatTimeDelta(countdown)+'</div>';
-    html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
-    html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
-
+    if(classNthMaybe) {
+        html += '<div id="countdown">'+formatTimeDelta(countdown)+'</div>';
+        html += '<div id="kb-sum-place">'+keBiao.getClassroom(classNthMaybe)+'</div>';
+        html += '<div id="kb-sum-course">'+keBiao.getCourseName(classNthMaybe)+'</div>';
+    } else {
+        html += displayTomorrowSummary();
+    }
     $('#menu-kebiao').html(html);
+}
+function displayTomorrowSummary() {
+    var html = '';
+    html += '明天的课:<div id="tomorrow-summary">';
+    var tomorrow = new Date();
+    tomorrow.setTime(tomorrow.getTime() + 1000*3600*24);
+    var keBiao = new KeBiao(kebiaoData, tomorrow);
+    html += keBiao.getCourseNameList().join(',<br>');
+    html += '</div>';
+    return html;
 }
 function writeClassToDom(dom, date){
     var htmlString = '';
@@ -1121,3 +1144,4 @@ function loadConfig() {
         });
     })()
 }
+updateData();

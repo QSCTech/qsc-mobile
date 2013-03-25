@@ -100,6 +100,7 @@ function KeBiao(data, date){
     var weekdate = weekday[date.getDay()];
     var j, classes, n;
     var keBiao = [];
+    var courseNameList = [];
 
     for (var i=0, len = data.length; i<len; i++)
     {
@@ -109,6 +110,7 @@ function KeBiao(data, date){
             if(data[i]['semester'].indexOf(semester) != -1) {
                 if(item['week'] == week || item['week'] == 'both') {
                     if(item['weekday'] == weekdate) {
+                        courseNameList.push(data[i]['name']);
                         for(var k=0; k<item['class'].length; k++) {
 	                    n = {
 		                'id':data[i]['id'],
@@ -122,6 +124,11 @@ function KeBiao(data, date){
                 }
             }
         }
+    }
+
+    // return an array of course name
+    this.getCourseNameList = function() {
+        return courseNameList;
     }
 
     // 返回第n节课的课程代号
@@ -149,7 +156,6 @@ function KeBiao(data, date){
         var hash = this.getCourseId(nth)+this.getClassroom(nth)+this.getTeacherName(nth);
         return hash;
     };
-
 
     this.getCourseTime = function(nth) {
         var nthArr = this.getClassNthAll(nth);
