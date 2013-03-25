@@ -10,7 +10,7 @@ input,textarea,select{outline:none;}
 #wrap{width:85%;margin:0 auto;overflow:hidden;padding:5%;}
 #menu{margin:0 auto;width:83vw;float:left;}#menu .box{display:block;width:40vw;height:40vw;float:left;padding:0;margin:.5vw;background-color:#219eee;background-repeat:no-repeat;background-position:50% 4.6875vw;background-size:23.5vw 23.5vw;color:#fff;line-height:70vw;font-size:6vw;text-align:center;overflow:hidden;cursor:pointer;}#menu .box:nth-child(4n+1),#menu .box:nth-child(4n){background-color:#666666;}
 #menu .no-icon{padding:10vw 0;height:20vw;line-height:10vw;}
-#menu .longbox{width:81vw;height:40vw;background:#219eee;margin:.5vw;}
+#menu .longbox{float:left;width:81vw;height:40vw;background:#219eee;margin:.5vw;color:#fff;}
 .gaikuang{background-image:url(../img/general.png);}
 .chat{line-height:40vw;font-size:12vw;}
 #menu-xiaoli{background-image:url(../img/calendar.png);}

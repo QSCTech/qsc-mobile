@@ -233,6 +233,8 @@ b.urls[0]){l("css");break}h+=1;b&&(h<200?setTimeout(t,50):l("css"))}}var c,s,m={
  * @example updateData('jw/kebiao');
  */
 function fetchData(item, success, error) {
+    error = typeof(error) == 'function' ? error : function(msg) {return;};
+    success = typeof(success) == 'function' ? success : function(msg) {return;};
     if(!navigator.onLine) {
         if(typeof(error) == 'function') {
             error('好的嘛，这是已经离线的节奏……');
@@ -241,7 +243,7 @@ function fetchData(item, success, error) {
     }
     var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
     var params = [];
-    if(item.indexOf('share') != -1) {
+    if(item.indexOf('jw/') != -1) {
         params = [
           'stuid='+stuid,
           'pwd='+pwd
@@ -257,14 +259,12 @@ function fetchData(item, success, error) {
                          return;
                      }
                      if(data['code'] == 1) {
-                         console.log('getJson: code = 1');
                          // 远端返回消息
                          error(data['msg']);
                          // 再次访问远端来获取内容（递归）
                          updateData(item, success, error);
                      } else {
                          // 未知情况
-                         console.log('getJson:未知情况');
                          return;
                      }
                  } else {
@@ -300,6 +300,45 @@ function getData(item, success, error) {
                 localStorage.setItem(item, JSON.stringify(data));
             });
         }
+    }
+}
+/**
+ * @author Zeno Zeng
+ * @desc check all the update, if the hash changed and the data is valid, update
+ */
+function updateData() {
+    var hash = localStorage.getItem('hash');
+    if(!hash) hash = {};
+    var stuid = localStorage.getItem('stuid');
+    var pwd = localStorage.getItem('pwd');
+    var isValid = function(obj) {
+        return JSON.stringify(obj).length > 2 ? true : false;
+    }
+    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接载入数据
+    var updateModule = (function(stuid, pwd) {
+        return function(module) {
+            fetchData(module+'/hash', function(data) {
+                var item;
+                for(item in data) {
+                    if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
+                        // 注意回调之后item变量改变，所以在这里先用函数构造函数
+                        var callback = (function(item) {
+                            return function(newdata) {
+                                hash[item] = data[item];
+                                if(isValid(newdata)) {
+                                    localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
+                                }
+                            }
+                        })(item);
+                        fetchData(module+'/'+item, callback);
+                    }
+                }
+            });
+        }
+    })(stuid, pwd);
+    updateModule('share');
+    if(isLogin && !isTempLogin) {
+        updateModule('jw');
     }
 }
 /**

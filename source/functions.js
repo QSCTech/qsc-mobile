@@ -4,7 +4,6 @@
  * @example updateData('jw/kebiao');
  */
 function fetchData(item, success, error) {
-    console.log(stuid+item);
     error = typeof(error) == 'function' ? error : function(msg) {return;};
     success = typeof(success) == 'function' ? success : function(msg) {return;};
     if(!navigator.onLine) {
@@ -31,14 +30,12 @@ function fetchData(item, success, error) {
                          return;
                      }
                      if(data['code'] == 1) {
-                         console.log('getJson: code = 1');
                          // 远端返回消息
                          error(data['msg']);
                          // 再次访问远端来获取内容（递归）
                          updateData(item, success, error);
                      } else {
                          // 未知情况
-                         console.log('getJson:未知情况');
                          return;
                      }
                  } else {
@@ -98,12 +95,8 @@ function updateData() {
                         // 注意回调之后item变量改变，所以在这里先用函数构造函数
                         var callback = (function(item) {
                             return function(newdata) {
-                                console.log(item);
                                 hash[item] = data[item];
-                                console.log('getItem'+item);
-                                console.log(newdata);
                                 if(isValid(newdata)) {
-                                    console.log('setItem'+item);
                                     localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
                                 }
                             }
@@ -114,6 +107,10 @@ function updateData() {
             });
         }
     })(stuid, pwd);
+    updateModule('share');
+    if(isLogin && !isTempLogin) {
+        updateModule('jw');
+    }
 }
 /**
  * @author Zeno Zeng
