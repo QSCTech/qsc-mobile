@@ -4,6 +4,9 @@
  * @example updateData('jw/kebiao');
  */
 function fetchData(item, success, error) {
+    console.log(stuid+item);
+    error = typeof(error) == 'function' ? error : function(msg) {return;};
+    success = typeof(success) == 'function' ? success : function(msg) {return;};
     if(!navigator.onLine) {
         if(typeof(error) == 'function') {
             error('好的嘛，这是已经离线的节奏……');
@@ -12,7 +15,7 @@ function fetchData(item, success, error) {
     }
     var baseUrl = branch == "dev" ? 'http://m.myqsc.com/dev/' :'http://m.myqsc.com/stable/';
     var params = [];
-    if(item.indexOf('share') != -1) {
+    if(item.indexOf('jw/') != -1) {
         params = [
           'stuid='+stuid,
           'pwd='+pwd
@@ -71,6 +74,59 @@ function getData(item, success, error) {
                 localStorage.setItem(item, JSON.stringify(data));
             });
         }
+    }
+}
+/**
+ * @author Zeno Zeng
+ * @desc check all the update, if the hash changed and the data is valid, update
+ */
+function updateData() {
+    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接封装
+    var updateModule = (function(stuid, pwd) {
+        return function(module) {
+
+        }
+    })(stuid, pwd);
+    var hash = localStorage.getItem('hash');
+    if(!hash) hash = {};
+    // check share info
+    fetchData('share/hash', function(data) {
+        var item;
+        for(item in data) {
+            if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
+                // 注意回调之后item变量改变，所以在这里先用函数构造函数
+                var callback = (function(item) {
+                    return function(newdata) {
+                        console.log(item);
+                        hash[item] = data[item];
+                        if(newdata.length > 0) {
+                            console.log('setItem'+item);
+                            localStorage.setItem('share/'+item, JSON.stringify(newdata));
+                        }
+                    }
+                })(item);
+                fetchData('share/'+item, callback);
+            }
+
+        }
+    });
+    // check personal info
+    if(isLogin) {
+        var stuid = localStorage.getItem('stuid');
+        var pwd = localStorage.getItem('pwd');
+        fetchData('jw/hash',
+                  function(data) {
+                      var item;
+                      for(item in data) {
+                          if(typeof(hash[item]) != "undefined" || hash[item] != data[item]) {
+                              fetchData('jw/'+item, function(newdata) {
+                                  hash[item] = data[item];
+                                  if(newdata.length > 0)
+                                    localStorage.setItem('jw/'+item, JSON.stringify(newdata));
+                              }, function() {}, stuid, pwd);
+                          }
+                      }
+                  },function() {}, stuid, pwd);
     }
 }
 /**
