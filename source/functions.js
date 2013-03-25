@@ -67,9 +67,6 @@ function getData(item, success, error) {
             }, error)
         } else {
             success(JSON.parse(data));
-            fetchData(item, function(data){
-                localStorage.setItem(item, JSON.stringify(data));
-            });
         }
     }
 }
@@ -79,7 +76,7 @@ function getData(item, success, error) {
  */
 function updateData() {
     var hash = localStorage.getItem('hash');
-    if(!hash) hash = {};
+    hash = hash ? JSON.parse(hash) : {};
     var stuid = localStorage.getItem('stuid');
     var pwd = localStorage.getItem('pwd');
     var isValid = function(obj) {
@@ -96,6 +93,7 @@ function updateData() {
                         var callback = (function(item) {
                             return function(newdata) {
                                 hash[item] = data[item];
+                                localStorage.setItem('hash', JSON.stringify(hash));
                                 if(isValid(newdata)) {
                                     localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
                                 }
