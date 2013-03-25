@@ -81,53 +81,39 @@ function getData(item, success, error) {
  * @desc check all the update, if the hash changed and the data is valid, update
  */
 function updateData() {
-    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接封装
-    var updateModule = (function(stuid, pwd) {
-        return function(module) {
-
-        }
-    })(stuid, pwd);
     var hash = localStorage.getItem('hash');
     if(!hash) hash = {};
-    // check share info
-    fetchData('share/hash', function(data) {
-        var item;
-        for(item in data) {
-            if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
-                // 注意回调之后item变量改变，所以在这里先用函数构造函数
-                var callback = (function(item) {
-                    return function(newdata) {
-                        console.log(item);
-                        hash[item] = data[item];
-                        if(newdata.length > 0) {
-                            console.log('setItem'+item);
-                            localStorage.setItem('share/'+item, JSON.stringify(newdata));
-                        }
-                    }
-                })(item);
-                fetchData('share/'+item, callback);
-            }
-
-        }
-    });
-    // check personal info
-    if(isLogin) {
-        var stuid = localStorage.getItem('stuid');
-        var pwd = localStorage.getItem('pwd');
-        fetchData('jw/hash',
-                  function(data) {
-                      var item;
-                      for(item in data) {
-                          if(typeof(hash[item]) != "undefined" || hash[item] != data[item]) {
-                              fetchData('jw/'+item, function(newdata) {
-                                  hash[item] = data[item];
-                                  if(newdata.length > 0)
-                                    localStorage.setItem('jw/'+item, JSON.stringify(newdata));
-                              }, function() {}, stuid, pwd);
-                          }
-                      }
-                  },function() {}, stuid, pwd);
+    var stuid = localStorage.getItem('stuid');
+    var pwd = localStorage.getItem('pwd');
+    var isValid = function(obj) {
+        return JSON.stringify(obj).length > 2 ? true : false;
     }
+    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接载入数据
+    var updateModule = (function(stuid, pwd) {
+        return function(module) {
+            fetchData(module+'/hash', function(data) {
+                var item;
+                for(item in data) {
+                    if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
+                        // 注意回调之后item变量改变，所以在这里先用函数构造函数
+                        var callback = (function(item) {
+                            return function(newdata) {
+                                console.log(item);
+                                hash[item] = data[item];
+                                console.log('getItem'+item);
+                                console.log(newdata);
+                                if(isValid(newdata)) {
+                                    console.log('setItem'+item);
+                                    localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
+                                }
+                            }
+                        })(item);
+                        fetchData(module+'/'+item, callback);
+                    }
+                }
+            });
+        }
+    })(stuid, pwd);
 }
 /**
  * @author Zeno Zeng
