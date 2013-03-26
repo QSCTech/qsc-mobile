@@ -152,7 +152,7 @@ function KeBiao(data, date){
     // return an array of course name
     this.getCourseNameList = function() {
         return courseNameList;
-    };
+    }
 
     // 返回第n节课的课程代号
     this.getCourseId = function(nth) {

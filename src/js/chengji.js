@@ -1,14 +1,14 @@
-function loadChengji() {
-    getData('jw/chengji', function (chengJiData) {
-        var chengJiArray = chengJiData['chengji_array'],
-            gpa = chengJiData['junji_array'],
-            html = '',
-            i;
-        for (i = chengJiArray.length - 1; i > -1; i--) {
+function loadChengji(){
+    getData('jw/chengji', function(chengJiData) {
+        var chengJiArray = chengJiData['chengji_array'];
+        var gpa = chengJiData['junji_array'];
+
+        var html = '';
+        for(var i = chengJiArray.length - 1; i > -1; i--) {
             html += '<div class="chengji>';
             html += '<div class="name">' + chengJiArray[i]['课程名称'] + '</div>';
-            html += '<div class="score">成绩：' + chengJiArray[i]['成绩'] + '</div>';
-            html += '<div class="credit">学分：' + chengJiArray[i]['学分'] + '</div>';
+            html += '<div class="score">成绩：'+chengJiArray[i]['成绩'] + '</div>';
+            html += '<div class="credit">学分：'+chengJiArray[i]['学分'] + '</div>';
             html += '<div class="gradepoint">绩点：'+chengJiArray[i]['绩点'] + '</div>';
             html += '</div>';
             html += '<br>';

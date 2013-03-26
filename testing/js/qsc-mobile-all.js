@@ -182,12 +182,15 @@ window.RelativeUnits =  (function(){
         document.querySelector('head').appendChild(newStylesheet);
     };
 
+    refreshRules();
+    window.addEventListener('resize', function() { refreshRules(); });
+
     return {
         update: refreshRules,
         recalculate: updateCSS
     };
-    refreshRules();
 }());
+
 // Qsc-Mobile -- the HTML5 version
 // Copyright (C) 2013 QSC Tech.
 
@@ -579,7 +582,7 @@ function KeBiao(data, date){
     // return an array of course name
     this.getCourseNameList = function() {
         return courseNameList;
-    };
+    }
 
     // 返回第n节课的课程代号
     this.getCourseId = function(nth) {
@@ -971,14 +974,16 @@ function loadXiaoli() {
             // });
 
             getData('share/shijian', function(data){
-                xiaoliData = data;
+                window.xiaoliData = data;
                 loadShijian();
             });
-        })();
+        })()
     }
 }
+
 function loadShijian() {
-    var htmlImportant = '', htmlVacation = '', htmlExam = '';
+    var htmlNow = '', htmlFuture = '', htmlPast = '';
+    var now = (new Date()).getTime();
     // 汇总
     for(var i=0; i<xiaoliData.length; i++) {
         var item = xiaoliData[i];
@@ -986,21 +991,64 @@ function loadShijian() {
         var type = item['事件类型'];
         var begin = item['起始时间'];
         var end = item['终止时间'];
-        // 循环，同时对四个dom写入
 
-        if(type == '重要事件')
-          htmlImportant += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
-        if(type == '放假')
-          htmlVacation += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
-        if(type == '考试')
-          htmlExam += '<li><div class="content">'+content+'</div><div class="begin">'+begin+'</div><div class="end">'+end+'</div></li>';
+        var delta = (new Date(end)).getTime() - now;
+
+        if(delta < -24*3600*1000) {
+            // 已过去
+            htmlPast += '<li><div class="content">'+content+'</div><div>'+begin+' - '+end+'</div></li>';
+        } else if (delta > 2*30*24*3600*1000){
+            // 60天以后
+            htmlFuture += '<li><div class="content">'+content+'</div><div>'+begin+' - '+end+'</div></li>';
+        } else {
+            // 一个月内
+            htmlNow += '<li><div class="content">'+content+'</div><div>'+begin+' - '+end+'</div></li>';
+        }
     }
 
 
-    $('#xiaoli_important ul').html(htmlImportant);
-    $('#xiaoli_vacation ul').html(htmlVacation);
-    $('#xiaoli_exam ul').html(htmlExam);
+    $('#xiaoli_now ul').html(htmlNow);
+    $('#xiaoli_future ul').html(htmlFuture);
+    $('#xiaoli_past ul').html(htmlPast);
 }
+
+// function loadNotice() {
+//     var htmlNotice = '';
+//     for(var j=0, len=noticeData.length; j<len; j++) {
+//         var item = noticeData[j];
+
+
+//         var timeEnd = new Date(item.time_end);
+//         var now = new Date();
+//         timeEnd.setHours(23, 59, 59);
+
+//         if(now.getTime() > timeEnd.getTime())
+//           continue;
+
+//         htmlNotice += '<li id="notice_id_'+item.id+'"><div class="title">'+item.title+ '</div><div class="location">'+item.location+'</div><div class="time_start">开始：'+item.time_start+'</div><div class="time_end">结束：'+item.time_end+'</div><div class="content" style="display:none"></div></li>';
+//     }
+//     htmlNotice = htmlNotice ? htmlNotice : "<li>好的嘛，目前木有活动了……</li>";
+//     $('#xiaoli_notice ul').html(htmlNotice);
+// }
+
+// function loadNoticeDetail(id) {
+//     if(sessionStorage["notice_id_"+id]){
+//         var data = sessionStorage["notice_id_"+id];
+//         data = JSON.parse(data);
+//         $("#notice_id_"+id+" .content").html("<hr><br>"+data.content);
+//     } else {
+//         fetchData('share/notice?id='+id, true, function(data) {
+//             if(!data) return;
+
+//             // 去掉图片
+//             data.content = data.content.replace(/<img.*>/g, '');
+
+//             $("#notice_id_"+id+" .content").html("<hr><br>"+data.content);
+//             sessionStorage["notice_id_"+id] = JSON.stringify(data);
+//         });
+//     }
+// }
+
 function loadKaoshi() {
     getData('jw/kaoshi', function(kaoshiData) {
         var html = '';
@@ -1048,17 +1096,17 @@ function loadKaoshi() {
     });
 }
 
-function loadChengji() {
-    getData('jw/chengji', function (chengJiData) {
-        var chengJiArray = chengJiData['chengji_array'],
-            gpa = chengJiData['junji_array'],
-            html = '',
-            i;
-        for (i = chengJiArray.length - 1; i > -1; i--) {
+function loadChengji(){
+    getData('jw/chengji', function(chengJiData) {
+        var chengJiArray = chengJiData['chengji_array'];
+        var gpa = chengJiData['junji_array'];
+
+        var html = '';
+        for(var i = chengJiArray.length - 1; i > -1; i--) {
             html += '<div class="chengji>';
             html += '<div class="name">' + chengJiArray[i]['课程名称'] + '</div>';
-            html += '<div class="score">成绩：' + chengJiArray[i]['成绩'] + '</div>';
-            html += '<div class="credit">学分：' + chengJiArray[i]['学分'] + '</div>';
+            html += '<div class="score">成绩：'+chengJiArray[i]['成绩'] + '</div>';
+            html += '<div class="credit">学分：'+chengJiArray[i]['学分'] + '</div>';
             html += '<div class="gradepoint">绩点：'+chengJiArray[i]['绩点'] + '</div>';
             html += '</div>';
             html += '<br>';

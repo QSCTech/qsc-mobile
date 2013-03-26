@@ -304,16 +304,26 @@
     .header{
 	#kebiao .header;
     }
+    #xiaoli_content header {
+	background: @theme;
+	font-size:6vw;
+	color: #fff;
+	width: 18vw;
+	margin: 3vw 0 3vw -12vw;
+	padding: 3vw 6vw 3vw 12vw;
+	border-radius: 3vw;
+    }
     #xiaoli_content ul li {
 	background:#fff;
-	border-radius:1.25vw;
-	border: 1px solid #777;
+	border-bottom: 1px solid #777;
 	font-size:4.6875vw;
-	margin-top:1em;
 	padding:1em;
 	color:@color;
 	.title {
 	    font-weight:bold;
+	}
+	&:last-child {
+	    border:none;
 	}
     }
 }
@@ -578,21 +588,5 @@ hr.blue {
 		content:"TODO";
 	    }
 	}
-    }
-}
-#debug {
-    overflow-y: scroll;
-    background: #000;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 4vh;
-    font-size: 2vh;
-    line-height: 4vh;
-    color: #fff;
-    width: 100%;
-    display: none;
-    &:hover {
-	height: 80vh;
     }
 }

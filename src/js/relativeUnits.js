@@ -138,9 +138,11 @@ window.RelativeUnits =  (function(){
         document.querySelector('head').appendChild(newStylesheet);
     };
 
+    refreshRules();
+    window.addEventListener('resize', function() { refreshRules(); });
+
     return {
         update: refreshRules,
         recalculate: updateCSS
     };
-    refreshRules();
 }());

@@ -1,6 +1,6 @@
 # build.sh for QSC Mobile
 # Copyright (C) 2013 QSC Mobile Team
-# Time-stamp: <2013-03-26 19:46:37 Zeno Zeng>
+# Time-stamp: <2013-03-26 20:56:08 Zeno Zeng>
 
 rm -r ../production
 rm -r ../testing
@@ -32,6 +32,9 @@ echo "<script>window.location.href='main.html';</script>" >> ../production/index
 cp building.html ../testing/index.html
 cp building.html ../production/main.html
 cp building.html ../production-cache-enabled/index.html
+# extra file for android
+cp config.xml ../production/config.xml
+cp md5.php ../production/md5.php
 # add manifest
 cd ../production-cache-enabled
 sed -i -e "1s/<\!doctype html>/<\!doctype html><html manifest="cache.manifest">/" index.html

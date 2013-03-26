@@ -48,7 +48,9 @@ input,textarea,select{outline:none;}
 #kaoshi .kaoshi{margin-bottom:2em;}#kaoshi .kaoshi .name{font-size:1.2em;}
 #kaoshi .kaoshi .time{color:#219eee;padding-bottom:.5em;}
 #xiaoli{width:84.375vw;}#xiaoli .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
-#xiaoli #xiaoli_content ul li{background:#fff;border-radius:1.25vw;border:1px solid #777;font-size:4.6875vw;margin-top:1em;padding:1em;color:#666666;}#xiaoli #xiaoli_content ul li .title{font-weight:bold;}
+#xiaoli #xiaoli_content header{background:#219eee;font-size:6vw;color:#fff;width:18vw;margin:3vw 0 3vw -12vw;padding:3vw 6vw 3vw 12vw;border-radius:3vw;}
+#xiaoli #xiaoli_content ul li{background:#fff;border-bottom:1px solid #777;font-size:4.6875vw;padding:1em;color:#666666;}#xiaoli #xiaoli_content ul li .title{font-weight:bold;}
+#xiaoli #xiaoli_content ul li:last-child{border:none;}
 #xiaoche{width:84.375vw;}#xiaoche .header{background-size:23.5vw 23.5vw;max-height:23.4375vw;font-size:15.625vw;color:#219eee;}
 #xiaoche select{padding:0;margin:0;font-size:5.0vw;width:40vw;background:#fff;border:1px solid #777;color:#555;}
 #xiaoche #bus_info{font-size:5.0vw;color:#666666;}#xiaoche #bus_info .bus_info{font-size:4.375vw;}#xiaoche #bus_info .bus_info .detail{font-size:4.375vw;line-height:5.625vw;}
@@ -83,4 +85,3 @@ hr.blue{border-color:#219eee;}
 #zuoye #zuoye_list li::after{display:block;content:'';float:right;height:5vw;margin-top:-7.5vw;}
 #zuoye #zuoye_list li.done{color:#555;}#zuoye #zuoye_list li.done::after{content:"DONE";}
 #zuoye #zuoye_list li.todo{color:#dc143c;}#zuoye #zuoye_list li.todo::after{content:"TODO";}
-#debug{overflow-y:scroll;background:#000;position:fixed;bottom:0;left:0;height:4vh;font-size:2vh;line-height:4vh;color:#fff;width:100%;display:none;}#debug:hover{height:80vh;}
