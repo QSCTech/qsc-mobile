@@ -1,12 +1,22 @@
 # 求是潮移动平台
 
-正在开发中……
+## 参与项目
+可以直接fork然后pull request
 
-即将出生……
+- build
+  build工具
 
-## Source Code
-代码托管在Github：
-https://github.com/zenozeng/qsc-mobile
+- src
+  源代码目录，所有的修改应该都位于此目录
+
+- testing
+  测试目录，此目录有完整的js和console输出
+
+- production
+  生产目录，为android和iphone输出，只有压缩的js，同时没有console输出
+
+- production-cache-enabled
+  生产目录，为chrome输出，只有压缩的js，同时没有console输出，但是开启html5 cache
 
 ## License
 Copyright (C) 2012 求是潮技术研发中心
@@ -30,50 +40,22 @@ permission notices:
 
 - jqMobi
 
-  Copyright 2011-2012 AppMobi
+	MIT X11 License
 
-  Released under the MIT license
-
-
-- Cordova.js
-
-  Copyright 2012 The Apache Software Foundation
-
-  Licensed under the Apache License, Version 2.0.
+	Copyright (C) <2011> by <Inte>l
 
 
 - CSS3 Relative Units
 
-  Copyright (C) 2012 Klemen Slavič
+	Copyright (C) 2012 Klemen Slavič
 
-  Copyright (C) 2012 Zeno Zeng
+	Copyright (C) 2012-2013 Zeno Zeng
 
-  Licensed under the MIT license.
+	Licensed under the MIT license.
 
 
 - base64.coffee, v1.0
 
-  Copyright 2012 Pavel Pravosud
+	Copyright 2012 Pavel Pravosud
 
-  Licensed under the MIT license.
-
-
-- BarrettMu.js
-
-  Copyright 2004-2005 David Shapiro.
-
-  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
-
-
-- BigInt.js
-
-  Copyright 1998-2005 David Shapiro.
-
-  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
-
-
-- RSA.js
-
-  Copyright 1998-2005 David Shapiro.
-
-  You may use, re-use, abuse, copy, and modify this code to your liking, but please keep this header.
+	Licensed under the MIT license.
