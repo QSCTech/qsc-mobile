@@ -71,6 +71,41 @@ function getData(item, success, error) {
 }
 /**
  * @author Zeno Zeng
+ * @desc 模块更新，注意stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先在载入前直接写入stuid和pwd。12小时内不重复check。
+ * @example updateModule('jw');
+ */
+var updateModule = (function(stuid, pwd) {
+    return function(module) {
+        var lastUpdate = localStorage.getItem('lastUpdate'+module);
+        if((new Date()).getTime() - lastUpdate < 12*3600*1000) {
+            return;
+        }
+        fetchData(module+'/hash', function(data) {
+            var item, i = 0;
+            for(item in data) {
+                if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
+                    // 注意回调之后item变量改变，所以在这里先用函数构造函数
+                    var callback = (function(item) {
+                        return function(newdata) {
+                            hash[item] = data[item];
+                            localStorage.setItem('hash', JSON.stringify(hash));
+                            newdata = JSON.stringify(newdata);
+                            if(newdata.length > 2) {
+                                localStorage.setItem(module+'/'+item, newdata);
+                            }
+                        }
+                    })(item);
+                    fetchData(module+'/'+item, callback);
+                }
+            }
+            if(i == 0) {
+                localStorage.setItem('lastUpdate'+module, (new Date()).getTime());
+            }
+        });
+    }
+})(stuid, pwd);
+/**
+ * @author Zeno Zeng
  * @desc check all the update, if the hash changed and the data is valid, update
  */
 function updateData() {
@@ -78,30 +113,7 @@ function updateData() {
     hash = hash ? JSON.parse(hash) : {};
     var stuid = localStorage.getItem('stuid');
     var pwd = localStorage.getItem('pwd');
-    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接载入数据
-    var updateModule = (function(stuid, pwd) {
-        return function(module) {
-            fetchData(module+'/hash', function(data) {
-                var item;
-                for(item in data) {
-                    if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
-                        // 注意回调之后item变量改变，所以在这里先用函数构造函数
-                        var callback = (function(item) {
-                            return function(newdata) {
-                                hash[item] = data[item];
-                                localStorage.setItem('hash', JSON.stringify(hash));
-                                newdata = JSON.stringify(newdata);
-                                if(data.length > 2) {
-                                    localStorage.setItem(module+'/'+item, newdata);
-                                }
-                            }
-                        })(item);
-                        fetchData(module+'/'+item, callback);
-                    }
-                }
-            });
-        }
-    })(stuid, pwd);
+
     updateModule('share');
     if(isLogin && !isTempLogin) {
         updateModule('jw');
