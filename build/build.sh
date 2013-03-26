@@ -1,6 +1,6 @@
 # build.sh for QSC Mobile
 # Copyright (C) 2013 QSC Mobile Team
-# Time-stamp: <2013-03-26 21:15:05 Zeno Zeng>
+# Time-stamp: <2013-03-26 21:18:14 Zeno Zeng>
 
 rm -r ../production
 rm -r ../testing
@@ -40,8 +40,8 @@ cp md5.php ../production/md5.php
 # add manifest
 cd ../production-cache-enabled
 sed -i -e "1s/<\!doctype html>/<\!doctype html><html manifest="cache.manifest">/" index.html
-echo -e "CACHE MANIFEST\n#UnixTimeStamp:$(date +%s)" >> cache.manifest
-echo -e "NETWORK:
+echo "CACHE MANIFEST\n#UnixTimeStamp:$(date +%s)" >> cache.manifest
+echo "NETWORK:
 http://m.myqsc.com/php-dev/
 http://m.myqsc.com/php-stable/
 http://m.myqsc.com/stable/
