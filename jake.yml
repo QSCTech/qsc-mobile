@@ -22,7 +22,7 @@ packages:
      - lazyload-min.js
      - functions.js
      - kebiao.class.js
-     - ctrl.js
+     - controller.js
      - lzload.js
      - kebiao.js
      - xiaoli.js

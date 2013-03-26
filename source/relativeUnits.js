@@ -1,3 +1,5 @@
+// modified version for qsc mobile
+
 var RealtiveUnitsTemp = [];
 var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
 
@@ -136,12 +138,9 @@ window.RelativeUnits =  (function(){
         document.querySelector('head').appendChild(newStylesheet);
     };
 
-
-    window.addEventListener('resize', function() { updateCSS(); });
-    window.addEventListener('load', function() { refreshRules(); });
-
     return {
         update: refreshRules,
         recalculate: updateCSS
     };
+    refreshRules();
 }());

@@ -42,6 +42,8 @@ null,null,null,null,null,null);return b};e.bind=function(a,c,b){if(!a.__events)a
 x.push(a);I.push(c?c:{});J.push(b?b:[]);g.postMessage("jqm-asap","*")};g.addEventListener("message",function(a){a.source==g&&a.data=="jqm-asap"&&(a.stopPropagation(),x.length>0&&x.shift().apply(I.shift(),J.shift()))},!0);var K={};e.parseJS=function(a){if(a){if(typeof a=="string"){var c=h.createElement("div");c.innerHTML=a;a=c}a=a.getElementsByTagName("script");for(c=0;c<a.length;c++)if(a[c].src.length>0&&!K[a[c].src]){var b=h.createElement("script");b.type=a[c].type;b.src=a[c].src;h.getElementsByTagName("head")[0].appendChild(b);
 K[a[c].src]=1}else g.eval(a[c].innerHTML)}};["click","keydown","keyup","keypress","submit","load","resize","change","select","error"].forEach(function(a){e.fn[a]=function(c){return c?this.bind(a,c):this.trigger(a)}});return e}(window);"$"in window||(window.$=jq);if(!window.numOnly)window.numOnly=function(g){if(g===void 0||g==="")return 0;if(isNaN(parseFloat(g)))if(g.replace)g=g.replace(/[^0-9.-]/,"");else return 0;return parseFloat(g)}};
 
+// modified version for qsc mobile
+
 var RealtiveUnitsTemp = [];
 var RealtiveUnitsElms = document.querySelectorAll('link[rel=stylesheet],style,[style]');
 
@@ -180,14 +182,11 @@ window.RelativeUnits =  (function(){
         document.querySelector('head').appendChild(newStylesheet);
     };
 
-
-    window.addEventListener('resize', function() { updateCSS(); });
-    window.addEventListener('load', function() { refreshRules(); });
-
     return {
         update: refreshRules,
         recalculate: updateCSS
     };
+    refreshRules();
 }());
 // Qsc-Mobile -- the HTML5 version
 // Copyright (C) 2013 QSC Tech.
@@ -275,15 +274,14 @@ function fetchData(item, success, error) {
                  error('好的嘛，好像有什么错误？');
              }
             });
-
 }
 /**
  * @author Zeno Zeng
- * @desc get the data and automatically update
+ * @desc get the data and automatically update, by default, it will show all the errors
  * @example getData('jw/kebiao');
  */
 function getData(item, success, error) {
-    error = typeof(error) == 'function' ? error : function(msg) {return;};
+    error = typeof(error) == 'function' ? error : function(e) {showMsg(e);};
     success = typeof(success) == 'function' ? success : function(msg) {return;};
     if(isTempLogin) {
         fetchData(item, success, error);
@@ -301,39 +299,48 @@ function getData(item, success, error) {
 }
 /**
  * @author Zeno Zeng
+ * @desc 模块更新，注意stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先在载入前直接写入stuid和pwd。12小时内不重复check。
+ * @example updateModule('jw');
+ */
+var updateModule = (function(stuid, pwd) {
+    return function(module) {
+        var lastUpdate = localStorage.getItem('lastUpdate'+module);
+        if(!lastUpdate) lastUpdate = 0;
+        if((new Date()).getTime() - lastUpdate < 12*3600*1000) {
+            return;
+        }
+        fetchData(module+'/hash', function(data) {
+            var item, i = 0;
+            for(item in data) {
+                if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
+                    i++;
+                    var callback = (function(item) {
+                        return function(newdata) {
+                            hash[item] = data[item];
+                            localStorage.setItem('hash', JSON.stringify(hash));
+                            newdata = JSON.stringify(newdata);
+                            if(newdata.length > 2) {
+                                localStorage.setItem(module+'/'+item, newdata);
+                            }
+                        }
+                    })(item);
+                    fetchData(module+'/'+item, callback);
+                }
+            }
+            if(i == 0) {
+                localStorage.setItem('lastUpdate'+module, (new Date()).getTime());
+            }
+        });
+    }
+})(stuid, pwd);
+/**
+ * @author Zeno Zeng
  * @desc check all the update, if the hash changed and the data is valid, update
  */
 function updateData() {
-    var hash = localStorage.getItem('hash');
-    hash = hash ? JSON.parse(hash) : {};
-    var stuid = localStorage.getItem('stuid');
-    var pwd = localStorage.getItem('pwd');
-    var isValid = function(obj) {
-        return JSON.stringify(obj).length > 2 ? true : false;
-    }
-    // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接载入数据
-    var updateModule = (function(stuid, pwd) {
-        return function(module) {
-            fetchData(module+'/hash', function(data) {
-                var item;
-                for(item in data) {
-                    if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
-                        // 注意回调之后item变量改变，所以在这里先用函数构造函数
-                        var callback = (function(item) {
-                            return function(newdata) {
-                                hash[item] = data[item];
-                                localStorage.setItem('hash', JSON.stringify(hash));
-                                if(isValid(newdata)) {
-                                    localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
-                                }
-                            }
-                        })(item);
-                        fetchData(module+'/'+item, callback);
-                    }
-                }
-            });
-        }
-    })(stuid, pwd);
+    window.hash = localStorage.getItem('hash');
+    window.hash = window.hash ? JSON.parse(window.hash) : {};
+
     updateModule('share');
     if(isLogin && !isTempLogin) {
         updateModule('jw');
@@ -522,6 +529,28 @@ function KeBiao(data, date){
     var keBiao = [];
     var courseNameList = [];
 
+    // Based on Liu Dong Yuan's function
+    // https://github.com/xhacker/zju-jwb-to-icalendar/blob/master/grabber.py
+    function trimLocation(l) {
+        l = l.replace("(多媒体，音乐教室)", "");
+        l = l.replace("(科创专用教室)", "");
+        l = l.replace("(网络五边语音)", "");
+        l = l.replace("(网络五边菱)", "");
+        l = l.replace("(长方无黑板)", "");
+        l = l.replace("(五边菱形)", "");
+        l = l.replace("(六边圆形)", "");
+        l = l.replace("(网络六边)", "");
+        l = l.replace("(网络五边)", "");
+        l = l.replace("(传统语音)", "");
+        l = l.replace("(长方形)", "");
+        l = l.replace("(语音)", "");
+        l = l.replace("(成多)", "");
+        l = l.replace("(普)", "");
+        l = l.replace("(多)", "");
+        l = l.replace("*", "");
+        return l;
+    }
+
     for (var i=0, len = data.length; i<len; i++)
     {
         var theClass = data[i]['class'];
@@ -536,7 +565,7 @@ function KeBiao(data, date){
 		                'id':data[i]['id'],
 		                'name':data[i]['name'],
 		                'teacher':data[i]['teacher'],
-		                'classroom':item['place']
+		                'classroom':trimLocation(item['place'])
 	                    };
                             keBiao[item['class'][k]] = n;
                         }
@@ -545,6 +574,7 @@ function KeBiao(data, date){
             }
         }
     }
+
 
     // return an array of course name
     this.getCourseNameList = function() {
@@ -776,19 +806,21 @@ $('#menu').on('click', '#menu > div', function() {
         $(this).html('登录');
         $(this).attr('id', 'menu-login');
         break;
-    case 'Tempuser':
-        if(isTempLogin) {
-            isTempLogin = false;
-            stuid = localStorage.getItem('stuid');
-            pwd = localStorage.getItem('pwd');
-            $('#menu-tempuser').html('临时登录');
-        } else {
-            isTempLogin = true;
-            showLogin(function() {
-                $('#menu').show();
-                $('#menu-tempuser').html(stuid + "<br>注销");
-            });
-        }
+    case 'Temp-login':
+        isTempLogin = true;
+        showLogin(function() {
+            $('#menu').show();
+            $('#menu-temp-login').html(stuid);
+            $('#menu-temp-login').attr('id', 'menu-temp-logout');
+            kebiaoInit();
+        });
+        break;
+    case 'Temp-logout':
+        isTempLogin = false;
+        stuid = localStorage.getItem('stuid');
+        pwd = localStorage.getItem('pwd');
+        $(this).html('临时登录');
+        $(this).attr('id', 'menu-temp-login');
         kebiaoInit();
         break;
     case 'Xiaoli':
@@ -833,7 +865,8 @@ function kebiaoInit() {
         getData('jw/kebiao', function(data) {
             kebiaoData = data;
             displayKebiaoSummary();
-            var kbSummaryInt = setInterval(function() {
+            clearInterval(window.kbSummaryInt);
+            window.kbSummaryInt = setInterval(function() {
                 displayKebiaoSummary();
             }, 1000);
         });
@@ -906,7 +939,7 @@ function writeClassToDom(dom, date){
         }
     }
 
-    $(dom).append(htmlString);
+    $(dom).html(htmlString);
 }
 function loadKebiao() {
     var zjuWeekInfo;

@@ -49,11 +49,11 @@ function fetchData(item, success, error) {
 }
 /**
  * @author Zeno Zeng
- * @desc get the data and automatically update
+ * @desc get the data and automatically update, by default, it will show all the errors
  * @example getData('jw/kebiao');
  */
 function getData(item, success, error) {
-    error = typeof(error) == 'function' ? error : function(msg) {return;};
+    error = typeof(error) == 'function' ? error : function(e) {showMsg(e);};
     success = typeof(success) == 'function' ? success : function(msg) {return;};
     if(isTempLogin) {
         fetchData(item, success, error);
@@ -77,6 +77,7 @@ function getData(item, success, error) {
 var updateModule = (function(stuid, pwd) {
     return function(module) {
         var lastUpdate = localStorage.getItem('lastUpdate'+module);
+        if(!lastUpdate) lastUpdate = 0;
         if((new Date()).getTime() - lastUpdate < 12*3600*1000) {
             return;
         }
@@ -84,7 +85,7 @@ var updateModule = (function(stuid, pwd) {
             var item, i = 0;
             for(item in data) {
                 if(typeof(hash[item]) == "undefined" || hash[item] != data[item]) {
-                    // 注意回调之后item变量改变，所以在这里先用函数构造函数
+                    i++;
                     var callback = (function(item) {
                         return function(newdata) {
                             hash[item] = data[item];
@@ -109,10 +110,8 @@ var updateModule = (function(stuid, pwd) {
  * @desc check all the update, if the hash changed and the data is valid, update
  */
 function updateData() {
-    var hash = localStorage.getItem('hash');
-    hash = hash ? JSON.parse(hash) : {};
-    var stuid = localStorage.getItem('stuid');
-    var pwd = localStorage.getItem('pwd');
+    window.hash = localStorage.getItem('hash');
+    window.hash = window.hash ? JSON.parse(window.hash) : {};
 
     updateModule('share');
     if(isLogin && !isTempLogin) {

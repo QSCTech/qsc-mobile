@@ -102,6 +102,28 @@ function KeBiao(data, date){
     var keBiao = [];
     var courseNameList = [];
 
+    // Based on Liu Dong Yuan's function
+    // https://github.com/xhacker/zju-jwb-to-icalendar/blob/master/grabber.py
+    function trimLocation(l) {
+        l = l.replace("(多媒体，音乐教室)", "");
+        l = l.replace("(科创专用教室)", "");
+        l = l.replace("(网络五边语音)", "");
+        l = l.replace("(网络五边菱)", "");
+        l = l.replace("(长方无黑板)", "");
+        l = l.replace("(五边菱形)", "");
+        l = l.replace("(六边圆形)", "");
+        l = l.replace("(网络六边)", "");
+        l = l.replace("(网络五边)", "");
+        l = l.replace("(传统语音)", "");
+        l = l.replace("(长方形)", "");
+        l = l.replace("(语音)", "");
+        l = l.replace("(成多)", "");
+        l = l.replace("(普)", "");
+        l = l.replace("(多)", "");
+        l = l.replace("*", "");
+        return l;
+    }
+
     for (var i=0, len = data.length; i<len; i++)
     {
         var theClass = data[i]['class'];
@@ -116,7 +138,7 @@ function KeBiao(data, date){
 		                'id':data[i]['id'],
 		                'name':data[i]['name'],
 		                'teacher':data[i]['teacher'],
-		                'classroom':item['place']
+		                'classroom':trimLocation(item['place'])
 	                    };
                             keBiao[item['class'][k]] = n;
                         }
@@ -125,6 +147,7 @@ function KeBiao(data, date){
             }
         }
     }
+
 
     // return an array of course name
     this.getCourseNameList = function() {

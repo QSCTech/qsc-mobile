@@ -4,7 +4,8 @@ function kebiaoInit() {
         getData('jw/kebiao', function(data) {
             kebiaoData = data;
             displayKebiaoSummary();
-            var kbSummaryInt = setInterval(function() {
+            clearInterval(window.kbSummaryInt);
+            window.kbSummaryInt = setInterval(function() {
                 displayKebiaoSummary();
             }, 1000);
         });
@@ -77,7 +78,7 @@ function writeClassToDom(dom, date){
         }
     }
 
-    $(dom).append(htmlString);
+    $(dom).html(htmlString);
 }
 function loadKebiao() {
     var zjuWeekInfo;

@@ -18,8 +18,8 @@ input,textarea,select{outline:none;}
 #menu-chengji{background-image:url(../img/GPA.png);}
 #menu-kaoshi{background-image:url(../img/exam.png);}
 #menu-xiaoche{background-image:url(../img/bus.png);}
-#menu-login,#menu-tempuser{background-image:url(../img/login.png);}
-#menu-logout{background-image:url(../img/exit.png);}
+#menu-login,#menu-temp-login{background-image:url(../img/login.png);}
+#menu-logout,#menu-temp-logout{background-image:url(../img/exit.png);}
 #menu-config{background-image:url(../img/setting.png);}
 #menu-zuoye{background-image:url(../img/homework.png);}
 .mask{width:100%;height:100%;}
