@@ -1,5 +1,9 @@
 var kebiaoData;
 function kebiaoInit() {
+    if(!isLogin && !isTempLogin) {
+        $('#menu-kebiao').html('课表');
+        return;
+    }
     (function() {
         getData('jw/kebiao', function(data) {
             kebiaoData = data;
