@@ -34,6 +34,7 @@ $('#menu').on('click', '#menu > div', function() {
         isTempLogin = false;
         pleaseLoginIfNotLogin(function() {
             $('#menu').show();
+            kebiaoInit();
         });
         break;
     case 'Logout':
@@ -41,6 +42,7 @@ $('#menu').on('click', '#menu > div', function() {
         localStorage.clear();
         $(this).html('登录');
         $(this).attr('id', 'menu-login');
+        kebiaoInit();
         break;
     case 'Temp-login':
         isTempLogin = true;
