@@ -4,10 +4,10 @@
 可以直接fork然后pull request
 
 - build
-  build工具
+  build tools
 
 - src
-  源代码目录，所有的修改应该都位于此目录
+  源代码目录，所有的修改应该都位于此目录，直接提交给我，我来进行打包工作
 
 - testing
   测试目录，此目录有完整的js和console输出
@@ -19,7 +19,7 @@
   生产目录，为chrome输出，只有压缩的js，同时没有console输出，但是开启html5 cache
 
 ## License
-Copyright (C) 2012 求是潮技术研发中心
+Copyright (C) 2012-2013 QSC Tech Mobile Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
