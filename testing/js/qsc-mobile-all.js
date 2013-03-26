@@ -1187,3 +1187,4 @@ function loadConfig() {
     })()
 }
 updateData();
+console.log('test');

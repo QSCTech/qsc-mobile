@@ -1,1 +1,2 @@
 updateData();
+console.log('test');

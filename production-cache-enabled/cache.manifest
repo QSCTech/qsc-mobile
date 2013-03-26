@@ -1,6 +1,6 @@
-CACHE MANIFEST
-#UnixTimeStamp:1364302710
-NETWORK:
+-e CACHE MANIFEST
+#UnixTimeStamp:1364303724
+-e NETWORK:
 http://m.myqsc.com/php-dev/
 http://m.myqsc.com/php-stable/
 http://m.myqsc.com/stable/

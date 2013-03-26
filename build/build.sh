@@ -1,6 +1,6 @@
 # build.sh for QSC Mobile
 # Copyright (C) 2013 QSC Mobile Team
-# Time-stamp: <2013-03-26 20:56:08 Zeno Zeng>
+# Time-stamp: <2013-03-26 21:15:05 Zeno Zeng>
 
 rm -r ../production
 rm -r ../testing
@@ -15,6 +15,8 @@ find . -name "*-src*" -mtime -1 | xargs -i mv {} ../testing/js
 rename 's/-src//' ../testing/js/*.js
 find . -name "*-min*" -mtime -1 | xargs -i mv {} ../production/js
 rename 's/-min//' ../production/js/*.js
+# remove console funcs
+sed -Ei 's/console.(log|debug|info)( ?| +)\([^;]*\);//g' ../production/js/*.js
 # other files
 cd ../src
 # css
