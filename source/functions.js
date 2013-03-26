@@ -46,7 +46,6 @@ function fetchData(item, success, error) {
                  error('好的嘛，好像有什么错误？');
              }
             });
-
 }
 /**
  * @author Zeno Zeng
@@ -79,9 +78,6 @@ function updateData() {
     hash = hash ? JSON.parse(hash) : {};
     var stuid = localStorage.getItem('stuid');
     var pwd = localStorage.getItem('pwd');
-    var isValid = function(obj) {
-        return JSON.stringify(obj).length > 2 ? true : false;
-    }
     // stuid & pwd 可能会因为tempLogin而改变(在回调执行时)，这里先直接载入数据
     var updateModule = (function(stuid, pwd) {
         return function(module) {
@@ -94,8 +90,9 @@ function updateData() {
                             return function(newdata) {
                                 hash[item] = data[item];
                                 localStorage.setItem('hash', JSON.stringify(hash));
-                                if(isValid(newdata)) {
-                                    localStorage.setItem(module+'/'+item, JSON.stringify(newdata));
+                                newdata = JSON.stringify(newdata);
+                                if(data.length > 2) {
+                                    localStorage.setItem(module+'/'+item, newdata);
                                 }
                             }
                         })(item);
